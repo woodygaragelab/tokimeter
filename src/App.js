@@ -29,6 +29,39 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Tokimeter</h1>
+      <div style={{marginBottom: 30}}>
+        {
+          items.map(item => (
+            <Card>
+            <Card.Body>
+              {/* <div key={item.id || item.name}> */}
+              <div class="container-fluid">
+              <div class="row">
+                <div class="col-4">
+                  <img src={item.image} style={{width: 50,height:50}}/>
+                </div>
+                <div class="col-6">
+                  <div>{item.name}</div>
+                  <div>{item.description}</div>
+                </div>
+                <div class="col-2">
+                  <Button onClick={() =>  deleteItem(item)} variant="outline-primary">Delete</Button>
+                </div>
+              </div>              
+              </div>              
+            </Card.Body>
+            </Card>
+          ))
+        }
+      </div>
+
+
+
+
+
+
+    {/* <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -42,7 +75,7 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
       <AmplifySignOut />
     </div>
   );
