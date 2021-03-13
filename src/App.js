@@ -1,9 +1,12 @@
 import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 import { listPersons } from './graphql/queries';
 import { createPerson as createPersonMutation, deletePerson as deletePersonMutation } from './graphql/mutations';
+
+const initialFormState = { name: '', description: '' }
 
 function App() {
   const [persons, setPersons] = useState([]);
