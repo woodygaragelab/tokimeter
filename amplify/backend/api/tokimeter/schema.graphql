@@ -3,3 +3,8 @@ type Person @model {
   name: String!
   description: String
 }
+type Event @model {
+  id: ID!
+  date: String!
+  description: String
+}
