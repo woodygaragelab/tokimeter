@@ -34,7 +34,7 @@ export const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
     getEvent(id: $id) {
       id
-      date
+      name
       description
       createdAt
       updatedAt
@@ -50,7 +50,7 @@ export const listEvents = /* GraphQL */ `
     listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        date
+        name
         description
         createdAt
         updatedAt

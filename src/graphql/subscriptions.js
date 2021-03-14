@@ -38,7 +38,7 @@ export const onCreateEvent = /* GraphQL */ `
   subscription OnCreateEvent {
     onCreateEvent {
       id
-      date
+      name
       description
       createdAt
       updatedAt
@@ -49,7 +49,7 @@ export const onUpdateEvent = /* GraphQL */ `
   subscription OnUpdateEvent {
     onUpdateEvent {
       id
-      date
+      name
       description
       createdAt
       updatedAt
@@ -60,7 +60,7 @@ export const onDeleteEvent = /* GraphQL */ `
   subscription OnDeleteEvent {
     onDeleteEvent {
       id
-      date
+      name
       description
       createdAt
       updatedAt

@@ -5,6 +5,6 @@ type Person @model {
 }
 type Event @model {
   id: ID!
-  date: String!
+  name: String!
   description: String
 }
