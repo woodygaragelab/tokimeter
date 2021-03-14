@@ -1,4 +1,4 @@
-type Person @model {
+type Item @model {
   id: ID!
   name: String!
   description: String
