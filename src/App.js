@@ -85,6 +85,8 @@ function App() {
         }
       </div>
 
+      <Card>
+      <Card.Body>
       <div class="container-fluid">
       <div class="row">
         <div class="col-3">
@@ -112,6 +114,8 @@ function App() {
         </div>
       </div>              
       </div>              
+      </Card.Body>
+      </Card>
 
 
 
