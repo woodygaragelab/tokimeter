@@ -1,4 +1,3 @@
-//import logo from './logo.svg';
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
@@ -12,11 +11,11 @@ import Card from 'react-bootstrap/Card';
 const initialFormState = { name: '', description: '' }
 
 function App() {
-  //const [items, setItems] = useState([]);
-  const [items, setItems] = useState([{name:'aaa',description:'xxx'}]);
+  const [items, setItems] = useState([]);
+  //const [items, setItems] = useState([{name:'aaa',description:'xxx'}]);
   const [formData, setFormData] = useState(initialFormState);
 
-  //useEffect(() => {  fetchItems(); }, []);
+  useEffect(() => {  fetchItems(); }, []);
   async function fetchItems() {
     const apiData = await API.graphql({ query: listItems });
     const itemsFromAPI = apiData.data.listItems.items;
@@ -117,25 +116,6 @@ function App() {
       </Card.Body>
       </Card>
 
-
-
-
-
-    {/* <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
       <AmplifySignOut />
     </div>
   );
