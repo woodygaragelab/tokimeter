@@ -12,10 +12,11 @@ import Card from 'react-bootstrap/Card';
 const initialFormState = { name: '', description: '' }
 
 function App() {
-  const [items, setItems] = useState([]);
+  //const [items, setItems] = useState([]);
+  const [items, setItems] = useState([{name:'aaa',description:'xxx'}]);
   const [formData, setFormData] = useState(initialFormState);
 
-  useEffect(() => {  fetchItems(); }, []);
+  //useEffect(() => {  fetchItems(); }, []);
   async function fetchItems() {
     const apiData = await API.graphql({ query: listItems });
     const itemsFromAPI = apiData.data.listItems.items;
