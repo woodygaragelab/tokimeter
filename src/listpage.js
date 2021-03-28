@@ -78,7 +78,7 @@ class ListPage extends Component {
 
     return (
       <div style={{marginBottom: 30}}  className="container-fluid">
-        <h1>Tokimeter</h1>
+        <h1>Tokimeter 0329</h1>
 
         {
           this.state.items.map(item => (
