@@ -1,125 +1,117 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './App.css';
 import { API, Storage } from 'aws-amplify';
 import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
+//import { Auth } from 'aws-amplify';
+
 import { listItems } from './graphql/queries';
 import { createItem as createItemMutation, deleteItem as deleteItemMutation } from './graphql/mutations';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import ListPage from './listpage';
+//import DetailPage from './detailpage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
 const initialFormState = { name: '', description: '' }
+const initialItemState = [{ name: '', description: '' }]
 
-function App() {
-  const [items, setItems] = useState([]);
-  //const [items, setItems] = useState([{name:'aaa',description:'xxx'}]);
-  const [formData, setFormData] = useState(initialFormState);
+class App extends React.Component {
 
-  useEffect(() => {  fetchItems(); }, []);
-  async function fetchItems() {
-    const apiData = await API.graphql({ query: listItems });
+  constructor(props) {
+    super(props);
+    this.fetchItems = this.fetchItems.bind(this);
+    this.createItem = this.createItem.bind(this);
+    this.editItem = this.editItem.bind(this);
+    this.onChange = this.onChange.bind(this);
+    this.handleClick = this.handleClick.bind(this)
+    // this.logIn();
+    this.state = {
+      items: initialItemState,
+      formData: initialFormState
+    };
+  }
+
+  // async logIn() {
+  //   const userId = "woody";
+  //   const password = "woody2021";
+  //   const userData = await Auth.signIn(userId, password)
+  // }
+
+  async fetchItems() {
+      const apiData = await API.graphql({ query: listItems });
     const itemsFromAPI = apiData.data.listItems.items;
     await Promise.all(itemsFromAPI.map(async item => {
-      if (item.image) {
-        const image = await Storage.get(item.image);
-        item.image = image;
+      if (item.imageFile) {
+        const imageUrl = await Storage.get(item.imageFile);
+        item.imageUrl = imageUrl;
       }
       return item;
     }))
-    setItems(apiData.data.listItems.items);
-  }
-  async function createItem() {
-    if (!formData.name || !formData.description) return;
-    await API.graphql({ query: createItemMutation, variables: { input: formData } });
-    if (formData.image) {
-      const image = await Storage.get(formData.image);
-      formData.image = image;
-    }
-    setItems([ ...items, formData ]);
-    setFormData(initialFormState);
+    this.setState({items: apiData.data.listItems.items});
   }
 
-  async function deleteItem({ id }) {
-    const newItemsArray = items.filter(item => item.id !== id);
-    setItems(newItemsArray);
+  async createItem() {
+    if (!this.state.formData.name || !this.state.formData.description) return;
+    await API.graphql({ query: createItemMutation, variables: { input: this.state.formData } });
+    if (this.state.formData.image) {
+      const image = await Storage.get(this.state.formData.image);
+      this.state.formData.image = image;
+      this.setState({formData: this.state.formData});
+    }
+    this.setState({items: [ ...this.state.items, this.state.formData ]});
+    this.setState({formData: initialFormState});    
+  }
+
+  async deleteItem({ id }) {
+    const newItemsArray = this.state.items.filter(item => item.id !== id);
+    this.setState({items: newItemsArray});
     await API.graphql({ query: deleteItemMutation, variables: { input: { id } }});
   }
 
-  async function onChange(e) {
+  editItem({id}) {
+    this.props.history.push({
+       pathname: '/detail',
+       state: { 
+         id: id
+       }
+     });
+  }
+
+  async onChange(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
-    setFormData({ ...formData, image: file.name });
+    this.setState({formData: { ...this.state.formData, image: file.name }});
     await Storage.put(file.name, file);
-    fetchItems();
+    this.fetchItems();
+  }
+
+  handleClick(){
+    this.props.history.push('/secondpage')
   }
 
 
+  render(){
+    return (
+      // <head>
+      //   <script src="https://kit.fontawesome.com/a87609860b.js" crossOrigin="anonymous"></script>
+      // </head>
 
-  return (
-    <div className="App">
-      <h1>Tokimeter 0325</h1>
-      <div style={{marginBottom: 30}}>
-        {
-          items.map(item => (
-            <Card>
-            <Card.Body>
-              {/* <div key={item.id || item.name}> */}
-              <div class="container-fluid">
-              <div class="row">
-                <div class="col-4">
-                  <img src={item.image} style={{width: 50,height:50}}/>
-                </div>
-                <div class="col-6">
-                  <div>{item.name}</div>
-                  <div>{item.description}</div>
-                </div>
-                <div class="col-2">
-                  <Button onClick={() =>  deleteItem(item)} variant="outline-primary">Delete</Button>
-                </div>
-              </div>              
-              </div>              
-            </Card.Body>
-            </Card>
-          ))
-        }
-      </div>
-
-      <Card>
-      <Card.Body>
-      <div class="container-fluid">
-      <div class="row">
-        <div class="col-3">
-          <Button onClick={createItem} variant="outline-primary">ADD</Button>
+      <div className="App">
+        <div>
+        <Router>
+        <Switch>
+            <Route exact={true} path='/' component={ListPage}/>
+            {/* <Route exact={true} path='/detailpage' component={DetailPage}/> */}
+        </Switch>
+        </Router>
         </div>
-        <div class="col-3">
-          <input
-            onChange={e => setFormData({ ...formData, 'name': e.target.value})}
-            placeholder="name"
-            value={formData.name}
-          />
-        </div>
-        <div class="col-3">
-          <input
-            onChange={e => setFormData({ ...formData, 'description': e.target.value})}
-            placeholder="description"
-            value={formData.description}
-          />
-        </div>
-        <div class="col-3">
-          <input
-            type="file"
-            onChange={onChange}
-          />
-        </div>
-      </div>              
-      </div>              
-      </Card.Body>
-      </Card>
-
+      
       <AmplifySignOut />
     </div>
-  );
+
+  )};
 }
 
-//export default App;
 export default withAuthenticator(App);
+//export default App;
+// export default withRouter(App)
