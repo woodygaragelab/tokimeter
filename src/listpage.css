@@ -1,4 +1,14 @@
-h1 {
-/* テキストは基本(App.css）左寄せだが、h1（タイトル）だけ中央寄にする */
-  text-align: center;
+.main > div {
+  cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-family: Kanit, sans-serif;
+  font-weight: 800;
+  font-size: 10em;
+  will-change: transform, opacity;
 }

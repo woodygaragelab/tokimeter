@@ -1,117 +1,54 @@
-import React from 'react';
-import './App.css';
-import { API, Storage } from 'aws-amplify';
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
-//import { Auth } from 'aws-amplify';
+import React from 'react'
+//import './styles.css'
+import './App.css'
+import { useState } from 'react';
+import { useEffect} from 'react';
 
-import { listItems } from './graphql/queries';
-import { createItem as createItemMutation, deleteItem as deleteItemMutation } from './graphql/mutations';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ListPage from './listpage';
-//import DetailPage from './detailpage';
-import { BrowserRouter as Router } from 'react-router-dom';
-import {Route, Switch} from 'react-router-dom';
+import {useSpring, animated} from 'react-spring'
+//import { config } from 'react-spring'
+//import { Transition} from 'react-spring'
+//import {useTransition} from 'react-spring'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons";
 
-const initialFormState = { name: '', description: '' }
-const initialItemState = [{ name: '', description: '' }]
+//export default function App() {
+const App = () => {
 
-class App extends React.Component {
+  const [toggle, setToggle] = useState(0);
+  const changeToggle = () => setToggle(toggle === 1 ? 0 : toggle + 1)
+  useEffect( () => void setTimeout(() => changeToggle(), 1000), [changeToggle] );
+  const spring = useSpring(
+    {color: toggle ? "#ffaaaa" : "red",
+     backgroundColor:"#ffffff44",
+     textAlign:"center",
+     fontSize: toggle ? "48pt": "96pt",
+     opacity: 1.0,
+     transform: toggle ? 'translate(0%,200%)':'translate(0%,80%)', 
+     from: {color: "#ff0000"},
+     config: { mass: 1, tension: 100, friction: 50 }
+    })
+ 
+  return (
+    <div onClick={() => changeToggle()}>
+      <header className="siteHeader">
+        <div>Kozipro</div>
+        {/* <div>{toggle}</div> */}
+      </header>
 
-  constructor(props) {
-    super(props);
-    this.fetchItems = this.fetchItems.bind(this);
-    this.createItem = this.createItem.bind(this);
-    this.editItem = this.editItem.bind(this);
-    this.onChange = this.onChange.bind(this);
-    this.handleClick = this.handleClick.bind(this)
-    // this.logIn();
-    this.state = {
-      items: initialItemState,
-      formData: initialFormState
-    };
-  }
+      <animated.div style={spring}>
+        <FontAwesomeIcon icon={faHeart} />
+      </animated.div> 
+ 
+      <footer className="siteFooter">
+        <FontAwesomeIcon icon={faHome} />
+        <FontAwesomeIcon icon={faChartLine} />
+        <FontAwesomeIcon icon={faHeart} />
+      </footer>
 
-  // async logIn() {
-  //   const userId = "woody";
-  //   const password = "woody2021";
-  //   const userData = await Auth.signIn(userId, password)
-  // }
-
-  async fetchItems() {
-      const apiData = await API.graphql({ query: listItems });
-    const itemsFromAPI = apiData.data.listItems.items;
-    await Promise.all(itemsFromAPI.map(async item => {
-      if (item.imageFile) {
-        const imageUrl = await Storage.get(item.imageFile);
-        item.imageUrl = imageUrl;
-      }
-      return item;
-    }))
-    this.setState({items: apiData.data.listItems.items});
-  }
-
-  async createItem() {
-    if (!this.state.formData.name || !this.state.formData.description) return;
-    await API.graphql({ query: createItemMutation, variables: { input: this.state.formData } });
-    if (this.state.formData.image) {
-      const image = await Storage.get(this.state.formData.image);
-      this.state.formData.image = image;
-      this.setState({formData: this.state.formData});
-    }
-    this.setState({items: [ ...this.state.items, this.state.formData ]});
-    this.setState({formData: initialFormState});    
-  }
-
-  async deleteItem({ id }) {
-    const newItemsArray = this.state.items.filter(item => item.id !== id);
-    this.setState({items: newItemsArray});
-    await API.graphql({ query: deleteItemMutation, variables: { input: { id } }});
-  }
-
-  editItem({id}) {
-    this.props.history.push({
-       pathname: '/detail',
-       state: { 
-         id: id
-       }
-     });
-  }
-
-  async onChange(e) {
-    if (!e.target.files[0]) return
-    const file = e.target.files[0];
-    this.setState({formData: { ...this.state.formData, image: file.name }});
-    await Storage.put(file.name, file);
-    this.fetchItems();
-  }
-
-  handleClick(){
-    this.props.history.push('/secondpage')
-  }
-
-
-  render(){
-    return (
-      // <head>
-      //   <script src="https://kit.fontawesome.com/a87609860b.js" crossOrigin="anonymous"></script>
-      // </head>
-
-      <div className="App">
-        <div>
-        <Router>
-        <Switch>
-            <Route exact={true} path='/' component={ListPage}/>
-            {/* <Route exact={true} path='/detailpage' component={DetailPage}/> */}
-        </Switch>
-        </Router>
-        </div>
-      
-      <AmplifySignOut />
     </div>
+  );
 
-  )};
-}
 
-export default withAuthenticator(App);
-//export default App;
-// export default withRouter(App)
+};
+
+export default App;
