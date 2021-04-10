@@ -1,54 +1,36 @@
-import React from 'react'
-//import './styles.css'
-import './App.css'
-import { useState } from 'react';
-import { useEffect} from 'react';
+import React from 'react';
+import './App.css';
+import { withAuthenticator } from '@aws-amplify/ui-react';
+//import { AmplifySignOut } from '@aws-amplify/ui-react';
+//import { Auth } from 'aws-amplify';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import HomePage from './homepage';
+import HeartPage from './heartpage';
+//import GraphPage from './graphpage';
+//import TextPage from './textpage';
+import { BrowserRouter as Router } from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
-import {useSpring, animated} from 'react-spring'
-//import { config } from 'react-spring'
-//import { Transition} from 'react-spring'
-//import {useTransition} from 'react-spring'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons";
+  class App extends React.Component {
 
-//export default function App() {
-const App = () => {
-
-  const [toggle, setToggle] = useState(0);
-  const changeToggle = () => setToggle(toggle === 1 ? 0 : toggle + 1)
-  useEffect( () => void setTimeout(() => changeToggle(), 1000), [changeToggle] );
-  const spring = useSpring(
-    {color: toggle ? "#ffaaaa" : "red",
-     backgroundColor:"#ffffff44",
-     textAlign:"center",
-     fontSize: toggle ? "48pt": "96pt",
-     opacity: 1.0,
-     transform: toggle ? 'translate(0%,200%)':'translate(0%,80%)', 
-     from: {color: "#ff0000"},
-     config: { mass: 1, tension: 100, friction: 50 }
-    })
- 
-  return (
-    <div onClick={() => changeToggle()}>
-      <header className="siteHeader">
-        <div>Kozipro</div>
-        {/* <div>{toggle}</div> */}
-      </header>
-
-      <animated.div style={spring}>
-        <FontAwesomeIcon icon={faHeart} />
-      </animated.div> 
- 
-      <footer className="siteFooter">
-        <FontAwesomeIcon icon={faHome} />
-        <FontAwesomeIcon icon={faChartLine} />
-        <FontAwesomeIcon icon={faHeart} />
-      </footer>
-
-    </div>
-  );
-
-
-};
+    render(){
+      return (
+        <div className="App">
+          <div>
+          <Router>
+          <Switch>
+            <Route exact={true} path='/' component={HomePage}/>
+            <Route exact={true} path='/homepage' component={HomePage}/>
+            <Route exact={true} path='/heartpage' component={HeartPage}/>
+            {/* <Route exact={true} path='/graphpage' component={GraphPage}/>
+            <Route exact={true} path='/textpage' component={TextPage}/> */}
+          </Switch>
+          </Router>
+          </div>      
+        {/* <AmplifySignOut /> */}
+      </div>
+  
+    )};
+  }  
 
 export default App;
