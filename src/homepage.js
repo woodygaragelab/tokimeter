@@ -50,7 +50,7 @@ class HomePage extends Component {
   render() {
     return (
       <div>
-          <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
+          <div className="kzHeader kzColor1 kzFont1">Kozipro 4/10</div>
           <div className="kzFace m-1"></div>
 
           <div className="kzMenu kozi-color-1 kozi-font-1 m-4" onclick={this.selectHeart}>
