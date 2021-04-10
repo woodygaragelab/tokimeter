@@ -1,75 +1,47 @@
 import React from 'react'
 import { Component } from 'react';
+import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
 
-import './App.css';
-//import Button from 'react-bootstrap/Button';
+import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
+import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 
-import { useState } from 'react';
-import { useEffect} from 'react';
-import { withRouter } from 'react-router-dom';
-
-import {useSpring, animated} from 'react-spring'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons";
-
-export const Home = () => {
-
-  const [toggle, setToggle] = useState(0);
-  const changeToggle = () => setToggle(toggle === 1 ? 0 : toggle + 1)
-  useEffect( () => void setTimeout(() => changeToggle(), 1000), [changeToggle] );
-  const spring = useSpring(
-    {color: toggle ? "#ffaaaa" : "red",
-     backgroundColor:"#ffffff44",
-     textAlign:"center",
-     fontSize: toggle ? "48pt": "96pt",
-     opacity: 1.0,
-     transform: toggle ? 'translate(0%,200%)':'translate(0%,80%)', 
-     from: {color: "#ff0000"},
-     config: { mass: 1, tension: 100, friction: 50 }
-    })
- 
-  return (
-    <div onClick={() => changeToggle()}>
-     <animated.div style={spring}>
-        <FontAwesomeIcon icon={faHeart} />
-      </animated.div>  
-    </div>
-  );
-};
-
-class HomePage extends Component {
-
-  constructor(props){
+class HomePage extends Component {       // HomePage:メインページ
+  constructor(props){                    // props: HomePageコンポネントが受け取るパラメータ
     super(props);
-    this.state = {
-    };  
+    this.state = { };                    // state: HomePageコンポネントが保持するデータ
   }
 
+  // path=/heartpageに遷移する。遷移先のコンポネントはApp.jsのRouteで設定　
   selectHeart = () => {  this.props.history.push({ pathname: '/heartpage' });  }
 
+  // 画面描画処理。 htmlを生成してreturnすると、Reactが描画する。
   render() {
     return (
       <div>
-          <div className="kzHeader kzColor1 kzFont1">Kozipro 4/10</div>
-          <div className="kzFace m-1"></div>
+        {/* Header部 */}
+        <div className="kzHeader kzColor1 kzFont1">Kozipro 4/10</div>
 
-          <div className="kzMenu kozi-color-1 kozi-font-1 m-4" onclick={this.selectHeart}>
-            <FontAwesomeIcon icon={faChartLine}/>
-            イベントを記録
-            </div>
-          <div className="kzMenu kzColor1 kzFont1 m-4" onclick={this.selectHeart}>メッセージを記録</div>
-          <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>
-            <FontAwesomeIcon icon={faHeart}/>
-            Heartを表示
-          </div>
+        {/* 顔表示部 あとで横スクロール（Karusell） にする*/}
+        <div className="kzFace m-1"></div>
 
-        <footer className="kzFooter">
-          <FontAwesomeIcon icon={faHome} />
-          <FontAwesomeIcon icon={faChartLine} />
-          <FontAwesomeIcon icon={faHeart} onClick={this.selectHeart} />
+        {/* メニュー部　*/}
+        <div className="kzMenu kzColor1 kzFont1 m-4" onclick={this.selectHeart}>
+          <FontAwesomeIcon icon={faChartLine}/>イベントを記録
+        </div>
+        <div className="kzMenu kzColor1 kzFont1 m-4" onclick={this.selectHeart}>メッセージを記録</div>
+        <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>
+          <FontAwesomeIcon icon={faHeart}/>Heartを表示
+        </div>
+
+        {/* Footer部 */}
+        <footer className="kzFooter kzColor2 kzFont1">
+          <FontAwesomeIcon icon={faHome} />                             {/* faHome:Homeアイコン */}
+          <FontAwesomeIcon icon={faChartLine} />                        {/* faChartLine:グラフアイコン*/}
+          <FontAwesomeIcon icon={faHeart} onClick={this.selectHeart}/>  {/* selectHeart関数で画面遷移する */}
         </footer>
       </div>
     );
   }
 }
-export default withRouter(HomePage) 
+export default withRouter(HomePage) // 画面遷移対象にするので、withRoute()を使う
