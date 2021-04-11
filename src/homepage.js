@@ -20,7 +20,7 @@ class HomePage extends Component {       // HomePage:メインページ
     return (
       <div>
         {/* Header部 */}
-        <div className="kzHeader kzColor1 kzFont1">Kozipro 4/10</div>
+        <div className="kzHeader kzColor1 kzFont1">Kozipro 4/11</div>
 
         {/* 顔表示部 あとで横スクロール（Karusell） にする*/}
         <div className="kzFace m-1"></div>
