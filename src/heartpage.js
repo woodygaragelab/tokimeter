@@ -13,10 +13,19 @@ import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"
 export const Heart = () => {
 
   const [toggle, setToggle] = useState(0); // toggleをon/offしてアニメーションを往復させる
-  const changeToggle = () => setToggle(toggle === 1 ? 0 : toggle + 1) //toggleをon(1)/off(0)する 
   
-  // 1000msec（1秒）ごとにchangeToggleを呼び出す⇒toggle(state)を変更する⇒再びuseEffectが呼ばれる　を繰り返す
-  useEffect( () => void setTimeout(() => changeToggle(), 1000), [changeToggle] );
+  // useEffet: 描画後に呼ばれる関数
+  // 1000msec（1秒）ごとにchangeToggleを呼び出す
+  //  ⇒toggle(state)を変更する
+  //  ⇒再描画される
+  //  ⇒再びuseEffectが呼ばれる　を繰り返す
+  useEffect( () => {
+    const changeToggle = () => setToggle(toggle === 1 ? 0 : toggle + 1) //toggleをon(1)/off(0)する 
+    const timeoutId = setTimeout(() => changeToggle(), 1000);  
+    return function cleanup() { clearTimeout(timeoutId);  };  // unmount時（画面遷移時）timeout関数をcleanupする
+    } ,
+    [toggle]                                                  // dependency: toggleの更新時だけ動作させる
+  );
   
   // spring: アニメーション設定
   const spring = useSpring(

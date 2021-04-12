@@ -20,16 +20,16 @@ class HomePage extends Component {       // HomePage:メインページ
     return (
       <div>
         {/* Header部 */}
-        <div className="kzHeader kzColor1 kzFont1">Kozipro 4/11</div>
+        <div className="kzHeader kzColor1 kzFont1">Kozipro 4/12</div>
 
         {/* 顔表示部 あとで横スクロール（Karusell） にする*/}
         <div className="kzFace m-1"></div>
 
         {/* メニュー部　*/}
-        <div className="kzMenu kzColor1 kzFont1 m-4" onclick={this.selectHeart}>
+        <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>
           <FontAwesomeIcon icon={faChartLine}/>イベントを記録
         </div>
-        <div className="kzMenu kzColor1 kzFont1 m-4" onclick={this.selectHeart}>メッセージを記録</div>
+        <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>メッセージを記録</div>
         <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>
           <FontAwesomeIcon icon={faHeart}/>Heartを表示
         </div>
