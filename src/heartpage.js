@@ -12,16 +12,18 @@ import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"
 // Heart コンポネント
 export const Heart = () => {
 
-  const [toggle, setToggle] = useState(0); // toggleをon/offしてアニメーションを往復させる
-  
-  // useEffet: 描画後に呼ばれる関数
-  // 1000msec（1秒）ごとにchangeToggleを呼び出す
-  //  ⇒toggle(state)を変更する
-  //  ⇒再描画される
-  //  ⇒再びuseEffectが呼ばれる　を繰り返す
+  const [toggle, setToggle] = useState(0); // toggle: Heart文字の大小を決めるフラグ on(1)=小/off(0)=大
+                                           // 　      state（コンポネント保持する変数）とする
+                                           // setToggle: toggleをセットする関数名
+                                           // useState(0): 初期値=0 
+
+                                            // useEffet: 描画後に呼ばれる関数
+                                            //  ⇒toggle(state)を変更する
+                                            //  ⇒再描画される
+                                            //  ⇒再びuseEffectが呼ばれる　を繰り返す
   useEffect( () => {
     const changeToggle = () => setToggle(toggle === 1 ? 0 : toggle + 1) //toggleをon(1)/off(0)する 
-    const timeoutId = setTimeout(() => changeToggle(), 1000);  
+    const timeoutId = setTimeout(() => changeToggle(), 1000);    // 1000msec（1秒）ごとにchangeToggleを呼び出す
     return function cleanup() { clearTimeout(timeoutId);  };  // unmount時（画面遷移時）timeout関数をcleanupする
     } ,
     [toggle]                                                  // dependency: toggleの更新時だけ動作させる
@@ -29,16 +31,17 @@ export const Heart = () => {
   
   // spring: アニメーション設定
   const spring = useSpring(
-    {color: toggle ? "#ffaaaa" : "red",　 //toggleのon/offで文字色を切り替える（オレンジ⇔赤）　　　
-      backgroundColor:"#ffffff44",        //背景色は白で固定。透明度は44（半透明）
-      textAlign:"center",                 //文字は中央寄せ
-      fontSize: toggle ? "48pt": "96pt",  //toggleのon/offでフォントサイズを切り替える（48pt⇔96pt）
-      opacity: 1.0,                       // 不透明度　1.0=不透明 0.0=透明　　　　
+    {color: toggle ? "#ffaaaa" : "red",　 //Heart文字色。toggleのon/offで文字色を切り替える（オレンジ⇔赤）　　　
+      backgroundColor:"#ffffff44",        //背景色。白で固定。透明度は44（半透明）
+      textAlign:"center",                 //文字位置。中央寄せ
+      fontSize: toggle ? "48pt": "96pt",  //Heart文字サイズ。toggleのon/offで切り替える（48pt⇔96pt）
+      opacity: 1.0,                       //不透明度。　1.0=不透明 0.0=透明　　　　
       transform: toggle ? 'translate(0%,200%)':'translate(0%,80%)', //表示位置。fontが大小する分修正する
       from: {color: "#ff0000"},           // transition機能用の設定。不要
       config: { mass: 1, tension: 100, friction: 50 } // tension:アニメーション変化スピード。
     })
  
+  // Heartコンポネントのレイアウト  
   return (
     <div>
       <animated.div style={spring}>　       {/* アニメーション表示部 */}
@@ -59,10 +62,11 @@ class HeartPage extends Component {
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
   selectHome = () => { this.props.history.push({ pathname: '/homepage' });  }
 
+  // 画面レイアウト  
   render() {
     return (
       <div>
-        <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
+        <div className="kzHeader kzColor1 kzFont1">Kozipro</div>        {/* Header部 */}
         <Heart></Heart>
         <footer className="kzFooter kzColor2 kzFont1">
           <FontAwesomeIcon icon={faHome}  onClick={this.selectHome}/>

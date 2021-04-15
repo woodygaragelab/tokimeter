@@ -11,8 +11,8 @@ import './App.css';                            // アプリ共通スタイル（
 
 import HomePage from './homepage';
 import HeartPage from './heartpage';
-//import GraphPage from './graphpage';
-//import TextPage from './textpage';
+import GraphPage from './graphpage';
+import TextPage from './textpage';
 
   // アプリ Main Module (Class)
   class App extends React.Component {
@@ -27,8 +27,8 @@ import HeartPage from './heartpage';
             <Route exact={true} path='/' component={HomePage}/>
             <Route exact={true} path='/homepage' component={HomePage}/>
             <Route exact={true} path='/heartpage' component={HeartPage}/>
-            {/* <Route exact={true} path='/graphpage' component={GraphPage}/>
-            <Route exact={true} path='/textpage' component={TextPage}/> */}
+            <Route exact={true} path='/graphpage' component={GraphPage}/>
+            <Route exact={true} path='/textpage' component={TextPage}/>
           </Switch>
           </Router>
           

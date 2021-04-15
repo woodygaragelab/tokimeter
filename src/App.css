@@ -10,6 +10,9 @@
   background: #BDAFC9;
   color: #ffffff;
 }
+.kzCard {
+  width: 18rem;
+}
 
 .kzFont1 {
   font-family: Kanit, sans-serif;
@@ -29,7 +32,11 @@
 
 .kzFace {
   width: 100%;
-  height: 200px;
+  max-height: 40%;
+}
+
+.kzGraph {
+  max-height: 40%;
 }
 
 .kzFooter {
@@ -47,4 +54,10 @@
   border-radius: 10px 10px 10px 10px;    /* 角丸のBOX */
   justify-content: center;
   align-items: center;
+}
+
+.kzImage {
+  width: 50%;            /* 親要素(div)(表示領域)の50%幅 */
+  height: auto;          /* 縦横比(アスペクト比)は元イメージに合わせる */
+  border-radius: 50%;    /* 丸く切り取る */
 }
