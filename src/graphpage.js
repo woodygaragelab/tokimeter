@@ -23,14 +23,42 @@ export const Graph = () => {
       {/* bar graphのアニメーション。あとでグラフに置き換える */}
       <div className="mt-4">
         <Loader
-          type="Bars"
+          type="Audio"
           color="#00BFFF"
           height={100}
           width={100}
-          timeout={10000} // msec
+          timeout={60000} // msec
+        />
+        <Loader
+          type="Bars"
+          color="#ff8800"
+          height={100}
+          width={100}
+          timeout={60000} // msec
+        />
+        <Loader
+          type="TailSpin"
+          color="#44ff44"
+          height={100}
+          width={100}
+          timeout={60000} // msec
+        />
+        <Loader
+          type="Grid"
+          color="#4444ff"
+          height={100}
+          width={100}
+          timeout={60000} // msec
+        />
+        <Loader
+          type="Hearts"
+          color="#ff4444"
+          height={100}
+          width={100}
+          timeout={60000} // msec
         />
       </div>
-
+      
     </div>
     
   );
