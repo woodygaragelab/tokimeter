@@ -9,6 +9,8 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
 import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 
+import heart from './img/heart.jpg'
+
 // Heart コンポネント
 export const Heart = () => {
 
@@ -40,15 +42,51 @@ export const Heart = () => {
       from: {color: "#ff0000"},           // transition機能用の設定。不要
       config: { mass: 1, tension: 100, friction: 50 } // tension:アニメーション変化スピード。
     })
+
+  const spring2 = useSpring(
+      {
+        backgroundColor:"#444444",  
+        color:"#ff0000",
+        align:"left",
+        textAlign:"center",
+        fontSize: "96pt",
+        width: toggle ? "200px" : "50px",
+        height: toggle ? "200px" : "50px",
+
+        config: { mass: 1, tension: 100, friction: 50 } // tension:アニメーション変化スピード。
+      })
+      // position:"fix",
+      // top: "10",
+      // left: "10",
  
   // Heartコンポネントのレイアウト  
+
+  // animated.div + font 方式。springで transformationがきれいに設定できない
+  // return (
+  //   <div>
+  //     <animated.div style={spring}>
+  //       <FontAwesomeIcon icon={faHeart} />　
+  //     </animated.div> 
+  //   </div>
+  // );
+
+  // animated.div + font では (spring2) width,heightが効かない
+  // return (
+  //   <div className="div1 mt-5">
+  //     <animated.div style={spring2}>
+  //       <FontAwesomeIcon icon={faHeart} />　
+  //     </animated.div> 
+  //   </div>
+  // );
+
+  // animated.img には (spring2) width,heightが効く。ハートimageはとりあえず自作
   return (
-    <div>
-      <animated.div style={spring}>　       {/* アニメーション表示部 */}
-        <FontAwesomeIcon icon={faHeart} />　{/* Heartアイコン        */}
-      </animated.div> 
+    <div className="div1 mt-5">
+      <animated.img src={heart} style={spring2}>
+      </animated.img> 
     </div>
   );
+
 }
 
 class HeartPage extends Component {

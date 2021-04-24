@@ -61,3 +61,16 @@
   height: auto;          /* 縦横比(アスペクト比)は元イメージに合わせる */
   border-radius: 50%;    /* 丸く切り取る */
 }
+
+/* デバッグ用 */
+.clr44 {
+  background: #444444;
+  color: #ffffff;
+}
+.clrff8888 {
+  background: #ff8888;
+}
+.div1 {
+  background: #ffffff;
+  text-align: center;
+}

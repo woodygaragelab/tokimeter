@@ -1,0 +1,28 @@
+<header>
+    <link rel="stylesheet" type="text/css" href="App.css">
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+</header>
+<body>
+
+      <div>
+          <!-- {/* Header部 */} -->
+          <div class="kzHeader kzColor1 kzFont1">Kozipro 4/24</div>
+
+        <div class="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectGraph}>
+          <FontAwesomeIcon icon={faChartLine}/>イベントを記録
+        </div>
+        <div class="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectText}>
+          メッセージを記録
+        </div>
+        <div class="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>
+          <FontAwesomeIcon icon={faHeart}/>Heartを表示
+        </div>
+
+        <footer class="kzFooter kzColor2 kzFont1">
+          <FontAwesomeIcon icon={faHome} />                           
+          <FontAwesomeIcon icon={faChartLine} />                      
+          <FontAwesomeIcon icon={faHeart} onClick={this.selectHeart}/>
+        </footer>
+      </div>
+
+</body>
