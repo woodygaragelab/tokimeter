@@ -12,6 +12,7 @@ import img1 from './img/jimin.jpg'   // homepageに表示する顔写真
 import img2 from './img/jin.jpg'
 import img3 from './img/songkang.jpg'
 import img4 from './img/nam_dosan.jpg'
+import img5 from './img/chorusan.jpg'
 
 
 class HomePage extends Component {       // HomePage:メインページ
@@ -55,6 +56,11 @@ class HomePage extends Component {       // HomePage:メインページ
             <Carousel.Item interval={1000}>
               <div className="col-sm-6 mx-auto">
                 <img src={img4} className="kzImage" alt="img4"/>
+              </div>
+            </Carousel.Item>
+            <Carousel.Item interval={1000}>
+              <div className="col-sm-6 mx-auto">
+                <img src={img5} className="kzImage" alt="img5"/>
               </div>
             </Carousel.Item>
           </Carousel>
