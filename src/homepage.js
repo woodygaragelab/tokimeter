@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
-import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
+import { faHeart, faHome, faChartLine, faComments } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graph,Messageのアイコン
 
 import img1 from './img/jimin.jpg'   // homepageに表示する顔写真
 import img2 from './img/jin.jpg'
@@ -31,8 +31,8 @@ class HomePage extends Component {       // HomePage:メインページ
     return (
       <div>
         {/* Header部 */}
-        <div className="kzHeader kzColor1 kzFont1">Kozipro 4/24</div>
-
+        <div className="kzHeader kzColor1 kzFont1">Kozipro 5/15</div>
+      
         {/* 顔表示部。 Carousel で横スクロール（自動）*/}
         <div className="kzFace">
           <Carousel>
@@ -71,7 +71,7 @@ class HomePage extends Component {       // HomePage:メインページ
           <FontAwesomeIcon icon={faChartLine}/>イベントを記録
         </div>
         <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectText}>
-          メッセージを記録
+          <FontAwesomeIcon icon={faComments}/>メッセージを記録
         </div>
         <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>
           <FontAwesomeIcon icon={faHeart}/>Heartを表示
@@ -81,8 +81,9 @@ class HomePage extends Component {       // HomePage:メインページ
         {/***** Footer部 *****/}
         <footer className="kzFooter kzColor2 kzFont1">
           <FontAwesomeIcon icon={faHome} />                             {/* faHome:Homeアイコン */}
-          <FontAwesomeIcon icon={faChartLine} />                        {/* faChartLine:グラフアイコン*/}
+          <FontAwesomeIcon icon={faChartLine} onClick={this.selectGraph}/>{/* faChartLine:グラフアイコン*/}
           <FontAwesomeIcon icon={faHeart} onClick={this.selectHeart}/>  {/* selectHeart関数で画面遷移する */}
+          <FontAwesomeIcon icon={faComments} onClick={this.selectText}/> {/* selectText関数で画面遷移する*/}
         </footer>
       </div>
     );
