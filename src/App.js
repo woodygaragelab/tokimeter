@@ -13,6 +13,7 @@ import HomePage from './homepage';
 import HeartPage from './heartpage';
 import GraphPage from './graphpage';
 import TextPage from './textpage';
+import UserPage from './userpage'
 
   // アプリ Main Module (Class)
   class App extends React.Component {
@@ -29,6 +30,7 @@ import TextPage from './textpage';
             <Route exact={true} path='/heartpage' component={HeartPage}/>
             <Route exact={true} path='/graphpage' component={GraphPage}/>
             <Route exact={true} path='/textpage' component={TextPage}/>
+            <Route exact={true} path='/userpage' component={UserPage}/>
           </Switch>
           </Router>
           

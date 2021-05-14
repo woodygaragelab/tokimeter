@@ -6,7 +6,7 @@ import Carousel from 'react-bootstrap/Carousel';
 
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
-import { faHeart, faHome, faChartLine, faComments } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graph,Messageのアイコン
+import { faHeart, faHome, faChartLine, faComments, faUser } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graph,Messageのアイコン
 
 import img1 from './img/jimin.jpg'   // homepageに表示する顔写真
 import img2 from './img/jin.jpg'
@@ -25,6 +25,7 @@ class HomePage extends Component {       // HomePage:メインページ
   selectGraph = () => {  this.props.history.push({ pathname: '/graphpage' });  }
   selectText  = () => {  this.props.history.push({ pathname: '/textpage' });  }
   selectHeart = () => {  this.props.history.push({ pathname: '/heartpage' });  }
+  selectUser = () => {  this.props.history.push({ pathname: '/heartuser' });  }
 
   // 画面描画処理。 htmlを生成してreturnすると、Reactが描画する。
   render() {
@@ -84,6 +85,7 @@ class HomePage extends Component {       // HomePage:メインページ
           <FontAwesomeIcon icon={faChartLine} onClick={this.selectGraph}/>{/* faChartLine:グラフアイコン*/}
           <FontAwesomeIcon icon={faHeart} onClick={this.selectHeart}/>  {/* selectHeart関数で画面遷移する */}
           <FontAwesomeIcon icon={faComments} onClick={this.selectText}/> {/* selectText関数で画面遷移する*/}
+          <FontAwesomeIcon icon={faUser} onClick={this.selectUser}/>
         </footer>
       </div>
     );
