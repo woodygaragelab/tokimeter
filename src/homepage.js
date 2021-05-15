@@ -25,7 +25,7 @@ class HomePage extends Component {       // HomePage:メインページ
   selectGraph = () => {  this.props.history.push({ pathname: '/graphpage' });  }
   selectText  = () => {  this.props.history.push({ pathname: '/textpage' });  }
   selectHeart = () => {  this.props.history.push({ pathname: '/heartpage' });  }
-  selectUser = () => {  this.props.history.push({ pathname: '/heartuser' });  }
+  selectUser = () => {  this.props.history.push({ pathname: '/userpage' });  }
 
   // 画面描画処理。 htmlを生成してreturnすると、Reactが描画する。
   render() {

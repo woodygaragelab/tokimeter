@@ -11,6 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコ�
 import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 import Loader from 'react-loader-spinner'
 
+import Footer from './footer'        // コンポネント（部品）化したFooter
+
 // TextAnalizerコンポネント
 export const TextAnalizer = () => {
 
@@ -51,11 +53,14 @@ class UserPage extends Component {
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
         <TextAnalizer></TextAnalizer>
-        <footer className="kzFooter kzColor2 kzFont1">
+        {/* <footer className="kzFooter kzColor2 kzFont1">
           <FontAwesomeIcon icon={faHome}  onClick={this.selectHome}/>
           <FontAwesomeIcon icon={faChartLine} />
           <FontAwesomeIcon icon={faHeart} />
-        </footer>
+        </footer> */}
+        
+        {/* footerを直接各代わりに、部品化したFooterを入れる */}
+        <Footer></Footer>
       </div>
     );
   }
