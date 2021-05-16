@@ -71,11 +71,20 @@ class GraphPage extends Component {
   constructor(props){
     super(props);
     this.state = {
+      showAddActivity: false // イベント追加のフォーム表示フラッグ
     };  
   }
 
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
   selectHome = () => { this.props.history.push({ pathname: '/homepage' });  }
+
+  toggleShowActivity = () => {
+    this.setState(
+      {
+        showAddActivity:!this.state.showAddActivity
+      }
+    )
+  }
 
   render() {
     return (
@@ -85,7 +94,7 @@ class GraphPage extends Component {
           <LineChart />
         </div>
         <div className='kzActivityBox'>
-          <ActivityHeader />
+          <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()}/>
         </div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">

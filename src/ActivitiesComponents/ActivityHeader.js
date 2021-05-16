@@ -1,11 +1,13 @@
 import React from 'react'
 import Button from './Button'
 
-function ActivityHeader() {
+function ActivityHeader(props) {
     return (
        <header>
            <h1>{"イベント"}</h1>
-           <Button color={'lightgrey'} text={'追加'} />
+           <Button color={'lightgrey'} 
+           text={props.showAdd ? '閉じる':'追加'} 
+           onClick={props.onClick}/>
        </header>
     )
 }
