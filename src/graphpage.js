@@ -96,7 +96,8 @@ class GraphPage extends Component {
         </div>
         <div className='kzActivityBox'>
           <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()}/>
-          <AddActivity />
+          {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
+          {this.state.showAddActivity && <AddActivity />} 
         </div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">
