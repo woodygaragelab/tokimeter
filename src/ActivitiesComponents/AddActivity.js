@@ -33,6 +33,8 @@ function AddActivity() {
                     <label>メンバー４</label>
                     <input type='text' class="form-control" placeholder='メンバー名前を入れてね'/>
                 </div>
+
+                <input type='submit' value='保存' className='btn btn-success'/>
             </form>
         </div>
     )
