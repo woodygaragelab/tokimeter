@@ -13,6 +13,7 @@ import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"
 import Loader from 'react-loader-spinner'
 import LineChart from './ActivitiesComponents/LineChart' // 心拍数表示機能
 import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベントのヘッダー部
+import AddActivity from './ActivitiesComponents/AddActivity' // イベント追加フォーム
 
 // Graphコンポネント
 export const Graph = () => {
@@ -95,6 +96,7 @@ class GraphPage extends Component {
         </div>
         <div className='kzActivityBox'>
           <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()}/>
+          <AddActivity />
         </div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">
