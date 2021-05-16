@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコ�
 import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 import Loader from 'react-loader-spinner'
 import LineChart from './ActivitiesComponents/LineChart' // 心拍数表示機能
+import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベントのヘッダー部
 
 // Graphコンポネント
 export const Graph = () => {
@@ -80,7 +81,12 @@ class GraphPage extends Component {
     return (
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
-        <div><LineChart /></div>
+        <div>
+          <LineChart />
+        </div>
+        <div className='kzActivityBox'>
+          <ActivityHeader />
+        </div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">
           <FontAwesomeIcon icon={faHome}  onClick={this.selectHome}/>
