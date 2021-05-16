@@ -79,6 +79,7 @@ class GraphPage extends Component {
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
   selectHome = () => { this.props.history.push({ pathname: '/homepage' });  }
 
+  // ボタン「追加」<->「閉じる」状態を反転させる
   toggleShowActivity = () => {
     this.setState(
       {
