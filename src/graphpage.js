@@ -14,6 +14,7 @@ import Loader from 'react-loader-spinner'
 import LineChart from './ActivitiesComponents/LineChart' // 心拍数表示機能
 import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベントのヘッダー部
 import AddActivity from './ActivitiesComponents/AddActivity' // イベント追加フォーム
+import Activities from './ActivitiesComponents/Activities' //複数のイベント表示
 
 // Graphコンポネント
 export const Graph = () => {
@@ -72,7 +73,8 @@ class GraphPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      showAddActivity: false // イベント追加のフォーム表示フラッグ
+      showAddActivity: false, // イベント追加のフォーム表示フラッグ
+      activities:[] //イベントのリスト
     };  
   }
 
@@ -88,6 +90,13 @@ class GraphPage extends Component {
     )
   }
 
+  //　イベントの追加
+  AddActivity = (activity) => {
+    const id = Math.floor(Math.random()*10000) + 1
+    const newActivity ={id,...activity}
+    this.state.activities.push(newActivity)
+  }
+
   render() {
     return (
       <div>
@@ -98,7 +107,8 @@ class GraphPage extends Component {
         <div className='kzActivityBox'>
           <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()}/>
           {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
-          {this.state.showAddActivity && <AddActivity />} 
+          {this.state.showAddActivity && <AddActivity onAdd={this.AddActivity}/>} 
+          <Activities activities={this.state.activities}/>
         </div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">
