@@ -11,6 +11,7 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
 import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 import Loader from 'react-loader-spinner'
+import LineChart from './ActivitiesComponents/LineChart'
 
 // Graphコンポネント
 export const Graph = () => {
@@ -79,6 +80,7 @@ class GraphPage extends Component {
     return (
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
+        <div><LineChart /></div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">
           <FontAwesomeIcon icon={faHome}  onClick={this.selectHome}/>
