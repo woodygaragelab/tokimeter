@@ -11,7 +11,7 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
 import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 import Loader from 'react-loader-spinner'
-import LineChart from './ActivitiesComponents/LineChart'
+import LineChart from './ActivitiesComponents/LineChart' // 心拍数表示機能
 
 // Graphコンポネント
 export const Graph = () => {
