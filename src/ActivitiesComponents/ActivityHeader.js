@@ -5,7 +5,7 @@ function ActivityHeader(props) {
     return (
        <header>
            <h1>{"イベント"}</h1>
-           <Button color={'lightgrey'} 
+           <Button color={props.showAdd ? 'pink':'lightgrey'} 
            text={props.showAdd ? '閉じる':'追加'} 
            onClick={props.onClick}/>
        </header>
