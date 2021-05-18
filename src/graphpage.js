@@ -95,6 +95,11 @@ class GraphPage extends Component {
     const id = Math.floor(Math.random()*10000) + 1
     const newActivity ={id,...activity}
     this.state.activities.push(newActivity)
+    this.setState(
+      {
+        activities:this.state.activities
+      }
+    )
   }
 
   render() {
