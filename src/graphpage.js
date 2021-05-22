@@ -15,6 +15,7 @@ import LineChart from './ActivitiesComponents/LineChart' // 心拍数表示機�
 import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベントのヘッダー部
 import AddActivity from './ActivitiesComponents/AddActivity' // イベント追加フォーム
 import Activities from './ActivitiesComponents/Activities' //複数のイベント表示
+import { act } from 'react-dom/test-utils';
 
 // Graphコンポネント
 export const Graph = () => {
@@ -74,13 +75,11 @@ class GraphPage extends Component {
     super(props);
     this.state = {
       showAddActivity: false, // イベント追加のフォーム表示フラッグ
-      activities: [
-       
-      ] //イベントのリスト
+      activities:[] //イベントのリスト
     };
   }
 
-  
+
 
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
   selectHome = () => { this.props.history.push({ pathname: '/homepage' }); }
@@ -110,34 +109,48 @@ class GraphPage extends Component {
 
   // イベントの削除 
   deleteActivity = async (id) => {
-    await fetch(`http://localhost:5000/activities/${id}`,{
-      method:'DELETE',
+    await fetch(`http://localhost:5000/activities/${id}`, {
+      method: 'DELETE',
     })
-   
+
     this.setState({
-      activities:this.state.activities.filter((activity) => activity.id !== id)
+      activities: this.state.activities.filter((activity) => activity.id !== id)
     })
-  
+
   }
-  
+
   //イベントをサーバーから取得
   fetchActivity = async () => {
     const res = await fetch('http://localhost:5000/activities')
     const data = await res.json()
 
-    console.log(data)
+   
+    return data
   }
 
-  
+  componentDidMount(){
+    const getActivites = async () => {
+      const activitiesFromServer = await this.fetchActivity()
+      this.setState({
+        activities:activitiesFromServer
+      })
+    }
+    getActivites()
+    
+  }
+
+
 
   render() {
     return (
-      
+
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
         <div>
           <LineChart />
         </div>
+        {/* For test fetch function */}
+        <button onClick={this.fetchActivity}/>
         <div className='kzActivityBox'>
           <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()} />
           {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
