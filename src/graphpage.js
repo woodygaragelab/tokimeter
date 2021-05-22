@@ -75,18 +75,12 @@ class GraphPage extends Component {
     this.state = {
       showAddActivity: false, // イベント追加のフォーム表示フラッグ
       activities: [
-        {
-          id: 1,
-          activity: "食事",
-          time: "10:00",
-          member1: "トヨタ",
-          member2: "本田",
-          member3: "SUBARU",
-          member4: "日産"
-        }
+       
       ] //イベントのリスト
     };
   }
+
+  
 
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
   selectHome = () => { this.props.history.push({ pathname: '/homepage' }); }
@@ -112,18 +106,33 @@ class GraphPage extends Component {
     )
   }
 
+
+
   // イベントの削除 
-  deleteTask = (id) => {
-    console.log("Delete",id)
-    this.state.activities.filter((activity) => activity.id !== id)
-    this.setState(
-      {activities:this.state.activities}
-    )
-    console.log("Delete Finish")
+  deleteActivity = async (id) => {
+    await fetch(`http://localhost:5000/activities/${id}`,{
+      method:'DELETE',
+    })
+   
+    this.setState({
+      activities:this.state.activities.filter((activity) => activity.id !== id)
+    })
+  
   }
+  
+  //イベントをサーバーから取得
+  fetchActivity = async () => {
+    const res = await fetch('http://localhost:5000/activities')
+    const data = await res.json()
+
+    console.log(data)
+  }
+
+  
 
   render() {
     return (
+      
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
         <div>
@@ -133,7 +142,7 @@ class GraphPage extends Component {
           <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()} />
           {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
           {this.state.showAddActivity && <AddActivity onAdd={this.AddActivity} />}
-          <Activities activities={this.state.activities} onDelete={this.deleteTask} />
+          <Activities activities={this.state.activities} onDelete={this.deleteActivity} />
         </div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">
