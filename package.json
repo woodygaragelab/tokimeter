@@ -16,6 +16,7 @@
     "bootstrap": "^4.6.0",
     "chart.js": "^3.2.1",
     "font-awesome": "^4.7.0",
+    "json-serve": "^0.1.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.6.0",
     "react-chartjs-2": "^3.0.3",
