@@ -1,9 +1,10 @@
 import React from 'react'
+import {FaTimes} from 'react-icons/fa'
 
 function Activity({activity}) {
     return (
         <div>
-            <h3>{activity.activity}</h3>
+            <h3>{activity.activity} <FaTimes /></h3>
             <p>{activity.time} </p>
             <p>{activity.member1}</p>
             <p>{activity.member2}</p>
