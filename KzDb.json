@@ -1,19 +1,14 @@
 {
-  "posts": [
+  "activities": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "activity": "食事",
+      "time": "10:00",
+      "member1": "トヨタ",
+      "member2": "本田",
+      "member3": "SUBARU",
+      "member4": "日産"
     }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  
+  ]
 }
