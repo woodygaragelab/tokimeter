@@ -62,44 +62,64 @@ export const Graph = () => {
           timeout={60000} // msec
         />
       </div>
-      
+
     </div>
-    
+
   );
 }
 
 class GraphPage extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       showAddActivity: false, // イベント追加のフォーム表示フラッグ
-      activities:[] //イベントのリスト
-    };  
+      activities: [
+        {
+          id: 1,
+          activity: "食事",
+          time: "10:00",
+          member1: "トヨタ",
+          member2: "本田",
+          member3: "SUBARU",
+          member4: "日産"
+        }
+      ] //イベントのリスト
+    };
   }
 
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
-  selectHome = () => { this.props.history.push({ pathname: '/homepage' });  }
+  selectHome = () => { this.props.history.push({ pathname: '/homepage' }); }
 
   // ボタン「追加」<->「閉じる」状態を反転させる
   toggleShowActivity = () => {
     this.setState(
       {
-        showAddActivity:!this.state.showAddActivity
+        showAddActivity: !this.state.showAddActivity
       }
     )
   }
 
   //　イベントの追加
   AddActivity = (activity) => {
-    const id = Math.floor(Math.random()*10000) + 1
-    const newActivity ={id,...activity}
+    const id = Math.floor(Math.random() * 10000) + 1
+    const newActivity = { id, ...activity }
     this.state.activities.push(newActivity)
     this.setState(
       {
-        activities:this.state.activities
+        activities: this.state.activities
       }
     )
+  }
+
+  // イベントの削除 
+  deleteTask = (id) => {
+    console.log("Delete",id)
+    this.state.activities.filter((activity) => activity.id !== id)
+    this.setState(
+      {activities:this.state.activities}
+    )
+    console.log("Delete Finish")
   }
 
   render() {
@@ -110,14 +130,14 @@ class GraphPage extends Component {
           <LineChart />
         </div>
         <div className='kzActivityBox'>
-          <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()}/>
+          <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()} />
           {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
-          {this.state.showAddActivity && <AddActivity onAdd={this.AddActivity}/>} 
-          <Activities activities={this.state.activities}/>
+          {this.state.showAddActivity && <AddActivity onAdd={this.AddActivity} />}
+          <Activities activities={this.state.activities} onDelete={this.deleteTask} />
         </div>
         <Graph></Graph>
         <footer className="kzFooter kzColor2 kzFont1">
-          <FontAwesomeIcon icon={faHome}  onClick={this.selectHome}/>
+          <FontAwesomeIcon icon={faHome} onClick={this.selectHome} />
           <FontAwesomeIcon icon={faChartLine} />
           <FontAwesomeIcon icon={faHeart} />
         </footer>
@@ -125,4 +145,4 @@ class GraphPage extends Component {
     );
   }
 }
-export default withRouter(GraphPage)  
+export default withRouter(GraphPage)

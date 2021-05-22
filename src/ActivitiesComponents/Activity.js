@@ -1,10 +1,13 @@
 import React from 'react'
-import {FaTimes} from 'react-icons/fa'
+import { FaTimes } from 'react-icons/fa'
 
-function Activity({activity}) {
+function Activity({ activity, onDelete }) {
     return (
         <div>
-            <h3>{activity.activity} <FaTimes /></h3>
+            <h3>{activity.activity} <FaTimes 
+            style={{ color: 'red', cursor: 'pointer' }} 
+            onClick={() => onDelete(activity.id)}
+            /></h3>
             <p>{activity.time} </p>
             <p>{activity.member1}</p>
             <p>{activity.member2}</p>
