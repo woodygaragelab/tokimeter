@@ -75,7 +75,7 @@ class GraphPage extends Component {
     super(props);
     this.state = {
       showAddActivity: false, // イベント追加のフォーム表示フラッグ
-      activities:[] //イベントのリスト
+      activities: [] //イベントのリスト
     };
   }
 
@@ -122,22 +122,22 @@ class GraphPage extends Component {
   //イベントをサーバーから取得
   fetchActivity = async () => {
     const res = await fetch('http://localhost:5000/activities')
-    const data = await res.json()
+    return res.json()
 
-   
-    return data
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const getActivites = async () => {
       const activitiesFromServer = await this.fetchActivity()
       this.setState({
-        activities:activitiesFromServer
+        activities: activitiesFromServer
       })
     }
     getActivites()
-    
+
   }
+
+  
 
 
 
@@ -150,7 +150,7 @@ class GraphPage extends Component {
           <LineChart />
         </div>
         {/* For test fetch function */}
-        <button onClick={this.fetchActivity}/>
+        <button onClick={this.fetchActivity} />
         <div className='kzActivityBox'>
           <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()} />
           {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
