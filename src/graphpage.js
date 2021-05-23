@@ -16,6 +16,7 @@ import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベ�
 import AddActivity from './ActivitiesComponents/AddActivity' // イベント追加フォーム
 import Activities from './ActivitiesComponents/Activities' //複数のイベント表示
 import { act } from 'react-dom/test-utils';
+import heartRateData from './BioData/heart_rate_example.json'
 
 // Graphコンポネント
 export const Graph = () => {
@@ -69,13 +70,16 @@ export const Graph = () => {
   );
 }
 
+//const heartRateData2 = heartRateData
+
 class GraphPage extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       showAddActivity: false, // イベント追加のフォーム表示フラッグ
-      activities: [] //イベントのリスト
+      activities: [], //イベントのリスト
+      heartRateData:heartRateData
     };
   }
 
@@ -94,15 +98,31 @@ class GraphPage extends Component {
   }
 
   //　イベントの追加
-  AddActivity = (activity) => {
-    const id = Math.floor(Math.random() * 10000) + 1
-    const newActivity = { id, ...activity }
-    this.state.activities.push(newActivity)
-    this.setState(
-      {
-        activities: this.state.activities
-      }
-    )
+  AddActivity = async (activity) => {
+    const res_add = await fetch('http://localhost:5000/activities',{
+      method:'Post',
+      headers:{
+        'Content-type':'application/json',
+      },
+      body:JSON.stringify(activity),
+    })
+
+    const data = res_add.json()
+
+    
+    this.setState({
+      activities:[...this.state.activities,data]
+    })
+
+
+    // const id = Math.floor(Math.random() * 10000) + 1
+    // const newActivity = { id, ...activity }
+    // this.state.activities.push(newActivity)
+    // this.setState(
+    //   {
+    //     activities: this.state.activities
+    //   }
+    // )
   }
 
 
@@ -112,7 +132,8 @@ class GraphPage extends Component {
     await fetch(`http://localhost:5000/activities/${id}`, {
       method: 'DELETE',
     })
-
+    
+    //  削除されたid以外のイベントのみを表示する
     this.setState({
       activities: this.state.activities.filter((activity) => activity.id !== id)
     })
@@ -122,7 +143,9 @@ class GraphPage extends Component {
   //イベントをサーバーから取得
   fetchActivity = async () => {
     const res = await fetch('http://localhost:5000/activities')
-    return res.json()
+    const data = await res.json()
+  
+    return data
 
   }
 
@@ -137,7 +160,16 @@ class GraphPage extends Component {
 
   }
 
-  
+  // componentDidUpdate() {
+  //   const getActivites = async () => {
+  //     const activitiesFromServer = await this.fetchActivity()
+  //     this.setState({
+  //       activities: activitiesFromServer
+  //     })
+  //   }
+  //   getActivites()
+
+  // }
 
 
 
@@ -147,7 +179,7 @@ class GraphPage extends Component {
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
         <div>
-          <LineChart />
+          <LineChart heartRateRawData ={heartRateData}/>
         </div>
         {/* For test fetch function */}
         <button onClick={this.fetchActivity} />
