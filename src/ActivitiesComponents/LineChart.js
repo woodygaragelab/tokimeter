@@ -25,14 +25,15 @@ const LineChart = () => {
     }
 
     // debug用
-    console.log(sampledList.length)
+    //console.log(sampledList.length)
 
     let labelIndex = 0
     const labelList = []　// X軸座標格納用リスト
     let timeIndex = 0　// X軸（時間軸座標）初期値は０で、上限24
     while (labelIndex < sampledList.length) {
         let timeUnit = parseInt(sampledList.length / 24)　// X軸数値（1:00, 2:00 ...）の間隔　
-        console.log(timeUnit)
+        //debug用
+        //console.log(timeUnit)
         if (labelIndex % timeUnit === 0) {
             labelList.push(timeIndex + ":00")　// 整除するのみ、X軸上に出力
             timeIndex++
@@ -62,6 +63,7 @@ const LineChart = () => {
             height={200}
             options={{
                 maintainAspectRatio: false,
+                animation:false
             }}
         />
     </>)

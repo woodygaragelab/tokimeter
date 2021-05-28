@@ -78,6 +78,7 @@ class GraphPage extends Component {
     this.state = {
       showAddActivity: false, // イベント追加のフォーム表示フラッグ
       activities: [] //イベントのリスト
+
     };
   }
 
@@ -99,7 +100,6 @@ class GraphPage extends Component {
 
   //　イベントの追加
   AddActivity = async (activity) => {
-
     const res_add = await fetch('http://localhost:5000/activities', {
       method: 'Post',
       headers: {
@@ -114,6 +114,7 @@ class GraphPage extends Component {
     this.setState({
       activities: [...this.state.activities, data]
     })
+    
   }
 
 
@@ -153,13 +154,14 @@ class GraphPage extends Component {
   }
 
   componentDidUpdate() {
-    const getActivites = async () => {
+    const getActivitesWhenUpdating = async () => {
       const activitiesFromServer = await this.fetchActivity()
       this.setState({
         activities: activitiesFromServer
       })
     }
-    getActivites()
+    
+    getActivitesWhenUpdating()
 
   }
 
