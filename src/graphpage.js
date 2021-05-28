@@ -16,7 +16,6 @@ import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベ�
 import AddActivity from './ActivitiesComponents/AddActivity' // イベント追加フォーム
 import Activities from './ActivitiesComponents/Activities' //複数のイベント表示
 import { act } from 'react-dom/test-utils';
-//import heartRateData from './BioData/heart_rate_example.json'
 
 // Graphコンポネント
 export const Graph = () => {
@@ -172,9 +171,9 @@ class GraphPage extends Component {
 
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
-        {/* <div>
+        <div>
           <LineChart  />
-        </div> */}
+        </div>
         <div className='kzActivityBox'>
           <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()} />
           {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
