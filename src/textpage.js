@@ -10,6 +10,7 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
 import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 import Loader from 'react-loader-spinner'
+import TextAnalysis from './TextAnalysisComponents/TextAnalysis' // コンテキスト分析機能
 
 // TextAnalizerコンポネント
 export const TextAnalizer = () => {
@@ -51,6 +52,7 @@ class TextPage extends Component {
       <div>
         <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
         <TextAnalizer></TextAnalizer>
+        <TextAnalysis></TextAnalysis>
         <footer className="kzFooter kzColor2 kzFont1">
           <FontAwesomeIcon icon={faHome}  onClick={this.selectHome}/>
           <FontAwesomeIcon icon={faChartLine} />
