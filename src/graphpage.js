@@ -1,7 +1,7 @@
 import React from 'react'
 import { Component } from 'react';
-// import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
-// import { useEffect} from 'react';                           // effect (state変化したときの処理機能)
+import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
+import { useEffect } from 'react';                           // effect (state変化したときの処理機能)
 import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
 // import { useSpring, animated} from 'react-spring'           // アニメーション機能
 
@@ -70,35 +70,31 @@ export const Graph = () => {
 }
 
 
-class GraphPage extends Component {
+const GraphPage = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showAddActivity: false, // イベント追加のフォーム表示フラッグ
-      activities: [] //イベントのリスト
+  const [showAddActivity, setShowAddActivity] = useState(false)
+  const [activities, setActivities] = useState([])
 
-    };
+  useEffect(() => {
+    const getActivities = async () => {
+      const activityFromServer = await fetchActivities()
+      setActivities(activityFromServer)
+    }
+
+    getActivities()
+  }, [])
+
+  //イベントをサーバーから取得
+  const fetchActivities = async () => {
+    const res = await fetch('http://localhost:5000/activities')
+    const data = await res.json()
+
+    return data
+
   }
-
-
-
-  // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
-  selectHome = () => { this.props.history.push({ pathname: '/homepage' }); }
-
-  // ボタン「追加」<->「閉じる」状態を反転させる
-  toggleShowActivity = () => {
-    this.setState(
-      {
-        showAddActivity: !this.state.showAddActivity
-      }
-    )
-  }
-
-
 
   //　イベントの追加
-  AddActivity = async (activity) => {
+  const addActivity = async (activity) => {
     const res_add = await fetch('http://localhost:5000/activities', {
       method: 'Post',
       headers: {
@@ -107,87 +103,56 @@ class GraphPage extends Component {
       body: JSON.stringify(activity),
     })
 
-    const data = res_add.json()
+    const data = await res_add.json()
+    setActivities([...activities, data])
 
-
-    this.setState({
-      activities: [...this.state.activities, data]
-    })
-    
   }
 
-
-
   // イベントの削除 
-  deleteActivity = async (id) => {
+  const deleteActivity = async (id) => {
     await fetch(`http://localhost:5000/activities/${id}`, {
       method: 'DELETE',
     })
 
     //  削除されたid以外のイベントのみを表示する
-    this.setState({
-      activities: this.state.activities.filter((activity) => activity.id !== id)
-    })
+    setActivities(activities.filter((activity) => activity.id != id))
 
   }
 
-  //イベントをサーバーから取得
-  fetchActivity = async () => {
-    const res = await fetch('http://localhost:5000/activities')
-    const data = await res.json()
+  // // ボタン「追加」<->「閉じる」状態を反転させる
+  const toggleShowActivity = () => {
+    setShowAddActivity(!showAddActivity)
 
-    return data
 
   }
 
-
-  componentDidMount() {
-    const getActivites = async () => {
-      const activitiesFromServer = await this.fetchActivity()
-      this.setState({
-        activities: activitiesFromServer
-      })
-    }
-    getActivites()
-
-  }
-
-  componentDidUpdate() {
-    const getActivitesWhenUpdating = async () => {
-      const activitiesFromServer = await this.fetchActivity()
-      this.setState({
-        activities: activitiesFromServer
-      })
-    }
-    
-    getActivitesWhenUpdating()
-
-  }
+  // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
+  //const selectHome = () => { props.history.push({ pathname: '/homepage' }); }
 
 
 
-  render() {
-    return (
+  return (
 
+    <div>
+      <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
       <div>
-        <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
-        <div>
-          <LineChart  />
-        </div>
-        <div className='kzActivityBox'>
-          <ActivityHeader showAdd={this.state.showAddActivity} onClick={() => this.toggleShowActivity()} />
-          {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
-          {this.state.showAddActivity && <AddActivity onAdd={this.AddActivity} />}
-          <Activities activities={this.state.activities} onDelete={this.deleteActivity} />
-        </div>
-        <Graph></Graph>
-        <footer className="kzFooter kzColor2 kzFont1">
-          <FontAwesomeIcon icon={faHome} onClick={this.selectHome} />
-          <FontAwesomeIcon icon={faChartLine} />
-          <FontAwesomeIcon icon={faHeart} />
-        </footer>
+        <LineChart />
       </div>
-    );
-  }
+      <div className='kzActivityBox'>
+        <ActivityHeader showAdd={showAddActivity} onClick={() => toggleShowActivity()} />
+        {/* イベント追加フォールの表示をボタンの状態を基に作動する */}
+        {showAddActivity && <AddActivity onAdd={addActivity} />}
+        <Activities activities={activities} onDelete={deleteActivity} />
+      </div>
+      <Graph></Graph>
+      <footer className="kzFooter kzColor2 kzFont1">
+        {/* <FontAwesomeIcon icon={faHome} onClick={selectHome} /> */}
+        {/* <FontAwesomeIcon icon={faHome} onClick={} /> */}
+        <FontAwesomeIcon icon={faChartLine} />
+        <FontAwesomeIcon icon={faHeart} />
+      </footer>
+    </div>
+  );
 }
+
 export default withRouter(GraphPage)
