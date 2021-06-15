@@ -2,7 +2,8 @@ import React from 'react'
 import { Component } from 'react';
 import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
 import { useEffect } from 'react';                           // effect (state変化したときの処理機能)
-import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
+
+import { useHistory, withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
 // import { useSpring, animated} from 'react-spring'           // アニメーション機能
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // 標準スタイルは bootstrapを使う
@@ -127,7 +128,9 @@ const GraphPage = () => {
   }
 
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
-  //const selectHome = () => { props.history.push({ pathname: '/homepage' }); }
+  const history = useHistory();
+  const selectHome = () => { 
+    history.push({ pathname: '/homepage' }); }
 
 
 
@@ -146,8 +149,7 @@ const GraphPage = () => {
       </div>
       <Graph></Graph>
       <footer className="kzFooter kzColor2 kzFont1">
-        {/* <FontAwesomeIcon icon={faHome} onClick={selectHome} /> */}
-        {/* <FontAwesomeIcon icon={faHome} onClick={} /> */}
+        <FontAwesomeIcon icon={faHome} onClick={selectHome} />
         <FontAwesomeIcon icon={faChartLine} />
         <FontAwesomeIcon icon={faHeart} />
       </footer>
