@@ -45,7 +45,7 @@ function AddActivity({onAdd}) {
                 </div>
                 <div align='left' className='form-group'>
                     <label>時間</label>
-                    <input type='text' class="form-control" placeholder='時間を入れてね' value={time} onChange={(e) => setTime(e.target.value)}/>
+                    <input type='text' class="form-control" placeholder='時間を入れてね' type = "date" value={time} onChange={(e) => setTime(e.target.value)}/>
                 </div>
                 <div align='left' className='form-group'>
                     <label>メンバー１</label>
