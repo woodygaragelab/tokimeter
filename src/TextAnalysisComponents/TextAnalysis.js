@@ -10,21 +10,26 @@ export const TextAnalysis = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // デバッグ用
-        //console.log(data["input-text"])
-        fetch(url + data["input-text"])
-            .then((response)=> {
+        console.log(data)
+
+        if (!data) {
+            alert('会話内容を入力ください')
+            return
+        }
+        
+        if(data.trim()==''){
+            alert('会話内容を入力ください')
+            return
+        }
+
+        // Kozipro分析結果の取得
+        fetch(url + data)
+            .then((response) => {
                 response.json().then(analysisResult => {
                     setResult(analysisResult)
                 })
             })
 
-    }
-
-    function handle(e) {
-        const newdata = { ...data }
-        newdata[e.target.id] = e.target.value
-        setData(newdata)
     }
 
     return (
@@ -33,22 +38,21 @@ export const TextAnalysis = () => {
                 <form onSubmit={handleSubmit}>
                     <div className='form-group'>
                         <label>分析内容</label>
-                        <textarea onChange={(e) => handle(e)} id="input-text" className="form-control" placeholder='会話内容を入れてね' />
-
+                        <textarea onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} id="input-text" className="form-control" />
                     </div>
                     <button className="btn btn-success mr-4" id="sendText">送信</button>
 
                 </form>
                 <p>
-                excite: {result.excite} <br></br>
-                pleasant:{result.pleasant} <br></br>
-                calm:{result.calm} <br></br>
-                nervous:{result.nervous}<br></br>
-                boring:{result.boring}<br></br>
-                unpleasant:{result.unpleasant}<br></br>
-                surprise:{result.surprise}<br></br>
-                sleepy:{result.sleepy}<br></br>
-                myakuari:{result.myakuari}<br></br>
+                    excite: {result.excite} <br></br>
+                    pleasant:{result.pleasant} <br></br>
+                    calm:{result.calm} <br></br>
+                    nervous:{result.nervous}<br></br>
+                    boring:{result.boring}<br></br>
+                    unpleasant:{result.unpleasant}<br></br>
+                    surprise:{result.surprise}<br></br>
+                    sleepy:{result.sleepy}<br></br>
+                    myakuari:{result.myakuari}<br></br>
                 </p>
             </div>
         </>
