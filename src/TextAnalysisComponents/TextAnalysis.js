@@ -1,7 +1,6 @@
 import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
-import { ToastBody } from 'react-bootstrap'
 
 export const TextAnalysis = () => {
     const url = "https://kojipro.an.r.appspot.com/getscore?text="
@@ -11,18 +10,14 @@ export const TextAnalysis = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(Object.values(data)[0])
-        //const response = await fetch(url+Object.values(data)[0])
-
-        fetch(url + Object.values(data)[0])
+        // デバッグ用
+        //console.log(data["input-text"])
+        fetch(url + data["input-text"])
             .then((response)=> {
                 response.json().then(analysisResult => {
-                    console.log(analysisResult.excite);
                     setResult(analysisResult)
                 })
             })
-
-    
 
     }
 

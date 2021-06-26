@@ -38,15 +38,13 @@ export const TextAnalizer = () => {
 }
 
 const TextPage = () => {
-
-
-
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
 
   const history = useHistory();
   const selectHome = () => {
     history.push({ pathname: '/homepage' });
   }
+
 
 
   return (
