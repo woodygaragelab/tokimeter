@@ -25,6 +25,18 @@ export const TextAnalysis = () => {
             return
         }
 
+        if(!member){
+            alert('名前を入力ください')
+            return 
+        }
+
+        if(!member){
+            alert('名前を入力ください')
+            return
+        }
+
+       
+
         // Kozipro分析結果の取得
         fetch(baseUrl + data)
             .then((response) => {
