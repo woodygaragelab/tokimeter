@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // 標準スタイルは bootstra
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
-import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
+import { faHeart, faHome, faComments } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 import Loader from 'react-loader-spinner'
 import LineChart from './ActivitiesComponents/LineChart' // 心拍数表示機能
 import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベントのヘッダー部
@@ -132,6 +132,15 @@ const GraphPage = () => {
   const selectHome = () => { 
     history.push({ pathname: '/homepage' }); }
 
+  //path=/heartpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
+  const selectHeart = () =>{
+    history.push({pathname: '/heartpage'})
+  }
+
+  //path=/textpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
+  const selectText = () =>{
+    history.push({pathname: '/textpage'})
+  }
 
 
   return (
@@ -150,8 +159,8 @@ const GraphPage = () => {
       <Graph></Graph>
       <footer className="kzFooter kzColor2 kzFont1">
         <FontAwesomeIcon icon={faHome} onClick={selectHome} />
-        <FontAwesomeIcon icon={faChartLine} />
-        <FontAwesomeIcon icon={faHeart} />
+        <FontAwesomeIcon icon={faComments} onClick={selectText} />
+        <FontAwesomeIcon icon={faHeart} onClick = {selectHeart} />
       </footer>
     </div>
   );
