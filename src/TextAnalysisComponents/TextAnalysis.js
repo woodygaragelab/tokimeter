@@ -65,8 +65,10 @@ export const TextAnalysis = () => {
                         <label>分析内容</label>
                         <textarea onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} id="input-text" className="form-control" />
                     </div>
-                    <button className="btn btn-success mr-4" id="sendText">送信</button><br></br>
+                    {!isGetResult && <button className="btn btn-success mr-4" id="sendText">送信</button>}<br></br>
+                    {isGetResult && <TextAnalizer></TextAnalizer>}
                 </form>
+               
                  {isGetResult && <AnalysisResult koziproResult={result} />}
             </div>
         </>
