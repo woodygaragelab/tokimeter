@@ -1,32 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import AnalysisResult from './AnalysisResult'
-import Loader from 'react-loader-spinner'
-
-
-// TextAnalizerコンポネント
-export const TextAnalizer = () => {
-
-    return (
-      <div>
-        <div className="kzGraph">
-          <p></p>
-        </div>
-  
-        {/* テキスト解析のアニメーション。後でテキスト解析画面に置き換える */}
-        <div className="mt-4">
-          <Loader
-            type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
-            timeout={10000} // msec
-          />
-        </div>
-      </div>
-  
-    );
-  }
+import TextAnalizer from './TextAnalizer'
 
 export const TextAnalysis = () => {
     const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
@@ -34,13 +9,19 @@ export const TextAnalysis = () => {
     const [result, setResult] = useState('')
     const [member, setMember] = useState('')
     const [isGetResult,setIsGetResult] = useState(false)
+    const [isShowTextAnalizer,setIsShowTextAnalizer] = useState(false)
 
 
     const handleSubmit = async (e) => {
+
+
+      
         e.preventDefault();
         // デバッグ用
         console.log(data)
         console.log(member)
+
+        setIsShowTextAnalizer(true)
 
         if (!data) {
             alert('会話内容を入力ください')
@@ -67,6 +48,7 @@ export const TextAnalysis = () => {
             .then((response) => {
                 response.json().then(analysisResult => {
                     setResult(analysisResult)
+                    
                     setIsGetResult(!isGetResult)
                 })
             })
@@ -85,8 +67,7 @@ export const TextAnalysis = () => {
                     </div>
                     <button className="btn btn-success mr-4" id="sendText">送信</button><br></br>
                 </form>
-               
-                {isGetResult && <AnalysisResult koziproResult={result} />}
+                 {isGetResult && <AnalysisResult koziproResult={result} />}
             </div>
         </>
     )

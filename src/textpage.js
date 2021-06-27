@@ -13,30 +13,6 @@ import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"
 import Loader from 'react-loader-spinner'
 import TextAnalysis from './TextAnalysisComponents/TextAnalysis' // コンテキスト分析機能
 
-// TextAnalizerコンポネント
-export const TextAnalizer = () => {
-
-  return (
-    <div>
-      <div className="kzGraph">
-        <p></p>
-      </div>
-
-      {/* テキスト解析のアニメーション。後でテキスト解析画面に置き換える */}
-      <div className="mt-4">
-        <Loader
-          type="Puff"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          timeout={10000} // msec
-        />
-      </div>
-    </div>
-
-  );
-}
-
 const TextPage = () => {
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
 
@@ -50,8 +26,8 @@ const TextPage = () => {
   return (
     <div>
       <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
-      <TextAnalizer></TextAnalizer>
       <TextAnalysis></TextAnalysis>
+      {/* <TextAnalizer></TextAnalizer> */}
       <footer className="kzFooter kzColor2 kzFont1">
         <FontAwesomeIcon icon={faHome} onClick={selectHome} />
         <FontAwesomeIcon icon={faChartLine} />
