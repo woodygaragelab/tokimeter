@@ -6,8 +6,17 @@ import { Doughnut, Radar } from 'react-chartjs-2'
 function AnalysisResult({ koziproResult }) {
   const history = useHistory()
   //path=/textpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
-  const selectText = () => {
+  const selectText = async(e) => {
+
     history.push({ pathname: '/textpage' })
+    return 
+  }
+
+  const submitResult = async(e) =>{
+       
+    e.preventDefault();
+    alert("実装中")
+    return 
   }
 
 
@@ -39,13 +48,7 @@ function AnalysisResult({ koziproResult }) {
         myakuari:{koziproResult.myakuari}<br></br>
       </div> */}
 
-      <form >
-        <button className="btn btn-primary btn-lg" id="sendText">結果保存</button>
-        <button className="btn btn-secondary btn-lg" id="cancelText" onClick={selectText}>リセット</button>
-
-      </form>
-
-      <Radar className="kzAnalysisGraph"
+<Radar className="kzAnalysisGraph"
         data={{
           labels: [
             'excite',
@@ -59,7 +62,7 @@ function AnalysisResult({ koziproResult }) {
             'myakuari'
           ],
           datasets: [{
-            label: 'My First Dataset',
+            label: '分析結果',
             data: analysisResultList,
             fill: true,
             backgroundColor: 'rgba(147, 112, 219, 0.2)',
@@ -68,16 +71,21 @@ function AnalysisResult({ koziproResult }) {
             pointBorderColor: '#fff',
             pointHoverBackgroundColor: '#fff'
           }
-            
-         
-          
+          ],
 
-          ]
         }
 
         }
 
       />
+
+      <form >
+        <button className="btn btn-primary btn-lg" id="sendText" onClick={submitResult}>結果保存</button>
+        <button className="btn btn-secondary btn-lg" id="cancelText" onClick={selectText}>リセット</button>
+
+      </form>
+
+   
 
 
     </>
