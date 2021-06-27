@@ -39,6 +39,10 @@
   max-height: 40%;
 }
 
+.kzAnalysisGraph{
+  max-height:50%
+}
+
 .kzFooter {
   width: 100%;
   display: flex;        /* アイコンを横に並べる                 */
