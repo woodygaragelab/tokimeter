@@ -3,25 +3,48 @@ import { useState } from 'react'
 import AnalysisResult from './AnalysisResult'
 import TextAnalizer from './TextAnalizer'
 
+
+
+
 export const TextAnalysis = () => {
     const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
     const [data, setData] = useState('')
     const [result, setResult] = useState('')
     const [member, setMember] = useState('')
-    const [isGetResult,setIsGetResult] = useState(false)
-    const [isShowTextAnalizer,setIsShowTextAnalizer] = useState(false)
+    const [isGetResult, setIsGetResult] = useState(false)
+    const [isShowTextAnalizer, setIsShowTextAnalizer] = useState(false)
+
+    // スリープ用
+    const sleep = (msec) => {
+        return new Promise((resolve) => {
+
+            setTimeout(() => { resolve() }, msec);
+
+        })
+    }
+
+    const fetchResult = async () => {
+        await sleep(7000);
+        setIsShowTextAnalizer(false)
+        fetch(baseUrl + data)
+            .then((response) => {
+                response.json().then(analysisResult => {
+                    setResult(analysisResult)
+                    setIsGetResult(!isGetResult)
+                })
+            })
+
+
+    }
 
 
     const handleSubmit = async (e) => {
 
-
-      
         e.preventDefault();
         // デバッグ用
         console.log(data)
         console.log(member)
 
-        setIsShowTextAnalizer(true)
 
         if (!data) {
             alert('会話内容を入力ください')
@@ -44,15 +67,8 @@ export const TextAnalysis = () => {
         }
 
         // Kozipro分析結果の取得
-        fetch(baseUrl + data)
-            .then((response) => {
-                response.json().then(analysisResult => {
-                    setResult(analysisResult)
-                    
-                    setIsGetResult(!isGetResult)
-                })
-            })
-
+        fetchResult();
+        setIsShowTextAnalizer(true)
     }
 
     return (
@@ -65,11 +81,12 @@ export const TextAnalysis = () => {
                         <label>分析内容</label>
                         <textarea onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} id="input-text" className="form-control" />
                     </div>
+
                     {!isGetResult && <button className="btn btn-success mr-4" id="sendText">送信</button>}<br></br>
-                    {isGetResult && <TextAnalizer></TextAnalizer>}
+
                 </form>
-               
-                 {isGetResult && <AnalysisResult koziproResult={result} />}
+                {isShowTextAnalizer && <TextAnalizer></TextAnalizer>}
+                {isGetResult && <AnalysisResult koziproResult={result} />}
             </div>
         </>
     )

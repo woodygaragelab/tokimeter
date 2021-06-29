@@ -20,6 +20,7 @@ function AnalysisResult({ koziproResult }) {
   }
 
 
+
   const analysisResultList = []
   analysisResultList.push(koziproResult.excite)
   analysisResultList.push(koziproResult.pleasant)
@@ -32,6 +33,8 @@ function AnalysisResult({ koziproResult }) {
   analysisResultList.push(koziproResult.myakuari)
 
   console.log(analysisResultList)
+
+
 
 
   return (
@@ -47,6 +50,7 @@ function AnalysisResult({ koziproResult }) {
         sleepy:{koziproResult.sleepy}<br></br>
         myakuari:{koziproResult.myakuari}<br></br>
       </div> */}
+
 
 <Radar className="kzAnalysisGraph"
         data={{
