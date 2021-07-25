@@ -1,7 +1,8 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import AnalysisResult from './AnalysisResult'
 import TextAnalizer from './TextAnalizer'
+import { useFetch } from './useFetch'
 
 
 
@@ -13,6 +14,7 @@ export const TextAnalysis = () => {
     const [member, setMember] = useState('')
     const [isGetResult, setIsGetResult] = useState(false)
     const [isShowTextAnalizer, setIsShowTextAnalizer] = useState(false)
+
 
     // スリープ用
     const sleep = (msec) => {
@@ -33,17 +35,20 @@ export const TextAnalysis = () => {
                     setIsGetResult(!isGetResult)
                 })
             })
-
-
     }
 
+
+    const { resultData, loading } = useFetch(baseUrl + data)
+
+    // console.log("--------------")
+    // console.log(resultData)
 
     const handleSubmit = async (e) => {
 
         e.preventDefault();
         // デバッグ用
-        console.log(data)
-        console.log(member)
+        // console.log(data)
+        // console.log(member)
 
 
         if (!data) {
@@ -61,10 +66,6 @@ export const TextAnalysis = () => {
             return
         }
 
-        if (!member) {
-            alert('名前を入力ください')
-            return
-        }
 
         // Kozipro分析結果の取得
         fetchResult();
@@ -85,9 +86,11 @@ export const TextAnalysis = () => {
                     {!isGetResult && <button className="btn btn-success mr-4" id="sendText">送信</button>}<br></br>
 
                 </form>
+
                 {isShowTextAnalizer && <TextAnalizer></TextAnalizer>}
                 {isGetResult && <AnalysisResult koziproResult={result} />}
             </div>
+          
         </>
     )
 }
