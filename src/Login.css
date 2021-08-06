@@ -1,0 +1,668 @@
+.mediaViewInfo {
+	--web-view-name: Login;
+	--web-view-id: Login;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+:root {
+	--web-view-ids: Login;
+}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	border: none;
+}
+#Login {
+	position: absolute;
+	width: 375px;
+	height: 812px;
+	background-color: rgba(255,255,255,1);
+	overflow: hidden;
+	--web-view-name: Login;
+	--web-view-id: Login;
+	--web-scale-on-resize: true;
+	--web-enable-deep-linking: true;
+}
+@keyframes fadein {
+
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+
+}
+#Login_ {
+	left: 165px;
+	top: 571px;
+	position: absolute;
+	overflow: visible;
+	width: 46px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Meiryo;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 17px;
+	color: rgba(255,255,255,1);
+}
+#BG {
+	fill: transparent;
+}
+.BG {
+	position: absolute;
+	overflow: visible;
+	width: 375px;
+	height: 44px;
+	left: 0px;
+	top: 0px;
+}
+#BarsStatus_BarsiPhoneLight_bac {
+	fill: transparent;
+}
+.BarsStatus_BarsiPhoneLight_bac {
+	position: absolute;
+	overflow: visible;
+	width: 375px;
+	height: 44px;
+	left: 0px;
+	top: 0px;
+}
+#Button1 {
+	position: absolute;
+	width: 344px;
+	height: 50px;
+	left: 16px;
+	top: 631px;
+	overflow: visible;
+	transition: all 0.3s linear;
+	--web-animation: fadein 0.3s linear;
+	--web-action-type: page;
+	--web-action-target: Main.html;
+	cursor: pointer;
+}
+#Button_Backgrounds_-_Black {
+	position: absolute;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#White_-_Min_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_Min_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White-_01pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White-_01pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_02pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_02pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_03pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_03pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_04pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_04pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_05pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_05pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_06pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_06pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_07pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_07pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_08pt_Radius {
+	fill: rgba(250,178,183,1);
+}
+.White_-_08pt_Radius {
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_09pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_09pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_10pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_10pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_11pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_11pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_12pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_12pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_13pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_13pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_14pt_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_14pt_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#White_-_Max_Radius {
+	fill: rgba(0,0,0,1);
+}
+.White_-_Max_Radius {
+	display: none;
+	position: absolute;
+	overflow: visible;
+	width: 344px;
+	height: 50px;
+	left: 0px;
+	top: 0px;
+}
+#Buttons_-_Label_-_Light {
+	position: absolute;
+	width: 44px;
+	height: 44px;
+	left: 150px;
+	top: 3px;
+	overflow: visible;
+}
+#Frame {
+	fill: transparent;
+}
+.Frame {
+	position: absolute;
+	overflow: visible;
+	width: 44px;
+	height: 44px;
+	left: 0px;
+	top: 0px;
+}
+#Label {
+	left: 1px;
+	top: 10px;
+	position: absolute;
+	overflow: visible;
+	width: 43px;
+	white-space: nowrap;
+	line-height: 22px;
+	margin-top: -2.5px;
+	text-align: center;
+	font-family: SF Pro Text;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 17px;
+	color: rgba(255,255,255,1);
+	letter-spacing: -0.24px;
+}
+#Hettar_New {
+	position: absolute;
+	width: 375px;
+	height: 90px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#_1 {
+	fill: rgba(253,234,239,1);
+	stroke: rgba(211,149,133,0.302);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+._1 {
+	position: absolute;
+	overflow: visible;
+	width: 375px;
+	height: 90px;
+	left: 0px;
+	top: 0px;
+}
+#_6 {
+	position: absolute;
+	width: 337.661px;
+	height: 62px;
+	left: 23px;
+	top: 16px;
+	overflow: visible;
+}
+#Kozipro {
+	left: 128.513px;
+	top: 32px;
+	position: absolute;
+	overflow: visible;
+	width: 81px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Meiryo;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 20px;
+	color: rgba(2,0,48,1);
+}
+#Battery {
+	position: absolute;
+	width: 24.328px;
+	height: 11.333px;
+	left: 313.333px;
+	top: 4.333px;
+	overflow: visible;
+}
+#Border {
+	opacity: 0.35;
+	fill: rgba(0,0,0,0);
+	stroke: rgba(0,0,0,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 10;
+	shape-rendering: auto;
+}
+.Border {
+	position: absolute;
+	overflow: visible;
+	width: 22px;
+	height: 11.333px;
+	left: 0px;
+	top: 0px;
+}
+#Cap {
+	opacity: 0.4;
+	fill: rgba(0,0,0,1);
+}
+.Cap {
+	overflow: visible;
+	position: absolute;
+	width: 1.328px;
+	height: 4px;
+	left: 23px;
+	top: 3.667px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Capacity {
+	fill: rgba(0,0,0,1);
+}
+.Capacity {
+	position: absolute;
+	overflow: visible;
+	width: 18px;
+	height: 7.333px;
+	left: 2px;
+	top: 2px;
+}
+#Wifi {
+	fill: rgba(0,0,0,1);
+}
+.Wifi {
+	overflow: visible;
+	position: absolute;
+	width: 15.333px;
+	height: 11px;
+	left: 293px;
+	top: 4.33px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Cellular_Connection {
+	fill: rgba(0,0,0,1);
+}
+.Cellular_Connection {
+	overflow: visible;
+	position: absolute;
+	width: 17px;
+	height: 10.667px;
+	left: 271.154px;
+	top: 4.667px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Time_-_Light {
+	position: absolute;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Time_-_Blue_Task {
+	position: absolute;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+	display: none;
+	overflow: visible;
+}
+#Pill_Shape {
+	fill: rgba(0,122,255,1);
+}
+.Pill_Shape {
+	position: absolute;
+	overflow: visible;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+}
+#Time {
+	left: 0px;
+	top: 3px;
+	position: absolute;
+	overflow: hidden;
+	width: 55px;
+	height: 17px;
+	text-align: center;
+	font-family: SFProText-Semibold;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(255,255,255,1);
+	letter-spacing: -0.2px;
+}
+#Time_-_Red_Task {
+	position: absolute;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+	display: none;
+	overflow: visible;
+}
+#Pill_Shape_b {
+	fill: rgba(255,59,48,1);
+}
+.Pill_Shape_b {
+	position: absolute;
+	overflow: visible;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+}
+#Time_b {
+	left: 0px;
+	top: 3px;
+	position: absolute;
+	overflow: hidden;
+	width: 55px;
+	height: 17px;
+	text-align: center;
+	font-family: SFProText-Semibold;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(255,255,255,1);
+	letter-spacing: -0.2px;
+}
+#Time_-_Green_Task {
+	position: absolute;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+	display: none;
+	overflow: visible;
+}
+#Pill_Shape_cb {
+	fill: rgba(52,199,89,1);
+}
+.Pill_Shape_cb {
+	position: absolute;
+	overflow: visible;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+}
+#Time_cc {
+	left: 0px;
+	top: 3px;
+	position: absolute;
+	overflow: hidden;
+	width: 55px;
+	height: 16px;
+	text-align: center;
+	font-family: SFProText-Semibold;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 14px;
+	color: rgba(255,255,255,1);
+	letter-spacing: -0.2px;
+}
+#Time_-_Light_cd {
+	position: absolute;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+	overflow: visible;
+}
+#Time_-_Light_background {
+	fill: transparent;
+}
+.Time_-_Light_background {
+	position: absolute;
+	overflow: visible;
+	width: 54px;
+	height: 21px;
+	left: 0px;
+	top: 0px;
+}
+#Time_cf {
+	left: 0px;
+	top: 2px;
+	position: absolute;
+	overflow: hidden;
+	width: 55px;
+	height: 18px;
+	text-align: center;
+	font-family: SFProText-Semibold;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 15px;
+	color: rgba(0,0,0,1);
+	letter-spacing: -0.2px;
+}
+#Login_Information {
+	position: absolute;
+	width: 344px;
+	height: 22px;
+	left: 15.5px;
+	top: 458px;
+	overflow: visible;
+}
+#ID {
+	left: 0.5px;
+	top: -5px;
+	position: absolute;
+	overflow: visible;
+	width: 21px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Meiryo;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 17px;
+	color: rgba(180,176,176,0.969);
+}
+#_1_ci {
+	fill: transparent;
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+._1_ci {
+	overflow: visible;
+	position: absolute;
+	width: 344px;
+	height: 1px;
+	left: 0px;
+	top: 22px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#Login_Information_cj {
+	position: absolute;
+	width: 344px;
+	height: 22px;
+	left: 15.5px;
+	top: 519px;
+	overflow: visible;
+}
+#Password {
+	left: 0.5px;
+	top: -5px;
+	position: absolute;
+	overflow: visible;
+	width: 79px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Meiryo;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 17px;
+	color: rgba(180,176,176,0.969);
+}
+#_1_cl {
+	fill: transparent;
+	stroke: rgba(112,112,112,1);
+	stroke-width: 1px;
+	stroke-linejoin: miter;
+	stroke-linecap: butt;
+	stroke-miterlimit: 4;
+	shape-rendering: auto;
+}
+._1_cl {
+	overflow: visible;
+	position: absolute;
+	width: 344px;
+	height: 1px;
+	left: 0px;
+	top: 22px;
+	transform: matrix(1,0,0,1,0,0);
+}

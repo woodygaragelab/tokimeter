@@ -9,6 +9,7 @@ import { Route, Switch} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // 標準スタイルは bootstrapを使う
 import './App.css';                            // アプリ共通スタイル（kzXxxxx）
 
+import LoginPage from './loginpage';
 import HomePage from './homepage';
 import HeartPage from './heartpage';
 import GraphPage from './graphpage';
@@ -26,6 +27,7 @@ import UserPage from './userpage'
           <Router>    {/* Router: 画面遷移定義 */}
           <Switch>
             <Route exact={true} path='/' component={HomePage}/>
+            <Route exact={true} path='/loginpage' component={LoginPage}/>
             <Route exact={true} path='/homepage' component={HomePage}/>
             <Route exact={true} path='/heartpage' component={HeartPage}/>
             <Route exact={true} path='/graphpage' component={GraphPage}/>
