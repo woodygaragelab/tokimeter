@@ -26,7 +26,7 @@ import UserPage from './userpage'
           
           <Router>    {/* Router: 画面遷移定義 */}
           <Switch>
-            <Route exact={true} path='/' component={HomePage}/>
+            <Route exact={true} path='/' component={LoginPage}/>
             <Route exact={true} path='/loginpage' component={LoginPage}/>
             <Route exact={true} path='/homepage' component={HomePage}/>
             <Route exact={true} path='/heartpage' component={HeartPage}/>
