@@ -32,16 +32,16 @@ export const Heart = () => {
   );
   
   // spring: アニメーション設定
-  const spring = useSpring(
-    {color: toggle ? "#ffaaaa" : "red",　 //Heart文字色。toggleのon/offで文字色を切り替える（オレンジ⇔赤）　　　
-      backgroundColor:"#ffffff44",        //背景色。白で固定。透明度は44（半透明）
-      textAlign:"center",                 //文字位置。中央寄せ
-      fontSize: toggle ? "48pt": "96pt",  //Heart文字サイズ。toggleのon/offで切り替える（48pt⇔96pt）
-      opacity: 1.0,                       //不透明度。　1.0=不透明 0.0=透明　　　　
-      transform: toggle ? 'translate(0%,200%)':'translate(0%,80%)', //表示位置。fontが大小する分修正する
-      from: {color: "#ff0000"},           // transition機能用の設定。不要
-      config: { mass: 1, tension: 100, friction: 50 } // tension:アニメーション変化スピード。
-    })
+  // const spring = useSpring(
+  //   {color: toggle ? "#ffaaaa" : "red",　 //Heart文字色。toggleのon/offで文字色を切り替える（オレンジ⇔赤）　　　
+  //     backgroundColor:"#ffffff44",        //背景色。白で固定。透明度は44（半透明）
+  //     textAlign:"center",                 //文字位置。中央寄せ
+  //     fontSize: toggle ? "48pt": "96pt",  //Heart文字サイズ。toggleのon/offで切り替える（48pt⇔96pt）
+  //     opacity: 1.0,                       //不透明度。　1.0=不透明 0.0=透明　　　　
+  //     transform: toggle ? 'translate(0%,200%)':'translate(0%,80%)', //表示位置。fontが大小する分修正する
+  //     from: {color: "#ff0000"},           // transition機能用の設定。不要
+  //     config: { mass: 1, tension: 100, friction: 50 } // tension:アニメーション変化スピード。
+  //   })
 
   const spring2 = useSpring(
       {

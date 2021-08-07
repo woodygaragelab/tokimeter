@@ -1,7 +1,8 @@
 import React from 'react'
-import { History } from 'history'
+//import { History } from 'history'
 import { useHistory } from 'react-router-dom'
-import { Doughnut, Radar } from 'react-chartjs-2'
+//import { Doughnut, Radar } from 'react-chartjs-2'
+import { Radar } from 'react-chartjs-2'
 
 function AnalysisResult({ koziproResult }) {
   const history = useHistory()

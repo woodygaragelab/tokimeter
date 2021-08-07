@@ -7,8 +7,8 @@ import { withRouter } from 'react-router-dom';              // router (画面遷
 
 import 'bootstrap/dist/css/bootstrap.min.css'; // 標準スタイルは bootstrapを使う
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
-import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
+//import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
+//import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
 import Loader from 'react-loader-spinner'
 
 import Footer from './footer'        // コンポネント（部品）化したFooter

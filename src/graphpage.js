@@ -1,5 +1,5 @@
 import React from 'react'
-import { Component } from 'react';
+//import { Component } from 'react';
 import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
 import { useEffect } from 'react';                           // effect (state変化したときの処理機能)
 
@@ -16,7 +16,7 @@ import LineChart from './ActivitiesComponents/LineChart' // 心拍数表示機�
 import ActivityHeader from './ActivitiesComponents/ActivityHeader' //　イベントのヘッダー部
 import AddActivity from './ActivitiesComponents/AddActivity' // イベント追加フォーム
 import Activities from './ActivitiesComponents/Activities' //複数のイベント表示
-import { act } from 'react-dom/test-utils';
+//import { act } from 'react-dom/test-utils';
 
 // Graphコンポネント
 export const Graph = () => {

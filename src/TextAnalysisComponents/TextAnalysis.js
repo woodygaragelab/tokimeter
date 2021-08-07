@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+//import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import AnalysisResult from './AnalysisResult'
 import TextAnalizer from './TextAnalizer'
 import { useFetch } from './useFetch'
@@ -38,7 +39,7 @@ export const TextAnalysis = () => {
     }
 
 
-    const { resultData, loading } = useFetch(baseUrl + data)
+    // const { resultData, loading } = useFetch(baseUrl + data)
 
     // console.log("--------------")
     // console.log(resultData)
@@ -56,7 +57,7 @@ export const TextAnalysis = () => {
             return
         }
 
-        if (data.trim() == '') {
+        if (data.trim() === '') {
             alert('会話内容を入力ください')
             return
         }

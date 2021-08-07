@@ -1,5 +1,5 @@
 import React from 'react'
-import { Component } from 'react';
+//import { Component } from 'react';
 // import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
 // import { useEffect} from 'react';                           // effect (state変化したときの処理機能)
 import { useHistory, withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
@@ -10,7 +10,7 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
 import { faHeart, faHome, faChartLine } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graphのアイコン
-import Loader from 'react-loader-spinner'
+//import Loader from 'react-loader-spinner'
 import TextAnalysis from './TextAnalysisComponents/TextAnalysis' // コンテキスト分析機能
 
 const TextPage = () => {
