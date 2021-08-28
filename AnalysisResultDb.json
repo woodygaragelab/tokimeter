@@ -1,19 +1,19 @@
 {
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  "analysisResults": [
+   {
+     "id":1,
+     "name":"田中",
+     "text":"嬉しい",
+     "excite":0.02,
+     "pleasant":0.04,
+     "calm":0.02,
+     "nervous":0.02,
+     "boring":0.01,
+     "unpleasant":0.02,
+     "surprise":0.02,
+     "sleepy":0.00,
+     "myakuari":0.91
+   }
+  ]
+ 
 }
