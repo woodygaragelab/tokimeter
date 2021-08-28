@@ -32,8 +32,19 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
   const submitResult = async (e) => {
 
     e.preventDefault();
-    alert("実装中")
- 
+    //名前、テキスト、各評価軸を保存する
+    setName(objectName)
+    setText(objectText)
+    setExcite(koziproResult.excite)
+    setPleasant(koziproResult.pleasant)
+    setCalm(koziproResult.calm)
+    setNervous(koziproResult.nervous)
+    setBoring(koziproResult.boring)
+    setUnpleasant(koziproResult.unpleasant)
+    setSurprise(koziproResult.surprise)
+    setSleepy(koziproResult.sleepy)
+    setMyakuari(koziproResult.myakuari)
+
     return
   }
 
