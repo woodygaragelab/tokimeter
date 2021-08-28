@@ -6,9 +6,10 @@ function ResultList() {
 
 
     return (
-        <div>
+        <>
+            <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
             test page
-        </div>
+        </>
     )
 }
 

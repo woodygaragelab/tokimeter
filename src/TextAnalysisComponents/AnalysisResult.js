@@ -4,7 +4,22 @@ import { useHistory } from 'react-router-dom'
 //import { Doughnut, Radar } from 'react-chartjs-2'
 import { Radar } from 'react-chartjs-2'
 
-function AnalysisResult({ koziproResult, name, text }) {
+function AnalysisResult({ koziproResult, objectName, objectText }) {
+  //分析結果保存用
+  const[name,setName] = useState('')
+  const[text,setText] = useState('')
+  const[excite,setExcite] = useState(0)
+  const[pleasant,setPleasant] = useState(0)
+  const[calm,setCalm] = useState(0)
+  const[nervous,setNervous] = useState(0)
+  const[boring,setBoring] = useState(0)
+  const[unpleasant,setUnpleasant] = useState(0)
+  const[surprise,setSurprise] = useState(0)
+  const[sleepy,setSleepy] = useState(0)
+  const[myakuari,setMyakuari]=useState(0)
+
+
+
   const history = useHistory()
   //path=/textpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
   const selectText = async (e) => {
@@ -17,12 +32,13 @@ function AnalysisResult({ koziproResult, name, text }) {
 
     e.preventDefault();
     alert("実装中")
+ 
     return
   }
 
   //分析結果一覧をサーバーから取得
   const resultList = async () => {
-    
+    history.push({pathname:'/TextAnalysisComponents/ResultList'})
   }
 
 
@@ -38,8 +54,7 @@ function AnalysisResult({ koziproResult, name, text }) {
   analysisResultList.push(koziproResult.sleepy)
   analysisResultList.push(koziproResult.myakuari)
 
-  console.log(name)
-  console.log(text)
+
   console.log(analysisResultList)
 
 
@@ -91,13 +106,11 @@ function AnalysisResult({ koziproResult, name, text }) {
 
       />
 
-      <form >
-        <button className="btn btn-primary btn-lg" id="sendText" onClick={submitResult}>結果保存</button>
+      
         <button className="btn btn-secondary btn-lg" id="cancelText" onClick={selectText}>リセット</button>
         <button className="btn btn-success btn-lg" id="checkResult" onClick={resultList}>結果一覧</button>
        
-      </form>
-
+  
 
 
 
