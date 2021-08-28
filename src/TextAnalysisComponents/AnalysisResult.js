@@ -3,6 +3,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 //import { Doughnut, Radar } from 'react-chartjs-2'
 import { Radar } from 'react-chartjs-2'
+import { useEffect,useState } from "react";
 
 function AnalysisResult({ koziproResult, objectName, objectText }) {
   //分析結果保存用
