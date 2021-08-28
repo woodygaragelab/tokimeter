@@ -4,20 +4,25 @@ import { useHistory } from 'react-router-dom'
 //import { Doughnut, Radar } from 'react-chartjs-2'
 import { Radar } from 'react-chartjs-2'
 
-function AnalysisResult({ koziproResult }) {
+function AnalysisResult({ koziproResult, name, text }) {
   const history = useHistory()
   //path=/textpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
-  const selectText = async(e) => {
+  const selectText = async (e) => {
 
     history.push({ pathname: '/textpage' })
-    return 
+    return
   }
 
-  const submitResult = async(e) =>{
-       
+  const submitResult = async (e) => {
+
     e.preventDefault();
     alert("実装中")
-    return 
+    return
+  }
+
+  //分析結果一覧をサーバーから取得
+  const resultList = async () => {
+    
   }
 
 
@@ -33,6 +38,8 @@ function AnalysisResult({ koziproResult }) {
   analysisResultList.push(koziproResult.sleepy)
   analysisResultList.push(koziproResult.myakuari)
 
+  console.log(name)
+  console.log(text)
   console.log(analysisResultList)
 
 
@@ -53,7 +60,7 @@ function AnalysisResult({ koziproResult }) {
       </div> */}
 
 
-<Radar className="kzAnalysisGraph"
+      <Radar className="kzAnalysisGraph"
         data={{
           labels: [
             'excite',
@@ -87,10 +94,11 @@ function AnalysisResult({ koziproResult }) {
       <form >
         <button className="btn btn-primary btn-lg" id="sendText" onClick={submitResult}>結果保存</button>
         <button className="btn btn-secondary btn-lg" id="cancelText" onClick={selectText}>リセット</button>
-
+        <button className="btn btn-success btn-lg" id="checkResult" onClick={resultList}>結果一覧</button>
+       
       </form>
 
-   
+
 
 
     </>
