@@ -24,6 +24,7 @@
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
     "react-loader-spinner": "^4.0.0",
+    "react-popup-alert": "^2.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-spring": "^9.0.0",
@@ -35,7 +36,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "server": "json-server --watch KzDb.json --port 5000",
-    "analysisResultServer":"json-server --watch AnalysisResultDb.json --port 5200"
+    "analysisResultServer": "json-server --watch AnalysisResultDb.json --port 5200"
   },
   "eslintConfig": {
     "extends": [

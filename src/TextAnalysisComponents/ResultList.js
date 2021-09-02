@@ -1,14 +1,16 @@
 import React from 'react'
 import { useHistory, withRouter } from 'react-router-dom';
 
-function ResultList() {
+function ResultList({userName,chatContent,koziproResult}) {
 
-
+    //alert("分析結果を保存しました")
+    console.log(userName)
+    console.log(chatContent)
+    console.log(koziproResult)
 
     return (
         <>
-            <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
-            test page
+            
         </>
     )
 }

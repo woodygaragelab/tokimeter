@@ -89,7 +89,7 @@ export const TextAnalysis = () => {
                 </form>
 
                 {isShowTextAnalizer && <TextAnalizer></TextAnalizer>}
-                {isGetResult && <AnalysisResult koziproResult={result} objectName={member} ObjectText={data} />}
+                {isGetResult && <AnalysisResult koziproResult={result} objectName={member} objectText={data} />}
             </div>
           
         </>
