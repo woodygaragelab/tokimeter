@@ -11,19 +11,9 @@ import { useEffect, useState } from "react";
 import ResultList from './ResultList';
 
 function AnalysisResult({ koziproResult, objectName, objectText }) {
-  //分析結果保存用
-  // const [name, setName] = useState('')
-  // const [text, setText] = useState('')
-  // const [excite, setExcite] = useState(0)
-  // const [pleasant, setPleasant] = useState(0)
-  // const [calm, setCalm] = useState(0)
-  // const [nervous, setNervous] = useState(0)
-  // const [boring, setBoring] = useState(0)
-  // const [unpleasant, setUnpleasant] = useState(0)
-  // const [surprise, setSurprise] = useState(0)
-  // const [sleepy, setSleepy] = useState(0)
-  // const [myakuari, setMyakuari] = useState(0)
+
 　const [saveAnalysisResult,setSaveAnalysisResult] = useState(false)
+
 
   // ボタン「結果保存」をクリックして、「保存」<->「廃棄」状態を反転させる
   const toggleSaveAnalysisResult = () =>{
@@ -43,21 +33,7 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
     e.preventDefault();
   
-   
-   
-    //名前、テキスト、各評価軸を保存する
-    // setName(objectName)
-    // setText(objectText)
-    // setExcite(koziproResult.excite)
-    // setPleasant(koziproResult.pleasant)
-    // setCalm(koziproResult.calm)
-    // setNervous(koziproResult.nervous)
-    // setBoring(koziproResult.boring)
-    // setUnpleasant(koziproResult.unpleasant)
-    // setSurprise(koziproResult.surprise)
-    // setSleepy(koziproResult.sleepy)
-    // setMyakuari(koziproResult.myakuari)
-
+  
     return
   }
 
@@ -68,6 +44,7 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
 
 
+  
   const analysisResultList = []
   analysisResultList.push(koziproResult.excite)
   analysisResultList.push(koziproResult.pleasant)
@@ -134,8 +111,8 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
       <button className="btn btn-secondary btn-lg" id="saveResult" onClick={()=>toggleSaveAnalysisResult()}>結果保存</button>
       {saveAnalysisResult && <ResultList userName={objectName} chatContent={objectText} koziproResult={analysisResultList}/>}
       <button className="btn btn-secondary btn-lg" id="cancelText" onClick={selectText}>リセット</button>
-      <button className="btn btn-success btn-lg" id="checkResult" onClick={submitResult}>結果一覧</button>
-
+      <button className="btn btn-success btn-lg" id="checkResult" onClick={resultList}>結果一覧</button>
+    
 
 
 
