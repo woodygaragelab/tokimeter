@@ -3,48 +3,51 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 //import { Doughnut, Radar } from 'react-chartjs-2'
 import { Radar } from 'react-chartjs-2'
+import Results from './Results'
+import AddAnalysisResult from './AddAnalysisResult'
 
 
 
 
-import { useEffect, useState } from "react";
+import {useEffect,useState } from "react";
 import ResultList from './ResultList';
 
 function AnalysisResult({ koziproResult, objectName, objectText }) {
 
-　const [saveAnalysisResult,setSaveAnalysisResult] = useState(false)
+  const [analysisResults, setAnalysisResult] = useState([])
 
 
-  // ボタン「結果保存」をクリックして、「保存」<->「廃棄」状態を反転させる
-  const toggleSaveAnalysisResult = () =>{
-    setSaveAnalysisResult(!saveAnalysisResult)
+  useEffect(() => {
+    const getResults = async () => {
+        const resultsFromServer = await fetchResults()
+        setAnalysisResult(resultsFromServer)
+    }
+
+    getResults()
+}, [])
+
+
+//分析結果をサーバーから取得
+const fetchResults = async () => {
+    const res = await fetch('http://localhost:5200/analysisResults')
+    const data = await res.json()
+
+    return data
+ 
     
-  }
+}
 
   const history = useHistory()
-  //path=/textpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
-  const selectText = async (e) => {
-
-    history.push({ pathname: '/textpage' })
-    return
-  }
-
-  const submitResult = async (e) => {
-
-    e.preventDefault();
-  
-  
-    return
-  }
 
   //分析結果一覧をサーバーから取得
   const resultList = async () => {
     history.push({ pathname: '/TextAnalysisComponents/ResultList' })
+   
   }
 
 
-
-  
+ 
+ //分析結果をレーダーチャートで表示させるためのリスト
   const analysisResultList = []
   analysisResultList.push(koziproResult.excite)
   analysisResultList.push(koziproResult.pleasant)
@@ -57,25 +60,31 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
   analysisResultList.push(koziproResult.myakuari)
 
 
-  //console.log(analysisResultList)
+  //分析結果の新規、取得など操作するためのメソッド
+
+
+
+  //新規の分析結果をサーバーに保存
+
+  const addResult = async (analysisResult) => {
+    const res_add = await fetch('http://localhost:5200/analysisResults', {
+      method: 'Post',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(analysisResult),
+    })
+
+    const data = await res_add.json()
+    setAnalysisResult([...analysisResults, data])
+
+  }
 
 
 
 
   return (
     <>
-      {/* <div className="text-center">
-        excite: {koziproResult.excite} <br></br>
-        pleasant:{koziproResult.pleasant} <br></br>
-        calm:{koziproResult.calm} <br></br>
-        nervous:{koziproResult.nervous}<br></br>
-        boring:{koziproResult.boring}<br></br>
-        unpleasant:{koziproResult.unpleasant}<br></br>
-        surprise:{koziproResult.surprise}<br></br>
-        sleepy:{koziproResult.sleepy}<br></br>
-        myakuari:{koziproResult.myakuari}<br></br>
-      </div> */}
-
 
       <Radar className="kzAnalysisGraph"
         data={{
@@ -108,14 +117,8 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
       />
 
-      <button className="btn btn-secondary btn-lg" id="saveResult" onClick={()=>toggleSaveAnalysisResult()}>結果保存</button>
-      {saveAnalysisResult && <ResultList userName={objectName} chatContent={objectText} koziproResult={analysisResultList}/>}
-      <button className="btn btn-secondary btn-lg" id="cancelText" onClick={selectText}>リセット</button>
-      <button className="btn btn-success btn-lg" id="checkResult" onClick={resultList}>結果一覧</button>
-    
-
-
-
+      <AddAnalysisResult onAdd={addResult} user={objectName} content={objectText} koziproResult={koziproResult}/>
+      <button className="btn btn-success btn-lg" id="checkResult" onClick={() => resultList()}>結果一覧</button>
 
     </>
   )

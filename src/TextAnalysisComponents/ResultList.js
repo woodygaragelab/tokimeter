@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import { useHistory, withRouter } from 'react-router-dom';
 import {addAnalysisResult} from './AddAnalysisResult';
 import Results from './Results';
+import Result from './Result'
 
 
 const ResultList = ({ userName, chatContent, koziproResult }) => {
@@ -31,30 +32,15 @@ const ResultList = ({ userName, chatContent, koziproResult }) => {
         
     }
 
-    
-
-
-    //新規の分析結果をサーバーに保存
-    const addResult = async (analysisResult) => {
-        const res_add = await fetch('http://localhost:5200/activities', {
-            method: 'Post',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(analysisResult),
-        })
-
-        const data = await res_add.json()
-        setAnalysisResult([...analysisResults, data])
-
-    }
-
-
     return (
        <div>
            <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
         
-        <Results results={analysisResults}/>
+        {/* <Results results={analysisResults}/> */}
+        {analysisResults.map((result,index)=>(
+             <Result key={index} result={result} />
+         ))}
+        
        </div>
     )
 }

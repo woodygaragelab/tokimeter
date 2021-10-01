@@ -38,19 +38,9 @@ export const TextAnalysis = () => {
             })
     }
 
-
-    // const { resultData, loading } = useFetch(baseUrl + data)
-
-    // console.log("--------------")
-    // console.log(resultData)
-
     const handleSubmit = async (e) => {
 
         e.preventDefault();
-        // デバッグ用
-        // console.log(data)
-        // console.log(member)
-
 
         if (!data) {
             alert('会話内容を入力ください')
