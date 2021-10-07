@@ -7,7 +7,7 @@ import Results from './Results';
 import Result from './Result'
 
 
-const ResultList = ({ userName, chatContent, koziproResult }) => {
+const ResultList = () => {
 
     const [analysisResults, setAnalysisResult] = useState([])
 
