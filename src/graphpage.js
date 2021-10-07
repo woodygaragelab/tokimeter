@@ -116,14 +116,13 @@ const GraphPage = () => {
     })
 
     //  削除されたid以外のイベントのみを表示する
-    setActivities(activities.filter((activity) => activity.id != id))
+    setActivities(activities.filter((activity) => activity.id !== id))
 
   }
 
   // // ボタン「追加」<->「閉じる」状態を反転させる
   const toggleShowActivity = () => {
     setShowAddActivity(!showAddActivity)
-
 
   }
 

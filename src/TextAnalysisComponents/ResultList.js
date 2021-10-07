@@ -32,13 +32,25 @@ const ResultList = () => {
         
     }
 
+      // 分析結果の削除 
+  const deleteResult = async (id) => {
+      alert("削除しましょうか？")
+    await fetch(`http://localhost:5200/analysisResults/${id}`, {
+      method: 'DELETE',
+    })
+
+    //  削除されたid以外のイベントのみを表示する
+    setAnalysisResult(analysisResults.filter((analysisResult) => analysisResult.id !== id))
+
+  }
+
     return (
        <div>
            <div className="kzHeader kzColor1 kzFont1">Kozipro</div>
         
         {/* <Results results={analysisResults}/> */}
         {analysisResults.map((result,index)=>(
-             <Result key={index} result={result} />
+             <Result key={index} result={result} onDelete={deleteResult}/>
          ))}
         
        </div>
