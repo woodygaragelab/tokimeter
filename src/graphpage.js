@@ -111,12 +111,18 @@ const GraphPage = () => {
 
   // イベントの削除 
   const deleteActivity = async (id) => {
-    await fetch(`http://localhost:5000/activities/${id}`, {
-      method: 'DELETE',
-    })
+    const isDelete = window.confirm("イベントを削除しましょうか？")
+    if (isDelete) {
+      await fetch(`http://localhost:5000/activities/${id}`, {
+        method: 'DELETE',
+      })
 
-    //  削除されたid以外のイベントのみを表示する
-    setActivities(activities.filter((activity) => activity.id !== id))
+      //  削除されたid以外のイベントのみを表示する
+      setActivities(activities.filter((activity) => activity.id !== id))
+    }
+    else {
+      // 削除をキャンセルする時、何もしない
+    }
 
   }
 
@@ -128,17 +134,18 @@ const GraphPage = () => {
 
   // path=/homepageに遷移する関数。遷移先のコンポネントはApp.jsのRouteで設定　
   const history = useHistory();
-  const selectHome = () => { 
-    history.push({ pathname: '/homepage' }); }
+  const selectHome = () => {
+    history.push({ pathname: '/homepage' });
+  }
 
   //path=/heartpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
-  const selectHeart = () =>{
-    history.push({pathname: '/heartpage'})
+  const selectHeart = () => {
+    history.push({ pathname: '/heartpage' })
   }
 
   //path=/textpageに遷移する関数。選択先のコンポネントはApp.jsのRouteで設定
-  const selectText = () =>{
-    history.push({pathname: '/textpage'})
+  const selectText = () => {
+    history.push({ pathname: '/textpage' })
   }
 
 
@@ -159,7 +166,7 @@ const GraphPage = () => {
       <footer className="kzFooter kzColor2 kzFont1">
         <FontAwesomeIcon icon={faHome} onClick={selectHome} />
         <FontAwesomeIcon icon={faComments} onClick={selectText} />
-        <FontAwesomeIcon icon={faHeart} onClick = {selectHeart} />
+        <FontAwesomeIcon icon={faHeart} onClick={selectHeart} />
       </footer>
     </div>
   );
