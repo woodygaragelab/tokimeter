@@ -9,6 +9,7 @@ function Result({result,onDelete}) {
             style={{ color: 'red', cursor: 'pointer' }} 
             onClick={() => onDelete(result.id)}
             /></h3>
+            {/* 脈アリの値のみ表示させる */}
             {/* <p>{result.text}</p>
             <p>{result.excite}</p>
             <p>{result.pleasant}</p>
