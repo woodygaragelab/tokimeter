@@ -9,7 +9,7 @@ import AddAnalysisResult from './AddAnalysisResult'
 
 
 
-import {useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import ResultList from './ResultList';
 
 function AnalysisResult({ koziproResult, objectName, objectText }) {
@@ -19,35 +19,35 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
   useEffect(() => {
     const getResults = async () => {
-        const resultsFromServer = await fetchResults()
-        setAnalysisResult(resultsFromServer)
+      const resultsFromServer = await fetchResults()
+      setAnalysisResult(resultsFromServer)
     }
 
     getResults()
-}, [])
+  }, [])
 
 
-//分析結果をサーバーから取得
-const fetchResults = async () => {
+  //分析結果をサーバーから取得
+  const fetchResults = async () => {
     const res = await fetch('http://localhost:5200/analysisResults')
     const data = await res.json()
 
     return data
- 
-    
-}
+
+
+  }
 
   const history = useHistory()
 
   //分析結果一覧をサーバーから取得
   const resultList = async () => {
     history.push({ pathname: '/TextAnalysisComponents/ResultList' })
-   
+
   }
 
 
- 
- //分析結果をレーダーチャートで表示させるためのリスト
+
+  //分析結果をレーダーチャートで表示させるためのリスト
   const analysisResultList = []
   analysisResultList.push(koziproResult.excite)
   analysisResultList.push(koziproResult.pleasant)
@@ -117,7 +117,7 @@ const fetchResults = async () => {
 
       />
 
-      <AddAnalysisResult onAdd={addResult} user={objectName} content={objectText} koziproResult={koziproResult}/>
+      <AddAnalysisResult onAdd={addResult} user={objectName} content={objectText} koziproResult={koziproResult} />
       <button className="btn btn-success btn-lg" id="checkResult" onClick={() => resultList()}>結果一覧</button>
 
     </>

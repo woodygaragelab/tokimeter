@@ -1,9 +1,11 @@
 import React from 'react'
-//import { useState, useEffect } from 'react'
-import { useState } from 'react'
+// import { useState, useEffect } from 'react'
+import { useEffect,useState} from 'react';
 import AnalysisResult from './AnalysisResult'
 import TextAnalizer from './TextAnalizer'
+import HeartPage, { Heart } from '../heartpage'
 import { useFetch } from './useFetch'
+import heartpage from '../heartpage'
 
 
 
@@ -80,6 +82,7 @@ export const TextAnalysis = () => {
 
                 {isShowTextAnalizer && <TextAnalizer></TextAnalizer>}
                 {isGetResult && <AnalysisResult koziproResult={result} objectName={member} objectText={data} />}
+                
             </div>
           
         </>

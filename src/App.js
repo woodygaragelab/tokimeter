@@ -15,6 +15,7 @@ import HeartPage from './heartpage';
 import GraphPage from './graphpage';
 import TextPage from './textpage';
 import UserPage from './userpage';
+import ResultList from './TextAnalysisComponents/ResultList';
 
 
   // アプリ Main Module (Class)
@@ -34,6 +35,7 @@ import UserPage from './userpage';
             <Route exact={true} path='/graphpage' component={GraphPage}/>
             <Route exact={true} path='/textpage' component={TextPage}/>
             <Route exact={true} path='/userpage' component={UserPage}/>
+            <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
           </Switch>
           </Router>
           

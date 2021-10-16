@@ -16,6 +16,8 @@ const AddAnalysisResult = ({ onAdd, user, content, koziproResult }) => {
   const [sleepy, setSleepy] = useState(Number(koziproResult.sleepy))
   const [myakuari, setMyakuari] = useState(Number(koziproResult.myakuari))
 
+  const [isShowSaveButton,setIsShowSaveButton] = useState(true)
+
   const onSubmit = (e) => {
     e.preventDefault()
 
@@ -34,15 +36,19 @@ const AddAnalysisResult = ({ onAdd, user, content, koziproResult }) => {
 
     onAdd({ name, text, excite, pleasant, calm, nervous, boring, unpleasant, surprise, sleepy, myakuari })
 
+    setIsShowSaveButton(!isShowSaveButton)
+
 
   }
 
 
   return (
     <div>
+      {isShowSaveButton &&
       <button onClick={onSubmit}>
         Save
       </button>
+      }
     </div>
   )
 }
