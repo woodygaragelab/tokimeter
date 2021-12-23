@@ -115,7 +115,7 @@ class LoginPage extends Component {       // HomePage:メインページ
         </svg>
         <div id="_6">
           <div id="Kozipro">
-            <span>Kozipro</span>
+            <span>Kozipro 1219</span>
           </div>
           <div id="Battery">
             <svg class="Border">
