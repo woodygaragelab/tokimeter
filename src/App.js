@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // 標準スタイルは bootstra
 import './App.css';                            // アプリ共通スタイル（kzXxxxx）
 
 import LoginPage from './loginpage';
+import LoginPage2 from './loginpage2';
 import HomePage from './homepage';
 import HeartPage from './heartpage';
 import GraphPage from './graphpage';
@@ -30,6 +31,7 @@ import ResultList from './TextAnalysisComponents/ResultList';
           <Switch>
             <Route exact={true} path='/' component={LoginPage}/>
             <Route exact={true} path='/loginpage' component={LoginPage}/>
+            <Route exact={true} path='/loginpage2' component={LoginPage2}/>
             <Route exact={true} path='/homepage' component={HomePage}/>
             <Route exact={true} path='/heartpage' component={HeartPage}/>
             <Route exact={true} path='/graphpage' component={GraphPage}/>

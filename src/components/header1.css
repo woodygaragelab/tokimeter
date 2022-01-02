@@ -1,0 +1,51 @@
+.header3 {
+  align-items: flex-end;
+  background-color: var(--remy);
+  display: flex;
+  height: 90px;
+  margin-top: 238px;
+  min-width: 375px;
+  padding: 12px 8px;
+  z-index: 3;
+}
+
+.logout-icon {
+  height: 25px;
+  object-fit: cover;
+  width: 22px;
+}
+
+.kozipro {
+  letter-spacing: 0;
+  line-height: 20px;
+  margin-bottom: 1.5px;
+  margin-left: 120px;
+  min-height: 29px;
+  min-width: 74px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.setting {
+  height: 21px;
+  margin-left: 112px;
+  object-fit: cover;
+  width: 25px;
+}
+
+.header3.header2 {
+  left: 0;
+  margin-top: unset;
+  position: fixed;
+  top: 119px;
+  z-index: 4;
+}
+
+.header3.header1 {
+  left: 0;
+  margin-top: unset;
+  position: fixed;
+  top: 0;
+  z-index: 5;
+}
+
