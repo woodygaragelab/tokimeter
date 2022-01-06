@@ -51,6 +51,15 @@
   position: absolute;   /* 下に固定。position:absolute bottom:0 */
   bottom: 0;
 }
+.kzFooter2 {
+  /* width: 100%; */
+  /* display: flex;        アイコンを横に並べる                 */
+  /* justify-content: space-evenly; */
+  /* align-items: center; */
+  /* position: absolute;   下に固定。position:absolute bottom:0 */
+  position: static;
+  /* bottom: 0; */
+}
 
 .kzMenu {
   display: flex;
@@ -63,6 +72,11 @@
 .kzImage {
   width: 50%;            /* 親要素(div)(表示領域)の50%幅 */
   height: auto;          /* 縦横比(アスペクト比)は元イメージに合わせる */
+  border-radius: 50%;    /* 丸く切り取る */
+}
+.kzImage2 {
+  width: 100px;    
+  height: 100px;
   border-radius: 50%;    /* 丸く切り取る */
 }
 

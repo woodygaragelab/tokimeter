@@ -5,17 +5,10 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 import './Login.css';        
 import Header1 from "./components/header1";
 
-
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
-//import AppBar from '@material-ui/core/AppBar';
-import Box    from '@material-ui/core/Box';
-// import Button from '@material-ui/core/Button';
-import { TextField, Button } from '@material-ui/core';
+import { Container, Box, TextField, Button } from '@material-ui/core';
 
-import Container from '@material-ui/core/Container';
-//import Toolbar from '@material-ui/core/Toolbar';
-//import Typography from '@material-ui/core/Typography';
 import { useHistory } from 'react-router-dom';
 
 const theme = createTheme({ 
@@ -25,11 +18,10 @@ const theme = createTheme({
   },
 });
 
-
 function LoginPage2() {
 
   const history = useHistory();
-  const selectHome = () => {  history.push({ pathname: '/homepage' });  }
+  const selectHome = () => {  history.push({ pathname: '/homepage2' });  }
     
   return (
     <ThemeProvider theme={theme}>
@@ -44,14 +36,14 @@ function LoginPage2() {
                 flexDirection: 'col'
               }}> 
           <form>
-          <Box height={3/4}>
+          <Box sx={{ height: 200}}/>
+          <Box>
             <TextField label="ID" id="userid" fullWidth />
             <TextField label="Password" id="password" fullWidth />
             forget your password ? click here
           </Box>
-          <Box height={1/4}>
+          <Box>
             <Button   
-              // onClick={() => { history.push({ pathname: '/homepage' }); }}
               onClick={selectHome}
               variant="contained" color="secondary" style={{ width: '100%' }}>
               Login
