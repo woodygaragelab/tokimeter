@@ -14,7 +14,7 @@ function Header1(props) {
       <Toolbar>
         <ExitToAppIcon />
         <Box sx={{ flexGrow: 1,fontSize: 24,fontWeight: 'bold'}}> {/* border={1}> */}
-            Kozipro 0106
+            Kozipro 0108
         </Box>
         <SettingsIcon/>
       </Toolbar>

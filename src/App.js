@@ -1,11 +1,6 @@
 import React from 'react';
-
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route, Switch} from 'react-router-dom';
-//import { withAuthenticator } from '@aws-amplify/ui-react';
-//import { AmplifySignOut } from '@aws-amplify/ui-react';
-//import { Auth } from 'aws-amplify';
-
 import 'bootstrap/dist/css/bootstrap.min.css'; // 標準スタイルは bootstrapを使う
 import './App.css';                            // アプリ共通スタイル（kzXxxxx）
 
@@ -19,8 +14,6 @@ import TextPage from './textpage';
 import UserPage from './userpage';
 import ResultList from './TextAnalysisComponents/ResultList';
 
-
-  // アプリ Main Module (Class)
   class App extends React.Component {
 
     render(){
@@ -28,7 +21,7 @@ import ResultList from './TextAnalysisComponents/ResultList';
         <div className="App">
           <div>
           
-          <Router>    {/* Router: 画面遷移定義 */}
+          <Router>   
           <Switch>
             <Route exact={true} path='/' component={LoginPage2}/>
             <Route exact={true} path='/loginpage' component={LoginPage}/>
