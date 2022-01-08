@@ -10,12 +10,24 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 
 import Header1 from "./components/header1";
 import Footer2 from "./components/footer2";
+import Paper                  from '@material-ui/core/Paper';
+import BottomNavigation       from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import RestoreIcon            from '@material-ui/icons/Restore';
+import FavoriteIcon           from '@material-ui/icons/Favorite';
+import LocationOnIcon         from '@material-ui/icons/LocationOn';
+import AppBar from '@material-ui/core/AppBar';
 
-import img1 from './img/me.png'   // homepageに表示する顔写真
-import img2 from './img/jimin2.jpg'
-import img3 from './img/jin.jpg'
-import img4 from './img/jungkook.jpg'
-import img5 from './img/songkang.jpg'
+
+import img1_me from './img/me.png'   // homepageに表示する顔写真
+import img2_jimin from './img/jimin.jpg'
+import img3_jin from './img/jin3.jpg'
+import img4_jungkook from './img/jungkook.jpg'
+import img5_v from './img/v.jpg'
+import img6_rm from './img/rm.jpg'
+import img7_jhope from './img/jhope.jpg'
+import img8_suga from './img/suga.jpg'
+import img9_songkang from './img/songkang.jpg'
 
 const theme = createTheme({ 
   palette: {
@@ -46,24 +58,36 @@ class HomePage2 extends Component {       // HomePage:メインページ
       <ThemeProvider theme={theme}>
       <Header1 />
 
-      <Box sx={{height:500}} border={1} >
+      <Box sx={{height:800}}>
         <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:200}}>
-          <img src={img1} className="kzImage2" alt="img1"/>
+          <img src={img1_me} className="kzImage2" alt="img1_me"/>
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
-          <img src={img2} className="kzImage2" alt="img2"/>
+          <img src={img2_jimin} className="kzImage2" alt="img2_jimin"/>
         </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:350}} >
-          <img src={img3} className="kzImage2" alt="img3"/>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
+          <img src={img3_jin} className="kzImage2" alt="img3_jin"/>
         </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 300, left:100}} >
-          <img src={img4} className="kzImage2" alt="img4"/>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:400}} >
+          <img src={img4_jungkook} className="kzImage2" alt="img4_jungkook"/>
         </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 350, left:300}} >
-          <img src={img5} className="kzImage2" alt="img5"/>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:40}} >
+          <img src={img5_v} className="kzImage2" alt="img5_v"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 450, left:420}} >
+          <img src={img6_rm} className="kzImage2" alt="img6_rm"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 350, left:180}} >
+          <img src={img7_jhope} className="kzImage2" alt="img7"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 520, left:80}} >
+          <img src={img8_suga} className="kzImage2" alt="img8"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 400, left:300}} >
+          <img src={img9_songkang} className="kzImage2" alt="img9_songkang"/>
         </Box>
       </Box>
-      <Footer2 /> 
+      <Footer2/> 
       </ThemeProvider>
 
     );
