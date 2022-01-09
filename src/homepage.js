@@ -12,7 +12,7 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 import img1_me       from './img/me.png'   // homepageに表示する顔写真
 import img2_jimin    from './img/jimin2.jpg'
-import img3_jin      from './img/jin2.jpeg'
+import img3_jin      from './img/jin2.jpg'
 import img4_jungkook from './img/jungkook.jpg'
 import img5_v        from './img/v.jpg'
 import img6_rm       from './img/rm.jpg'
