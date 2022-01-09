@@ -77,12 +77,12 @@ const GraphPage = () => {
   const [activities, setActivities] = useState([])
 
   useEffect(() => {
-    const getActivities = async () => {
-      const activityFromServer = await fetchActivities()
-      setActivities(activityFromServer)
-    }
+    // const getActivities = async () => {
+    //   const activityFromServer = await fetchActivities()
+    //   setActivities(activityFromServer)
+    // }
 
-    getActivities()
+    // getActivities()
   }, [])
 
   //イベントをサーバーから取得

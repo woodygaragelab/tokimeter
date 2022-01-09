@@ -2,17 +2,31 @@ import React from 'react'
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
 
-import Carousel from 'react-bootstrap/Carousel';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
+import pink from '@material-ui/core/colors/pink';
+import { Box } from '@material-ui/core';
 
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"; // アイコン表示機能
-import { faHeart, faHome, faChartLine, faComments, faUser } from "@fortawesome/free-solid-svg-icons"; // Heart,Home,Graph,Messageのアイコン
 
-import img1 from './img/jimin.jpg'   // homepageに表示する顔写真
-import img2 from './img/jin.jpg'
-import img3 from './img/songkang.jpg'
-import img4 from './img/nam_dosan.jpg'
-import img5 from './img/chorusan.jpg'
+import Header from "./components/header";
+import Footer from "./components/footer";
+import img1_me       from './img/me.png'   // homepageに表示する顔写真
+import img2_jimin    from './img/jimin2.jpg'
+import img3_jin      from './img/jin2.jpeg'
+import img4_jungkook from './img/jungkook.jpg'
+import img5_v        from './img/v.jpg'
+import img6_rm       from './img/rm.jpg'
+import img7_jhope    from './img/jhope.jpg'
+import img8_suga     from './img/suga.jpg'
+import img9_songkang from './img/songkang.jpg'
+
+const theme = createTheme({ 
+  palette: {
+    primary:   { main: pink[50],  },
+    secondary: { main: pink[300], },
+  },
+});
+
 
 
 class HomePage extends Component {       // HomePage:メインページ
@@ -21,73 +35,52 @@ class HomePage extends Component {       // HomePage:メインページ
     this.state = { };                    // state: HomePageコンポネントが保持するデータ
   }
 
+  
   // pathname:xxxに遷移する。遷移先のコンポネントはApp.jsのRouteで設定　
   selectGraph = () => {  this.props.history.push({ pathname: '/graphpage' });  }
   selectText  = () => {  this.props.history.push({ pathname: '/textpage' });  }
   selectHeart = () => {  this.props.history.push({ pathname: '/heartpage' });  }
-  selectUser = () => {  this.props.history.push({ pathname: '/userpage' });  }
+  selectUser  = () => {  this.props.history.push({ pathname: '/userpage' });  }
 
   // 画面描画処理。 htmlを生成してreturnすると、Reactが描画する。
   render() {
+
     return (
-      <div>
-        {/* Header部 */}
-        <div className="kzHeader kzColor1 kzFont1">Kozipro 8/21</div>
-      
-        {/* 顔表示部。 Carousel で横スクロール（自動）*/}
-        <div className="kzFace">
-          <Carousel>
-            <Carousel.Item interval={1000}>
-              <div className="col-sm-6 mx-auto">
-                {/* イメージ領域(div)の基準幅をresponsiveにしておく。PC用は50%(col-6)にする */}
-                {/* イメージ幅はさらに領域の50%とする。（ css kzImageのwidth=50%で指定）　*/}
-                <img src={img1} className="kzImage" alt="img1"/>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item interval={1000}>
-              <div className="col-sm-6 mx-auto">
-                <img src={img2} className="kzImage" alt="img2"/>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item interval={1000}>
-              <div className="col-sm-6 mx-auto">
-                <img src={img3} className="kzImage" alt="img3"/>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item interval={1000}>
-              <div className="col-sm-6 mx-auto">
-                <img src={img4} className="kzImage" alt="img4"/>
-              </div>
-            </Carousel.Item>
-            <Carousel.Item interval={1000}>
-              <div className="col-sm-6 mx-auto">
-                <img src={img5} className="kzImage" alt="img5"/>
-              </div>
-            </Carousel.Item>
-          </Carousel>
-        </div>
+      <ThemeProvider theme={theme}>
+      <Header />
 
-        {/***** メニュー部　*****/}
-        <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectGraph}>
-          <FontAwesomeIcon icon={faChartLine}/>イベントを記録
-        </div>
-        <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectText}>
-          <FontAwesomeIcon icon={faComments}/>メッセージを記録
-        </div>
-        <div className="kzMenu kzColor1 kzFont1 m-4" onClick={this.selectHeart}>
-          <FontAwesomeIcon icon={faHeart}/>Heartを表示
-        </div>
+      <Box sx={{height:800}}>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:200}}>
+          <img src={img1_me} className="kzImage2" alt="img1_me"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
+          <img src={img2_jimin} className="kzImage2" alt="img2_jimin"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
+          <img src={img3_jin} className="kzImage2" alt="img3_jin"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:400}} >
+          <img src={img4_jungkook} className="kzImage2" alt="img4_jungkook"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:40}} >
+          <img src={img5_v} className="kzImage2" alt="img5_v"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 450, left:420}} >
+          <img src={img6_rm} className="kzImage2" alt="img6_rm"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 350, left:180}} >
+          <img src={img7_jhope} className="kzImage2" alt="img7"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 520, left:80}} >
+          <img src={img8_suga} className="kzImage2" alt="img8"/>
+        </Box>
+        <Box sx={{height:100, width:100, position: 'absolute', top: 400, left:300}} >
+          <img src={img9_songkang} className="kzImage2" alt="img9_songkang"/>
+        </Box>
+      </Box>
+      <Footer/> 
+      </ThemeProvider>
 
-
-        {/***** Footer部 *****/}
-        <footer className="kzFooter kzColor2 kzFont1">
-          <FontAwesomeIcon icon={faHome} />                             {/* faHome:Homeアイコン */}
-          <FontAwesomeIcon icon={faChartLine} onClick={this.selectGraph}/>{/* faChartLine:グラフアイコン*/}
-          <FontAwesomeIcon icon={faHeart} onClick={this.selectHeart}/>  {/* selectHeart関数で画面遷移する */}
-          <FontAwesomeIcon icon={faComments} onClick={this.selectText}/> {/* selectText関数で画面遷移する*/}
-          <FontAwesomeIcon icon={faUser} onClick={this.selectUser}/>
-        </footer>
-      </div>
     );
   }
 }
