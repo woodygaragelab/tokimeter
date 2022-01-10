@@ -12,14 +12,16 @@ function Footer(props) {
   const history = useHistory();
   const navigate = (value)=> {
     if      (value==0) { history.push({ pathname: '/graphpage' });   }
+    else if (value==1) { history.push({ pathname: '/homepage' });   }
     else if (value==2) { history.push({ pathname: '/textpage' });   }
     else               { history.push({ pathname: '/heartpage' });  }
   };
+
   return (
     <AppBar position="fixed" color="primary" style={{top: "auto", bottom: 0}}>
     <BottomNavigation
       showLabels
-      value={value}
+      value={Number(props.pageid)}
       onChange={(event, newValue) => {
         setValue(newValue);
         navigate(newValue);

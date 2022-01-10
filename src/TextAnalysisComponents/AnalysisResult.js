@@ -6,9 +6,6 @@ import { Radar } from 'react-chartjs-2'
 import Results from './Results'
 import AddAnalysisResult from './AddAnalysisResult'
 
-
-
-
 import { useEffect, useState } from "react";
 import ResultList from './ResultList';
 
@@ -18,24 +15,24 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
 
   useEffect(() => {
-    const getResults = async () => {
-      const resultsFromServer = await fetchResults()
-      setAnalysisResult(resultsFromServer)
-    }
+    // const getResults = async () => {
+    //   const resultsFromServer = await fetchResults()
+    //   setAnalysisResult(resultsFromServer)
+    // }
 
-    getResults()
+    // getResults()
   }, [])
 
 
   //分析結果をサーバーから取得
-  const fetchResults = async () => {
-    const res = await fetch('http://localhost:5200/analysisResults')
-    const data = await res.json()
+  // const fetchResults = async () => {
+  //   const res = await fetch('http://localhost:5200/analysisResults')
+  //   const data = await res.json()
 
-    return data
+  //   return data
 
 
-  }
+  // }
 
   const history = useHistory()
 
@@ -79,8 +76,6 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
     setAnalysisResult([...analysisResults, data])
 
   }
-
-
 
 
   return (

@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { useHistory }         from 'react-router-dom';
+import { IconButton } from "@material-ui/core";
 
 function Header(props) {
   const [value, setValue] = React.useState(0);
@@ -17,9 +18,13 @@ function Header(props) {
   return (
     <AppBar position="fixed" color="primary">
       <Toolbar>
-        <ExitToAppIcon />    {/* onClick={navigate(0)} */}
+        {/* <Box onClick={navigate(0)}> */}
+        {/* <IconButton color="primary" onClick={navigate(0)}> */}
+          <ExitToAppIcon />    {/* onClick={navigate(0)} */}
+        {/* </IconButton>   */}
+        {/* </Box> */}
         <Box sx={{ flexGrow: 1,fontSize: 24,fontWeight: 'bold'}}> {/* border={1}> */}
-            Kozipro 0108
+            Kozipro 0110
         </Box>
         <SettingsIcon/>
       </Toolbar>

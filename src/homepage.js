@@ -27,27 +27,17 @@ const theme = createTheme({
   },
 });
 
-
-
 class HomePage extends Component {       // HomePage:メインページ
   constructor(props){                    // props: HomePageコンポネントが受け取るパラメータ
     super(props);
     this.state = { };                    // state: HomePageコンポネントが保持するデータ
   }
 
-  
-  // pathname:xxxに遷移する。遷移先のコンポネントはApp.jsのRouteで設定　
-  selectGraph = () => {  this.props.history.push({ pathname: '/graphpage' });  }
-  selectText  = () => {  this.props.history.push({ pathname: '/textpage' });  }
-  selectHeart = () => {  this.props.history.push({ pathname: '/heartpage' });  }
-  selectUser  = () => {  this.props.history.push({ pathname: '/userpage' });  }
-
-  // 画面描画処理。 htmlを生成してreturnすると、Reactが描画する。
   render() {
 
     return (
       <ThemeProvider theme={theme}>
-      <Header />
+      <Header/>
 
       <Box sx={{height:800}}>
         <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:200}}>
@@ -78,7 +68,7 @@ class HomePage extends Component {       // HomePage:メインページ
           <img src={img9_songkang} className="kzImage2" alt="img9_songkang"/>
         </Box>
       </Box>
-      <Footer/> 
+      <Footer pageid="1"/> 
       </ThemeProvider>
 
     );
