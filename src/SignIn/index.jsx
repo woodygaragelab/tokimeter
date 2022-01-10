@@ -13,16 +13,17 @@ function SignIn({onSignIn}) {
     const [password,setPassword] = useState('');
     const history = useHistory()
 
-    const signIn = async () => {
-        try {
-            const user = await Auth.signIn(username,password);
-            history.push('/homepage');
-            onSignIn()
-        }catch (error){
-            console.log('there was an error logging in',error)
-        }
-    }
+    // const signIn = async () => {
+    //     try {
+    //         const user = await Auth.signIn(username,password);
+    //         history.push('/homepage');
+    //         onSignIn()
+    //     }catch (error){
+    //         console.log('there was an error logging in',error)
+    //     }
+    // }
 
+    const selectHome = () => {  history.push({ pathname: '/homepage' });  }
 
     return (
         <div>
@@ -34,7 +35,7 @@ function SignIn({onSignIn}) {
             <Box>
             <Button
               id='signInButton'   
-              onClick={signIn}
+              onClick={selectHome}
               variant="contained" color="secondary" style={{ width: '100%' }}>
               Login
             </Button>
