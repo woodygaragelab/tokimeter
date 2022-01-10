@@ -1,7 +1,7 @@
 import React from 'react'
 // import { useState, useEffect } from 'react'
 import { useEffect, useState } from 'react';
-import { Button, TextField, Box, TextareaAutosize } from '@material-ui/core'
+import { Button, TextField, Box, TextareaAutosize, Container } from '@material-ui/core'
 import AnalysisResult from './AnalysisResult'
 import TextAnalizer from './TextAnalizer'
 import HeartPage, { Heart } from '../heartpage'
@@ -70,7 +70,8 @@ export const TextAnalysis = () => {
 
     return (
         <>
-            <div className="container">
+            <Container>
+            <Box > 
                 <form onSubmit={handleSubmit}>
                     <div>
                         <Box>
@@ -81,13 +82,18 @@ export const TextAnalysis = () => {
                                 helperText="気になる相手の名前を入力ください"
                                 onChange={(e) => setMember(e.target.value)} />
                             <Box marginTop={6}>
-                                <TextareaAutosize
+                                <TextField
+                                    variant="standard"
+                                    label="会話内容"
                                     id="input-text"
-                                    minRows={6}
+                                    multiline
+                                    rows={6}
                                     onChange={(e) => setData(e.target.value)}
                                     placeholder='会話内容を入れてね'
                                     value={data}
-                                    style={{ width: 800 }} />
+                              
+                                    // style={{ width: 600 }} 
+                                    />
                             </Box>
 
                         </Box>
@@ -100,11 +106,12 @@ export const TextAnalysis = () => {
                         </Box>}
                     </div>
                 </form>
-
+                </Box>
+                </Container>
                 {isShowTextAnalizer && <TextAnalizer></TextAnalizer>}
                 {isGetResult && <AnalysisResult koziproResult={result} objectName={member} objectText={data} />}
 
-            </div>
+           
 
         </>
     )
