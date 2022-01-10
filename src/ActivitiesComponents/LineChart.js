@@ -48,11 +48,11 @@ const LineChart = () => {
 
         <Line
             data={{
-                labels: labelList,　// X 軸
+                labels: labelList,// X 軸
                 datasets: [{
                     label: 'heart Beat',
-                    data: sampledList,　// Y 軸　
-                    borderColor: 'purple',
+                    data: sampledList,// Y 軸　
+                    borderColor: 'white', //'purple',
                     borderWidth: 2,
                     pointStyle: 'cross'
                 },
@@ -63,8 +63,33 @@ const LineChart = () => {
             height={200}
             options={{
                 maintainAspectRatio: false,
-                animation:false
-            }}
+                animation:false,
+                legend: {
+                    labels: {
+                       fontColor: 'orange'
+                    }
+                 },
+                 title: {
+                    display: true,
+                    fontColor: 'blue',
+                    text: 'Custom Chart Title'
+                 },
+                 scales: {
+                    yAxes: [{
+                       ticks: {
+                          beginAtZero: true,
+                          fontColor: "white"
+                       },
+                    }],
+                    xAxes: [{
+                       ticks: {
+                          fontColor: "white"
+                       },
+                    }]
+                 }
+              }}
+
+
         />
     </>)
 }

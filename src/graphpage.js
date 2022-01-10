@@ -87,8 +87,8 @@ const GraphPage = () => {
     <Header/>
 
     <Box sx={{height:800}}>
-      <Box sx={{height:100}}/>
-      <Box>
+      <Box sx={{height:100, background:'#ffffff',border:'1px solid black'}}/>
+      <Box sx={{background: '#bb6677'}}>
         <LineChart />
       </Box>
       <Box sx={{ p:'30px', m:'30px', border:'1px solid black', borderRadius:'5px', maxWidth:'800px',minHeight:'300px' }}>
