@@ -1,7 +1,7 @@
 import React from 'react'
 // import { useState, useEffect } from 'react'
-import { useEffect,useState} from 'react';
-import { Button,TextField,Box, TextareaAutosize } from '@material-ui/core'
+import { useEffect, useState } from 'react';
+import { Button, TextField, Box, TextareaAutosize } from '@material-ui/core'
 import AnalysisResult from './AnalysisResult'
 import TextAnalizer from './TextAnalizer'
 import HeartPage, { Heart } from '../heartpage'
@@ -61,6 +61,7 @@ export const TextAnalysis = () => {
             return
         }
 
+        console.log("送信ボタンを押した！")
 
         // Kozipro分析結果の取得
         fetchResult();
@@ -71,26 +72,25 @@ export const TextAnalysis = () => {
         <>
             <div className="container">
                 <form onSubmit={handleSubmit}>
+                    <div>
+                    <Box>
+                        <TextField label="名前" onChange={(e) => setMember(e.target.value)} value={member} id="input-member" />
+                        <Box marginTop={6}>
+                            <TextareaAutosize minRows={6} onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} style={{ width: 800 }} id="input-text" />
+                        </Box>
 
-                   
-                       <Box>
-                       <TextField label="名前" onChange={(e) => setMember(e.target.value)}  value={member} id="input-member"/>
-                       <Box marginTop={6}>
-                       <TextareaAutosize minRows={6} onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} style={{ width: 800 }} id="input-text"/>
-                       </Box>
-                       
-                       </Box>
+                    </Box>
                     {!isGetResult && <Box marginTop={3}>
-                        <Button  id="sendText" variant="contained" color="secondary">送信</Button>
-                        </Box>}
-
+                        <Button id="sendText" variant="contained" color="secondary" type="submit">送信</Button>
+                    </Box>}
+                    </div>
                 </form>
 
                 {isShowTextAnalizer && <TextAnalizer></TextAnalizer>}
                 {isGetResult && <AnalysisResult koziproResult={result} objectName={member} objectText={data} />}
-                
+
             </div>
-          
+
         </>
     )
 }
