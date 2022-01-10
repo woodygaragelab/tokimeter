@@ -73,16 +73,31 @@ export const TextAnalysis = () => {
             <div className="container">
                 <form onSubmit={handleSubmit}>
                     <div>
-                    <Box>
-                        <TextField label="名前" onChange={(e) => setMember(e.target.value)} value={member} id="input-member" />
-                        <Box marginTop={6}>
-                            <TextareaAutosize minRows={6} onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} style={{ width: 800 }} id="input-text" />
-                        </Box>
+                        <Box>
+                            <TextField
+                                id="input-member"
+                                label="名前"
+                                value={member}
+                                helperText="気になる相手の名前を入力ください"
+                                onChange={(e) => setMember(e.target.value)} />
+                            <Box marginTop={6}>
+                                <TextareaAutosize
+                                    id="input-text"
+                                    minRows={6}
+                                    onChange={(e) => setData(e.target.value)}
+                                    placeholder='会話内容を入れてね'
+                                    value={data}
+                                    style={{ width: 800 }} />
+                            </Box>
 
-                    </Box>
-                    {!isGetResult && <Box marginTop={3}>
-                        <Button id="sendText" variant="contained" color="secondary" type="submit">送信</Button>
-                    </Box>}
+                        </Box>
+                        {!isGetResult && <Box marginTop={3}>
+                            <Button
+                                id="sendText"
+                                variant="contained"
+                                color="secondary"
+                                type="submit">送信</Button>
+                        </Box>}
                     </div>
                 </form>
 
