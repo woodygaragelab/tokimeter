@@ -1,11 +1,13 @@
 import React from 'react'
 // import { useState, useEffect } from 'react'
 import { useEffect,useState} from 'react';
+import { Button,TextField,Box, TextareaAutosize } from '@material-ui/core'
 import AnalysisResult from './AnalysisResult'
 import TextAnalizer from './TextAnalizer'
 import HeartPage, { Heart } from '../heartpage'
 import { useFetch } from './useFetch'
 import heartpage from '../heartpage'
+
 
 
 
@@ -69,14 +71,18 @@ export const TextAnalysis = () => {
         <>
             <div className="container">
                 <form onSubmit={handleSubmit}>
-                    <div className='form-group'>
-                        <label>名前 </label>
-                        <input onChange={(e) => setMember(e.target.value)} placeholder='メンバーの名前を入れてね' value={member} id="input-member" className="from-control" /><br></br>
-                        <label>分析内容</label>
-                        <textarea onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} id="input-text" className="form-control" />
-                    </div>
 
-                    {!isGetResult && <button className="btn btn-success mr-4" id="sendText">送信</button>}<br></br>
+                   
+                       <Box>
+                       <TextField label="名前" onChange={(e) => setMember(e.target.value)}  value={member} id="input-member"/>
+                       <Box marginTop={6}>
+                       <TextareaAutosize minRows={6} onChange={(e) => setData(e.target.value)} placeholder='会話内容を入れてね' value={data} style={{ width: 800 }} id="input-text"/>
+                       </Box>
+                       
+                       </Box>
+                    {!isGetResult && <Box marginTop={3}>
+                        <Button  id="sendText" variant="contained" color="secondary">送信</Button>
+                        </Box>}
 
                 </form>
 

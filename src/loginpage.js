@@ -43,6 +43,18 @@ function LoginPage() {
           <form>
           <Box sx={{ height: 200}}/>
           <SignIn />
+          {/* <Box>
+            <TextField label="ID" id="userid" fullWidth />
+            <TextField label="Password" id="password" fullWidth />
+            forget your password ? click here
+          </Box>
+          <Box>
+            <Button   
+              onClick={selectHome}
+              variant="contained" color="secondary" style={{ width: '100%' }}>
+              Login
+            </Button>
+          </Box> */}
           </form>
         </Box>
 
