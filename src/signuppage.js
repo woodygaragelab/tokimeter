@@ -10,7 +10,7 @@ import Amplify,{Auth} from 'aws-amplify'
 import { Container, Box, TextField, Button } from '@material-ui/core';
 import { ThemeProvider, createTheme }        from '@material-ui/core/styles';
 import pink                                  from '@material-ui/core/colors/pink';
-import SignIn from './SignIn';
+
 import SignUp from './SignUp';
 
 const theme = createTheme({ 
@@ -20,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-function LoginPage() {
+function SignUpPage() {
 
   const history = useHistory();
   const selectHome = () => {  history.push({ pathname: '/homepage' });  }
@@ -42,7 +42,8 @@ function LoginPage() {
               }}> 
           <form>
           <Box sx={{ height: 200}}/>
-          <SignIn />
+          <SignUp />
+
           </form>
         </Box>
 
@@ -54,4 +55,4 @@ function LoginPage() {
   );
 }
 
-export default withRouter(LoginPage) // 画面遷移対象にするので、withRoute()を使う
+export default withRouter(SignUpPage) // 画面遷移対象にするので、withRoute()を使う

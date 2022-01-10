@@ -13,6 +13,7 @@ import GraphPage  from './graphpage';
 import TextPage   from './textpage';
 import UserPage   from './userpage';
 import ResultList from './TextAnalysisComponents/ResultList';
+import SignUp from './signuppage';
 
   class App extends React.Component {
 
@@ -26,6 +27,7 @@ import ResultList from './TextAnalysisComponents/ResultList';
             <Route exact={true} path='/' component={LoginPage}/>
             <Route exact={true} path='/loginpageX' component={LoginPageX}/>
             <Route exact={true} path='/loginpage'  component={LoginPage}/>
+            <Route exact={true} path='/signuppage' component={SignUp}/>
             <Route exact={true} path='/homepageX'  component={HomePageX}/>
             <Route exact={true} path='/homepage'   component={HomePage}/>
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
