@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import {CognitoUser,AuthenticationDetails} from "amazon-cognito-identity-js";
 import UserPool from '../UserPool';
 import { ConsoleLogger } from '@aws-amplify/core';
+import { withStyles } from '@material-ui/styles';
+import Typography from "@material-ui/core/Typography";
 
 
 
@@ -17,15 +19,7 @@ function SignIn({onSignIn}) {
     const [email,setEmail] = useState('')
     const history = useHistory()
 
-    // const signIn = async () => {
-    //     try {
-    //         const user = await Auth.signIn(username,password);
-    //         history.push('/homepage');
-    //         onSignIn()
-    //     }catch (error){
-    //         console.log('there was an error logging in',error)
-    //     }
-    // }
+  
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -66,6 +60,11 @@ function SignIn({onSignIn}) {
             <TextField label="Email" id="email" value={email} onChange={e => setEmail(e.target.value)} fullWidth />
             <TextField label="Password" id="password" type='password' value={password} onChange={e => setPassword(e.target.value)} fullWidth />
             Don't have an account? <Link to='/signuppage'>Sign up</Link>
+            <Box>
+                Forget your password? <Link to='/'>Click here</Link>
+           
+            </Box>
+           
             </Box>
             <Box>
             <Button
