@@ -3,7 +3,6 @@ import { Auth } from 'aws-amplify'
 import { Button, TextField, Box } from '@material-ui/core'
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-
 import UserPool from '../UserPool';
 
 function SignUp() {
@@ -12,17 +11,21 @@ function SignUp() {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [phonenumber, setPhonenumber] = useState('');
+    const history = useHistory()
+
 
     const onSubmit = (e) => {
         e.preventDefault();
 
         UserPool.signUp(email,password,[],null,(err,data) =>{
             if(err){
-                alert(err)
+                alert(err.message || JSON.stringify(err))
             }
             console.log(data);
                     })
     }
+
+    const selectHome = () => {  history.push({ pathname: '/homepage' });  }
 
 
 
@@ -42,7 +45,7 @@ function SignUp() {
 
                 <Button
                     id='signUpButton'
-                    onClick={onSubmit}
+                    onClick={selectHome}
                     variant="contained" color="secondary" style={{ width: '100%' }}>
                     Sign Up
                 </Button>
