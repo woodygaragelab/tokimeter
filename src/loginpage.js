@@ -5,13 +5,13 @@ import { useHistory } from 'react-router-dom';
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 import Header from "./components/header";
 import {useState, useEffect} from 'react'
-import Amplify,{Auth} from 'aws-amplify'
 
 import { Container, Box, TextField, Button } from '@material-ui/core';
 import { ThemeProvider, createTheme }        from '@material-ui/core/styles';
 import pink                                  from '@material-ui/core/colors/pink';
 import SignIn from './SignIn';
-import SignUp from './SignUp';
+import { Account } from './components/Account';
+import Status from './components/Status';
 
 const theme = createTheme({ 
   palette: {
@@ -42,19 +42,10 @@ function LoginPage() {
               }}> 
           <form>
           <Box sx={{ height: 200}}/>
-          <SignIn />
-          {/* <Box>
-            <TextField label="ID" id="userid" fullWidth />
-            <TextField label="Password" id="password" fullWidth />
-            forget your password ? click here
-          </Box>
-          <Box>
-            <Button   
-              onClick={selectHome}
-              variant="contained" color="secondary" style={{ width: '100%' }}>
-              Login
-            </Button>
-          </Box> */}
+          <Account>
+            <Status />
+            <SignIn />
+          </Account>
           </form>
         </Box>
 

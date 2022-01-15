@@ -1,13 +1,9 @@
-import React,{useState} from 'react'
-import {Auth} from 'aws-amplify'
+import React,{useState,useContext} from 'react'
+import { AccountContext } from '../components/Account';
 import { Button,TextField,Box } from '@material-ui/core'
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import {CognitoUser,AuthenticationDetails} from "amazon-cognito-identity-js";
-import UserPool from '../UserPool';
-import { ConsoleLogger } from '@aws-amplify/core';
-import { withStyles } from '@material-ui/styles';
-import Typography from "@material-ui/core/Typography";
+
 
 
 
@@ -19,35 +15,20 @@ function SignIn({onSignIn}) {
     const [email,setEmail] = useState('')
     const history = useHistory()
 
-  
+    const {authenticate} = useContext(AccountContext)
+
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        const user = new CognitoUser({
-            Username:email,
-            Pool:UserPool ,   
-        });  
-
-        const authDetails = new AuthenticationDetails({
-            Username:email,
-            Password:password,
+        authenticate(email, password)
+        .then((data) => {
+          console.log("Logged in!", data);
+        })
+        .catch((err) => {
+          console.error("Failed to sign in", err);
+          alert(err.message || JSON.stringify(err))
         });
-
-        user.authenticateUser(authDetails,{
-            onSuccess:(data) => {
-                console.log("onSuccess: ",data);
-                selectHome();
-            },
-            onFailure:(err) => {
-                console.error("onFailure :",err);
-                alert(err.message || JSON.stringify(err))
-            },
-            newPasswordRequired:(data) => {
-                console.log("newPasswordRequired: ",data);
-            }
-        });
-
     };
 
 
