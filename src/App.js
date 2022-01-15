@@ -4,9 +4,9 @@ import { Route, Switch} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // 標準スタイルは bootstrapを使う
 import './App.css';                            // アプリ共通スタイル（kzXxxxx）
 
-import LoginPageX from './loginpageX';
+// import LoginPageX from './loginpageX';
 import LoginPage  from './loginpage';
-import HomePageX  from './homepageX';
+// import HomePageX  from './homepageX';
 import HomePage   from './homepage';
 import HeartPage  from './heartpage';
 import GraphPage  from './graphpage';
@@ -25,10 +25,10 @@ import SignUp from './signuppage';
           <Router>   
           <Switch>
             <Route exact={true} path='/' component={LoginPage}/>
-            <Route exact={true} path='/loginpageX' component={LoginPageX}/>
+            {/* <Route exact={true} path='/loginpageX' component={LoginPageX}/> */}
             <Route exact={true} path='/loginpage'  component={LoginPage}/>
             <Route exact={true} path='/signuppage' component={SignUp}/>
-            <Route exact={true} path='/homepageX'  component={HomePageX}/>
+            {/* <Route exact={true} path='/homepageX'  component={HomePageX}/> */}
             <Route exact={true} path='/homepage'   component={HomePage}/>
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
             <Route exact={true} path='/graphpage'  component={GraphPage}/>
