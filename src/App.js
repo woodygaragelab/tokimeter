@@ -6,10 +6,11 @@ import './App.css';                            // アプリ共通スタイル（
 
 // import LoginPageX from './loginpageX';
 import LoginPage  from './loginpage';
-// import HomePageX  from './homepageX';
+import HomePageD  from './design_code/homepage';
 import HomePage   from './homepage';
 import HeartPage  from './heartpage';
 import GraphPage  from './graphpage';
+import GraphPageD  from './design_code/graphpage';
 import TextPage   from './textpage';
 import UserPage   from './userpage';
 import ResultList from './TextAnalysisComponents/ResultList';
@@ -28,10 +29,11 @@ import SignUp from './signuppage';
             {/* <Route exact={true} path='/loginpageX' component={LoginPageX}/> */}
             <Route exact={true} path='/loginpage'  component={LoginPage}/>
             <Route exact={true} path='/signuppage' component={SignUp}/>
-            {/* <Route exact={true} path='/homepageX'  component={HomePageX}/> */}
+            <Route exact={true} path='/homepageD'  component={HomePageD}/>
             <Route exact={true} path='/homepage'   component={HomePage}/>
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
             <Route exact={true} path='/graphpage'  component={GraphPage}/>
+            <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
             <Route exact={true} path='/textpage'   component={TextPage}/>
             <Route exact={true} path='/userpage'   component={UserPage}/>
             <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
