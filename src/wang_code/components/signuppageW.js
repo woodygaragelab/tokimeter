@@ -5,13 +5,13 @@ import { useHistory } from 'react-router-dom';
 import '../../App.css';
 import Header from "../../components/header"
 import {useState, useEffect} from 'react'
+import Amplify,{Auth} from 'aws-amplify'
 
 import { Container, Box, TextField, Button } from '@material-ui/core';
 import { ThemeProvider, createTheme }        from '@material-ui/core/styles';
 import pink                                  from '@material-ui/core/colors/pink';
-import SignIn from './SignIn';
-import { Account } from './Account';
-import Status from './Status';
+
+import SignUp from './SignUp';
 
 const theme = createTheme({ 
   palette: {
@@ -20,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-function LoginPage() {
+function SignUpPage() {
 
   const history = useHistory();
   const selectHome = () => {  history.push({ pathname: '/homepage' });  }
@@ -31,7 +31,7 @@ function LoginPage() {
   return (
     <ThemeProvider theme={theme}>
       <Header />
-     
+
       <Container>
       <Box style={{ display: 'flex', flexDirection: 'row' }}>   
         <Box width={1/4}/> 
@@ -42,10 +42,8 @@ function LoginPage() {
               }}> 
           <form>
           <Box sx={{ height: 200}}/>
-          <Account>
-            <Status />
-            <SignIn />
-          </Account>
+         
+          <SignUp />
           </form>
         </Box>
 
@@ -57,4 +55,4 @@ function LoginPage() {
   );
 }
 
-export default withRouter(LoginPage) // 画面遷移対象にするので、withRoute()を使う
+export default withRouter(SignUpPage) // 画面遷移対象にするので、withRoute()を使う

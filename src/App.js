@@ -16,6 +16,7 @@ import UserPage   from './userpage';
 import ResultList from './TextAnalysisComponents/ResultList';
 import SignUp from './signuppage';
 import LoginPageW from './wang_code/components/loginpageW';
+import signuppageW from './wang_code/components/signuppageW';
 
   class App extends React.Component {
 
@@ -38,7 +39,8 @@ import LoginPageW from './wang_code/components/loginpageW';
             <Route exact={true} path='/textpage'   component={TextPage}/>
             <Route exact={true} path='/userpage'   component={UserPage}/>
             <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
-            <Route exact={true} path='/loginPageW' component={LoginPageW}/>
+            <Route exact={true} path='/loginpageW' component={LoginPageW}/>
+            <Route exact={true} path='/signuppageW' component={signuppageW}/>
           </Switch>
           </Router>
           
