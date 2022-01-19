@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import UserPool from '../../../UserPool';
 
+
 function SignUp() {
 
     const [username, setUsername] = useState('');
@@ -22,22 +23,46 @@ function SignUp() {
                 alert(err.message || JSON.stringify(err))
             }
             console.log(data);
+            history.push({pathname:'./loginpageW'})
                     })
     }
 
 
-
-
-
     return (
         <div>
-            作業中
+            Koziproメンテナンス中
             <Box>
-                {/* <TextField label="ID" id="userid" value={username} onChange={e => setUsername(e.target.value)} fullWidth /> */}
-                <TextField label="Email" id="email" value={email} onChange={e => setEmail(e.target.value)} fullWidth />
-                <TextField label="Password" id="password" type='password' value={password} onChange={e => setPassword(e.target.value)} fullWidth />
+                
+                <TextField 
+                    required 
+                    label="Eメール" 
+                    id="email" 
+                    value={email} 
+                    onChange={e => setEmail(e.target.value)} 
+                    fullWidth />
+                <TextField 
+                    required 
+                    label="パスワード" 
+                    id="password" 
+                    type='password'
+                    value={password} 
+                    onChange={e => setPassword(e.target.value)} 
 
-                {/* <TextField label="Phone" id="phonenumber" value={phonenumber} onChange={e => setPhonenumber(e.target.value)} fullWidth /> */}
+                    fullWidth />
+                <TextField 
+                    disabled 
+                    label="ID (Unablse)" 
+                    id="userid" 
+                    value={username} 
+                    onChange={e => setUsername(e.target.value)} 
+                    fullWidth />
+                <TextField 
+                    disabled 
+                    label="Phone (Unable)" 
+                    id="phonenumber" 
+                    value={phonenumber} 　
+                    onChange={e => setPhonenumber(e.target.value)} 
+                    fullWidth />
                 Already have an account? <Link to='/loginpageW'>Sign in</Link>
 
             </Box>
@@ -47,7 +72,7 @@ function SignUp() {
                     id='signUpButton'
                     onClick={onSubmit}
                     variant="contained" color="secondary" style={{ width: '100%' }}>
-                    Sign Up
+                    新規登録
                 </Button>
             </Box>
 

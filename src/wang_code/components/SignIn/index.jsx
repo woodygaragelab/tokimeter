@@ -20,7 +20,7 @@ function SignIn({onSignIn}) {
         authenticate(email, password)
         .then((data) => {
           console.log("Logged in!", data);
-          history.push({pathname:'/homepage'})
+          // history.push({pathname:'/homepage'})
         })
         .catch((err) => {
           console.error("Failed to sign in", err);
@@ -28,9 +28,6 @@ function SignIn({onSignIn}) {
         });
 
     };
-
-
-    const selectHome = () => {  history.push({ pathname: '/homepage' });  }
 
     return (
         <div>
@@ -51,7 +48,7 @@ function SignIn({onSignIn}) {
               id='signInButton'   
               onClick={onSubmit}
               variant="contained" color="secondary" style={{ width: '100%' }}>
-              Login
+              ログイン
             </Button>
             </Box>
         </div>

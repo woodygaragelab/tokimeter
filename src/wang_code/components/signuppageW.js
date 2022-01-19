@@ -12,6 +12,9 @@ import { ThemeProvider, createTheme }        from '@material-ui/core/styles';
 import pink                                  from '@material-ui/core/colors/pink';
 
 import SignUp from './SignUp';
+import Settings from './Settings';
+import Status from './Status'
+import { Account } from './Account';
 
 const theme = createTheme({ 
   palette: {
@@ -21,12 +24,6 @@ const theme = createTheme({
 });
 
 function SignUpPage() {
-
-  const history = useHistory();
-  const selectHome = () => {  history.push({ pathname: '/homepage' });  }
-
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [isUser,setIsUser] = useState(true)
     
   return (
     <ThemeProvider theme={theme}>
@@ -42,8 +39,11 @@ function SignUpPage() {
               }}> 
           <form>
           <Box sx={{ height: 200}}/>
+          <Account>
+            <SignUp />
+            
+          </Account>  
          
-          <SignUp />
           </form>
         </Box>
 
