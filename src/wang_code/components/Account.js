@@ -7,15 +7,36 @@ const AccountContext = createContext();
 const Account = (props) => {
 
   const getSession = async () => {
-    return  new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       const user = Pool.getCurrentUser();
       if (user) {
-        user.getSession((err, session) => {
+        user.getSession(async (err, session) => {
           if (err) {
             alert("1")
             reject();
           } else {
-            resolve(session);
+
+            const attributes = await new Promise((resolve, reject) => {
+              // user.getUserAttributes will return a callback.
+              user.getUserAttributes((err, attributes) => {
+                if (err) {
+                  reject();
+                } else {
+                  const results = {};
+
+                  for (let attribute of attributes) {
+                    const { Name, Value } = attribute;
+                    results[Name] = Value;
+
+                  }
+
+                  resolve(results);
+
+                }
+              })
+            });
+
+            resolve({ user, ...session, ...attributes });
           }
         });
       } else {
@@ -50,7 +71,7 @@ const Account = (props) => {
   };
 
   const logout = () => {
-   
+
     const user = Pool.getCurrentUser();
     if (user) {
       user.signOut();
@@ -58,9 +79,9 @@ const Account = (props) => {
   };
 
   return (
-    <AccountContext.Provider value={{ authenticate, getSession,logout }}>
-    {props.children}
-  </AccountContext.Provider>
+    <AccountContext.Provider value={{ authenticate, getSession, logout }}>
+      {props.children}
+    </AccountContext.Provider>
   );
 };
 export { Account, AccountContext };
