@@ -17,6 +17,7 @@ import ResultList from './TextAnalysisComponents/ResultList';
 import SignUp from './signuppage';
 import LoginPageW from './wang_code/components/loginpageW';
 import signuppageW from './wang_code/components/signuppageW';
+import forgetPasswordW from './wang_code/components/forgetPassword';
 
   class App extends React.Component {
 
@@ -41,6 +42,7 @@ import signuppageW from './wang_code/components/signuppageW';
             <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
             <Route exact={true} path='/loginpageW' component={LoginPageW}/>
             <Route exact={true} path='/signuppageW' component={signuppageW}/>
+            <Route exact={true} path='/forgetPasswordW' component={forgetPasswordW} />
           </Switch>
           </Router>
           

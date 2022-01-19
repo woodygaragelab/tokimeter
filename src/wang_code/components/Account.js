@@ -27,7 +27,6 @@ const Account = (props) => {
                   for (let attribute of attributes) {
                     const { Name, Value } = attribute;
                     results[Name] = Value;
-
                   }
 
                   resolve(results);
@@ -35,7 +34,6 @@ const Account = (props) => {
                 }
               })
             });
-
             resolve({ user, ...session, ...attributes });
           }
         });
