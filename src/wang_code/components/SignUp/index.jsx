@@ -25,7 +25,7 @@ function SignUp() {
                     })
     }
 
-    const selectHome = () => {  history.push({ pathname: '/homepage' });  }
+
 
 
 

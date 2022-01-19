@@ -20,11 +20,13 @@ function SignIn({onSignIn}) {
         authenticate(email, password)
         .then((data) => {
           console.log("Logged in!", data);
+          history.push({pathname:'/homepage'})
         })
         .catch((err) => {
           console.error("Failed to sign in", err);
           alert(err.message || JSON.stringify(err))
         });
+
     };
 
 
