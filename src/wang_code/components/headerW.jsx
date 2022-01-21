@@ -8,7 +8,6 @@ import { AccountContext } from "./Account"
 import { IconButton } from "@material-ui/core";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
 
 
@@ -61,14 +60,9 @@ const HeaderW = () => {
 
 
           : undefined}
-        <Box sx={{ flexGrow: 1, fontSize: 24, fontWeight: 'bold' }}> {/* border={1}> */}
+        <Box sx={{ flexGrow: 1, fontSize: 24, fontWeight: 'bold' }}>
           Kozipro 0121_wangTest
         </Box>
-        {/* <IconButton>
-          <SettingsIcon />
-        </IconButton> */}
-
-        
         <IconButton>
           <SettingsIcon id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -86,6 +80,7 @@ const HeaderW = () => {
             'aria-labelledby': 'basic-button',
           }}
         >
+          {/* メニュー内容、ここで拡張 */}
           <MenuItem onClick={changePassword}>Change Password</MenuItem>
           <MenuItem onClick={handleClose}>Profile</MenuItem>
 

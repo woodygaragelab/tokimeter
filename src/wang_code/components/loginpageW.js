@@ -7,8 +7,6 @@ import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
 import SignIn from './SignIn';
 import { Account } from './Account';
-import Status from './Status';
-import Settings from './Settings'
 
 const theme = createTheme({
   palette: {
@@ -36,7 +34,6 @@ function LoginPage() {
               <form>
                 <Box sx={{ height: 200 }} />
 
-                {/* <Status /> */}
                 <SignIn />
 
               </form>
