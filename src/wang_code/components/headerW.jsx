@@ -29,7 +29,7 @@ const HeaderW = () => {
 
   const changePassword = () => {
     setAnchorEl(null);
-    history.push('newPasswordW');
+    history.push('./newPasswordW');
   }
 
 
