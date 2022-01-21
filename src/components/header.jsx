@@ -1,4 +1,3 @@
-import React from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -15,14 +14,17 @@ function Header(props) {
     else { history.push({ pathname: '/homepage' }); }
   };
 
+
   return (
     <AppBar position="fixed" color="primary">
       <Toolbar>
         {/* <Box onClick={navigate(0)}> */}
         {/* <IconButton color="primary" onClick={navigate(0)}> */}
-        <Link to='/loginpage'>
+     
+          <Link to='/loginpage'>
           <ExitToAppIcon />    {/* onClick={navigate(0)} */}
         </Link>
+     
 
         {/* </IconButton>   */}
         {/* </Box> */}
