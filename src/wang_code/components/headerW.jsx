@@ -64,7 +64,7 @@ const HeaderW = () => {
         
           Kozipro 0121_wangTest
         </Box>
-      
+          {status ?
           <IconButton>
           <SettingsIcon id="basic-button"
             aria-controls={open ? 'basic-menu' : undefined}
@@ -72,6 +72,7 @@ const HeaderW = () => {
             aria-expanded={open ? 'true' : undefined}
             onClick={handleClick} />
         </IconButton>
+        :undefined}
 
         <Menu
           id="basic-menu"
