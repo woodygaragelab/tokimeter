@@ -25,7 +25,7 @@ const HeaderW = () => {
   };
   const handleClose = () => {
     setAnchorEl(null);
-    
+
   };
 
   const changePassword = () => {
@@ -58,6 +58,8 @@ const HeaderW = () => {
           <IconButton >
             <ExitToAppIcon onClick={logout} />
           </IconButton>
+
+
           : undefined}
         <Box sx={{ flexGrow: 1, fontSize: 24, fontWeight: 'bold' }}> {/* border={1}> */}
           Kozipro 0121_wangTest
@@ -66,14 +68,13 @@ const HeaderW = () => {
           <SettingsIcon />
         </IconButton> */}
 
-        <IconButton
-          id="basic-button"
-          aria-controls={open ? 'basic-menu' : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClick}
-        >
-          <SettingsIcon />
+        
+        <IconButton>
+          <SettingsIcon id="basic-button"
+            aria-controls={open ? 'basic-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+            onClick={handleClick} />
         </IconButton>
 
         <Menu
