@@ -21,6 +21,7 @@ function LoginPage() {
 
   return (
     <ThemeProvider theme={theme}>
+      <Account>
       <Header />
 
       <Container>
@@ -34,11 +35,11 @@ function LoginPage() {
             }}>
             <form>
               <Box sx={{ height: 200 }} />
-              <Account>
+              
                 <Status />
                 <SignIn />
-                <Settings />
-              </Account>
+                {/* <Settings /> */}
+             
             </form>
           </Box>
 
@@ -46,6 +47,7 @@ function LoginPage() {
         </Box>
 
       </Container>
+      </Account>
     </ThemeProvider>
   );
 }
