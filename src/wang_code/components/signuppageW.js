@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';              // router (画面遷
 import { useHistory } from 'react-router-dom';
 
 import '../../App.css';
-import Header from "../../components/header"
+import Header from './headerW'
 import {useState, useEffect} from 'react'
 import Amplify,{Auth} from 'aws-amplify'
 
@@ -27,6 +27,7 @@ function SignUpPage() {
     
   return (
     <ThemeProvider theme={theme}>
+      <Account>
       <Header />
 
       <Container>
@@ -51,6 +52,7 @@ function SignUpPage() {
       </Box>
 
       </Container>
+      </Account>
     </ThemeProvider>
   );
 }
