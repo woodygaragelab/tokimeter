@@ -1,7 +1,7 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
 import '../../App.css';
-import HeaderW from "./headerW"
+import Header from './headerW'
 import { Container, Box } from '@material-ui/core';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
@@ -20,7 +20,7 @@ function LoginPage() {
   return (
     <ThemeProvider theme={theme}>
       <Account>
-        <HeaderW />
+        <Header />
 
         <Container>
           <Box style={{ display: 'flex', flexDirection: 'row' }}>

@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';              // router (画面遷
 import { useHistory } from 'react-router-dom';
 
 import '../../App.css';
-import Header from "../../components/header"
+import Header from './headerW'
 
 
 import { Container, Box, TextField, Button } from '@material-ui/core';
@@ -24,6 +24,9 @@ function forgetPassword() {
 
     return (
         <ThemeProvider theme={theme}>
+            <Account>
+
+        
             <Header />
 
             <Container>
@@ -48,6 +51,7 @@ function forgetPassword() {
                 </Box>
 
             </Container>
+            </Account>
         </ThemeProvider>
     );
 }
