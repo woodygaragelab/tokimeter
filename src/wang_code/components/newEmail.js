@@ -6,7 +6,7 @@ import { Container, Box} from '@material-ui/core';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
 import { Account } from './Account';
-import ChangePassword from './ChangePassword';
+import ChangeEmail from './changeEmail'
 
 const theme = createTheme({
     palette: {
@@ -15,10 +15,14 @@ const theme = createTheme({
     },
 });
 
-function changePassword() {
+
+console.log("test_0122")
+
+function changeEmail() {
 
     return (
       
+    
         <ThemeProvider theme={theme}>
             <Account>
             <Header />
@@ -34,7 +38,8 @@ function changePassword() {
                         <form>
                             <Box sx={{ height: 200 }} />
                             <Account>
-                                <ChangePassword />
+                                <ChangeEmail />
+                                
                             </Account>
                         </form>
                     </Box>
@@ -46,4 +51,4 @@ function changePassword() {
     );
 }
 
-export default withRouter(changePassword) 
+export default withRouter(changeEmail) 

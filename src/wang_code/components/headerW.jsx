@@ -32,6 +32,11 @@ const HeaderW = () => {
     history.push('./newPasswordW');
   }
 
+  const changeEmail = () => {
+    setAnchorEl(null);
+    history.push('./newEmailW')
+  }
+
 
   const { getSession, logout } = useContext(AccountContext);
 
@@ -61,18 +66,18 @@ const HeaderW = () => {
 
           : undefined}
         <Box sx={{ flexGrow: 1, fontSize: 24, fontWeight: 'bold' }}>
-        
+
           Kozipro 0121_wangTest
         </Box>
-          {status ?
+        {status ?
           <IconButton>
-          <SettingsIcon id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-            onClick={handleClick} />
-        </IconButton>
-        :undefined}
+            <SettingsIcon id="basic-button"
+              aria-controls={open ? 'basic-menu' : undefined}
+              aria-haspopup="true"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick} />
+          </IconButton>
+          : undefined}
 
         <Menu
           id="basic-menu"
@@ -85,11 +90,11 @@ const HeaderW = () => {
         >
           {/* メニュー内容、ここで拡張 */}
           <MenuItem onClick={changePassword}>Change Password</MenuItem>
-          <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={changeEmail}>Change Email</MenuItem>
 
 
         </Menu>
-       
+
       </Toolbar>
     </AppBar>
 
