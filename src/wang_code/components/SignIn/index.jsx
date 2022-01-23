@@ -32,21 +32,34 @@ function SignIn({onSignIn}) {
     return (
         <div>
             <Box>
-              作業中
+             
             {/* <TextField label="ID" id="userid" value={username} onChange={e => setUsername(e.target.value)} fullWidth /> */}
-            <TextField label="Email" id="email" value={email} onChange={e => setEmail(e.target.value)} fullWidth />
-            <TextField label="Password" id="password" type='password' value={password} onChange={e => setPassword(e.target.value)} fullWidth />
-            Don't have an account? <Link to='/signuppageW'>Sign up</Link>
-          
-           
+            <TextField label="メールアドレス" id="email" value={email} onChange={e => setEmail(e.target.value)} fullWidth />
+            <TextField label="パスワード" id="password" type='password' value={password} onChange={e => setPassword(e.target.value)} fullWidth />
+             <Link to='/signuppageW'>パスワードを忘れた場合</Link>
             </Box>
-            <Box>
+
+
+            <Box m={2}>
+          
             <Button
               id='signInButton'   
               onClick={onSubmit}
               variant="contained" color="secondary" style={{ width: '100%' }}>
               ログイン
             </Button>
+            
+            <Box marginTop={2}>
+            アカウントをお持ちでないですか？
+            <Button
+              id='signInButton'   
+              
+              onClick={() =>{history.push({pathname:'/signuppageW'})}}
+              variant="contained" color="primary" style={{ width: '100%' }}>
+              登録する
+            </Button>
+            </Box>
+           
             </Box>
         </div>
     )

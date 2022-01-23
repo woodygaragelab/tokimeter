@@ -30,7 +30,7 @@ function SignUp() {
 
     return (
         <div>
-            Koziproメンテナンス中
+            Welcome to Kozipro
             <Box>
                 
                 <TextField 
@@ -72,7 +72,7 @@ function SignUp() {
                     id='signUpButton'
                     onClick={onSubmit}
                     variant="contained" color="secondary" style={{ width: '100%' }}>
-                    新規登録
+                    登録
                 </Button>
             </Box>
 

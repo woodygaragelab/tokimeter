@@ -67,7 +67,7 @@ const HeaderW = () => {
           : undefined}
         <Box sx={{ flexGrow: 1, fontSize: 24, fontWeight: 'bold' }}>
 
-          Kozipro 0122_wangTest
+          Kozipro 20220122_wang
         </Box>
         {status ?
           <IconButton>
