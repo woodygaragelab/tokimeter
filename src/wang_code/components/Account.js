@@ -1,10 +1,15 @@
 import React, { createContext } from "react"
 import { CognitoUser, AuthenticationDetails, CognitoUserPool } from "amazon-cognito-identity-js";
 import Pool from "../../UserPool";
+import { useHistory } from "react-router-dom";
+
 
 const AccountContext = createContext();
 
+
+
 const Account = (props) => {
+  const history =  useHistory();
 
   const getSession = async () => {
     return new Promise((resolve, reject) => {
@@ -73,6 +78,7 @@ const Account = (props) => {
     const user = Pool.getCurrentUser();
     if (user) {
       user.signOut();
+      history.push('./loginpageW')
       window.location.reload(false); // reload page
     }
   };
