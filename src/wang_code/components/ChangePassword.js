@@ -18,6 +18,7 @@ export default () => {
             user.changePassword(password, newPassword, (err, result) => {
                 if (err) {
                     console.error(err);
+                    alert(err.message || JSON.stringify(err))
                 } else {
                     console.log(result);
                 }

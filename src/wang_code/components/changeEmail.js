@@ -14,7 +14,7 @@ export default () => {
 
     const onSubmit = (e) => {
         e.preventDefault();
-
+        console.log("changeEmail page running...")
         getSession().then(({ user, email }) => {
             authenticate(email, password).then(() => {
                 const attributes = [
@@ -24,6 +24,7 @@ export default () => {
                 user.updateAttributes(attributes, (err, results) => {
                     if (err) {
                         console.error(err);
+                        alert(err.message || JSON.stringify(err))
                     } else {
                         console.log(results);
                     }

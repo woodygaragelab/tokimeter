@@ -30,12 +30,12 @@ function SignUp() {
 
     return (
         <div>
-            Welcome to Kozipro
+            Koziproへようこそ
             <Box>
                 
                 <TextField 
                     required 
-                    label="Eメール" 
+                    label="メールアドレス" 
                     id="email" 
                     value={email} 
                     onChange={e => setEmail(e.target.value)} 
@@ -51,15 +51,15 @@ function SignUp() {
                     fullWidth />
                 <TextField 
                     disabled 
-                    label="ID (Unablse)" 
+                    label="ID (Comming soon)" 
                     id="userid" 
                     value={username} 
                     onChange={e => setUsername(e.target.value)} 
                     fullWidth />
                 <TextField 
                     disabled 
-                    label="Phone (Unable)" 
-                    id="phonenumber" 
+                    label="Phone (Comming soon)" 
+                    id="mobiephone" 
                     value={phonenumber} 　
                     onChange={e => setPhonenumber(e.target.value)} 
                     fullWidth />

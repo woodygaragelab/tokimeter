@@ -36,7 +36,7 @@ function SignIn({onSignIn}) {
             {/* <TextField label="ID" id="userid" value={username} onChange={e => setUsername(e.target.value)} fullWidth /> */}
             <TextField label="メールアドレス" id="email" value={email} onChange={e => setEmail(e.target.value)} fullWidth />
             <TextField label="パスワード" id="password" type='password' value={password} onChange={e => setPassword(e.target.value)} fullWidth />
-             <Link to='/signuppageW'>パスワードを忘れた場合</Link>
+             <Link to='/forgotPasswordW'>パスワードを忘れた場合</Link>
             </Box>
 
 

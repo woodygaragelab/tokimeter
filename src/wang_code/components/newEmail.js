@@ -16,12 +16,14 @@ const theme = createTheme({
 });
 
 
-console.log("test_0122")
+console.log("newEmail: test_0122")
 
 function changeEmail() {
 
+    console.log("newEmail:test_0124")
+
     return (
-      
+        
     
         <ThemeProvider theme={theme}>
             <Account>
