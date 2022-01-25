@@ -30,7 +30,7 @@ function SignUp() {
 
     return (
         <div>
-            Koziproへようこそ
+            脈アリの世界へようこそ
             <Box>
                 
                 <TextField 
@@ -63,7 +63,7 @@ function SignUp() {
                     value={phonenumber} 　
                     onChange={e => setPhonenumber(e.target.value)} 
                     fullWidth />
-                Already have an account? <Link to='/loginpageW'>Sign in</Link>
+                すでにアカウントをおもちですか?<Link to='/loginpageW'>ログイン</Link>
 
             </Box>
             <Box>

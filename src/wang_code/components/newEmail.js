@@ -16,7 +16,6 @@ const theme = createTheme({
 });
 
 
-console.log("newEmail: test_0122")
 
 function changeEmail() {
 
