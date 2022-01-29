@@ -30,7 +30,7 @@ function SignUp() {
 
     return (
         <div>
-            脈アリの世界へようこそ
+            脈アリの世界にようこそ
             <Box>
                 
                 <TextField 
