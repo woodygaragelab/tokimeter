@@ -2,10 +2,6 @@ import React, { useState, useContext } from "react"
 import { Button, TextField, Box } from '@material-ui/core'
 import { AccountContext } from "./Account";
 import { Link } from 'react-router-dom';
-import Stack from '@mui/material/Stack';
-import Alert from '@mui/material/Alert';
-import AlertTitle from '@mui/material/AlertTitle';
-
 
 export default () => {
 
@@ -14,7 +10,7 @@ export default () => {
     const [confirmNewPassword, setConfirmNewPassword] = useState();
     
 
-    const { getSession } = useContext(AccountContext);
+    const { getSession,logout } = useContext(AccountContext);
 
 
     const onSubmit = (e) => {
@@ -36,6 +32,7 @@ export default () => {
                 } else {
                     console.log(result);
                     alert("パスワード変更成功")
+                    logout();
                     
                 }
             });
@@ -79,7 +76,7 @@ export default () => {
 
             </Box>
             <Box>
-                Back to  <Link to='/loginpageW'>Login</Link> page
+                <Link to='/loginpageW'>ログイン</Link> 画面に移動
             </Box>
             <Box marginTop={3}>
                 <Button
