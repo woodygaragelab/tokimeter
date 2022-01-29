@@ -7,13 +7,16 @@ import { Button, TextField, Box } from '@material-ui/core'
 const ForgetPasswordCore = () => {
 
     console.log("forgetPasswordCore is running...")
-    const [stage, setStage] = useState(2); // 1 = email stage, 2 = code stage.
+    const [stage, setStage] = useState(1); // 1 = email stage, 2 = code stage.
     const [useremail, setUserEmail] = useState("");
+    const [code,setCode] = useState("")
+    const [password,setPassword] = useState("")
+    const [confirmPassword, setConfirmPassword] = useState("")
 
     const getUser = () => {
         return new CognitoUser({
             Username: useremail.toLowerCase(),
-            Pool:UserPool
+            Pool:UserPool,
         });
     };
 
@@ -37,13 +40,24 @@ const ForgetPasswordCore = () => {
         });
     };
 
-    const resetPassword = (e) => {
+
+    const resetPassword = e => {
         e.preventDefault();
-    }
-
-
-
-
+    
+        if (password !== confirmPassword) {
+          console.error("Passwords are not the same");
+          return;
+        }
+    
+        getUser().confirmPassword(code, password, {
+          onSuccess: data => {
+            console.log("onSuccess:", data);
+          },
+          onFailure: err => {
+            console.error("onFailure:", err);
+          }
+        });
+      };
 
     return <div>
         {stage === 1 && (
@@ -64,7 +78,17 @@ const ForgetPasswordCore = () => {
 
 
         {stage === 2 && (
-            <div>Coming soon...</div>
+            <Box>
+                <TextField label="メールアドレス" id="code" value={code} onChange={e => setCode(e.target.value)} fullWidth />
+                <TextField label="メールアドレス" id="password" value={password} onChange={e => setPassword(e.target.value)} fullWidth />
+                <TextField label="メールアドレス" id="confrimPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} fullWidth />
+                <Button
+                    id='signInButton'
+                    onClick={resetPassword}
+                    variant="contained" color="secondary" style={{ width: '100%' }}>
+                   Change Password
+                </Button>
+            </Box>
         )
         }
 
