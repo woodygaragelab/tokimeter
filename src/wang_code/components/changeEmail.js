@@ -21,7 +21,7 @@ export default () => {
         getSession().then(({ user, email }) => {
             authenticate(email, password).then(() => {
                 const attributes = [
-                    new CognitoUserAttribute({ Name: "email", Value: newEmail })
+                    new CognitoUserAttribute({ Name: "email", Value: newEmail },{Name:"email_verified",Value:true})
                 ];
 
                 user.updateAttributes(attributes, (err, results) => {
@@ -31,7 +31,7 @@ export default () => {
                         return;
                     } else {
                         console.log(results);
-                        history.push('./verificationW')
+                       // history.push('./verificationW')
                     }
                 })
             })

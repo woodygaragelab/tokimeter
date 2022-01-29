@@ -89,8 +89,8 @@ const HeaderW = () => {
           }}
         >
           {/* メニュー内容、ここで拡張 */}
-          <MenuItem onClick={changePassword}>Change Password</MenuItem>
-          <MenuItem onClick={changeEmail}>Change Email</MenuItem>
+          <MenuItem onClick={changePassword}>パスワード変更</MenuItem>
+          {/* <MenuItem onClick={changeEmail}>Change Email</MenuItem> */}
 
 
         </Menu>
