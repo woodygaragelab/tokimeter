@@ -20,7 +20,7 @@ import signuppageW from './wang_code/components/signuppageW';
 import newPasswordW from './wang_code/components/newPassword';
 import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
-import verificationW from './wang_code/components/verification';
+import verificationW from './wang_code/components/verificationPage';
 
   class App extends React.Component {
 
