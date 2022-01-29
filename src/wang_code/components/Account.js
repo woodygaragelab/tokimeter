@@ -17,7 +17,7 @@ const Account = (props) => {
       if (user) {
         user.getSession(async (err, session) => {
           if (err) {
-            alert("1")
+            //("1")
             reject();
           } else {
 

@@ -2,6 +2,7 @@ import { CognitoUser } from 'amazon-cognito-identity-js';
 import React, { useState } from 'react';
 import UserPool from '../../UserPool'
 import { Button, TextField, Box } from '@material-ui/core'
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -10,6 +11,7 @@ import { Button, TextField, Box } from '@material-ui/core'
     const [email, setEmail] = useState("");
     const [verificationCode, setVerificationCode] = useState("")
 
+    const history = useHistory()
 
 
     const verifyCode = () => {
@@ -26,6 +28,8 @@ import { Button, TextField, Box } from '@material-ui/core'
             console.log("compolete SignUp!")
             setEmail("")
             setVerificationCode("")
+            history.push('/loginpageW')
+
         })
 
     }

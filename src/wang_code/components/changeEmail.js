@@ -3,6 +3,7 @@ import { Button, TextField, Box } from '@material-ui/core'
 import { AccountContext } from "./Account";
 import { Link } from 'react-router-dom';
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
+import { useHistory } from "react-router-dom";
 
 export default () => {
 
@@ -10,6 +11,8 @@ export default () => {
     const [password, setPassword] = useState(""); // use current password to vefify to change the email.
 
     const { getSession, authenticate } = useContext(AccountContext);
+
+    const history = useHistory();
 
 
     const onSubmit = (e) => {
@@ -25,8 +28,10 @@ export default () => {
                     if (err) {
                         console.error(err);
                         alert(err.message || JSON.stringify(err))
+                        return;
                     } else {
                         console.log(results);
+                        history.push('./verificationW')
                     }
                 })
             })
