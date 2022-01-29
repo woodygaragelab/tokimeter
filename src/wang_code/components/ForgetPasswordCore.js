@@ -79,9 +79,9 @@ const ForgetPasswordCore = () => {
 
         {stage === 2 && (
             <Box>
-                <TextField label="メールアドレス" id="code" value={code} onChange={e => setCode(e.target.value)} fullWidth />
-                <TextField label="メールアドレス" id="password" value={password} onChange={e => setPassword(e.target.value)} fullWidth />
-                <TextField label="メールアドレス" id="confrimPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} fullWidth />
+                <TextField label="認証コード" id="code" value={code} onChange={e => setCode(e.target.value)} fullWidth />
+                <TextField label="新パスワード" id="password" value={password} onChange={e => setPassword(e.target.value)} fullWidth />
+                <TextField label="新パスワード（確認）" id="confrimPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} fullWidth />
                 <Button
                     id='signInButton'
                     onClick={resetPassword}
