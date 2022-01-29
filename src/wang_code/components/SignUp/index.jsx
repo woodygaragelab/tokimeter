@@ -23,7 +23,7 @@ function SignUp() {
                 alert(err.message || JSON.stringify(err))
             }else{
             console.log(data);
-            history.push({pathname:'./loginpageW'})}
+            history.push({pathname:'./verificationW'})}
                     })
     }
 
