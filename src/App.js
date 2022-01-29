@@ -20,6 +20,7 @@ import signuppageW from './wang_code/components/signuppageW';
 import newPasswordW from './wang_code/components/newPassword';
 import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
+import verificationW from './wang_code/components/verification';
 
   class App extends React.Component {
 
@@ -47,6 +48,7 @@ import forgotPasswordW from './wang_code/components/forgotPassword'
             <Route exact={true} path='/newPasswordW' component={newPasswordW} />
             <Route exact={true} path='/newEmailW' component={newEmailW} />
             <Route exact={true} path='/forgotPasswordW' component={forgotPasswordW} />
+            <Route exact={true} path='/verificationW' component={verificationW} />
 
     
           </Switch>

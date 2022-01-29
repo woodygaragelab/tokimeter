@@ -21,9 +21,9 @@ function SignUp() {
         UserPool.signUp(email,password,[],null,(err,data) =>{
             if(err){
                 alert(err.message || JSON.stringify(err))
-            }
+            }else{
             console.log(data);
-            history.push({pathname:'./loginpageW'})
+            history.push({pathname:'./loginpageW'})}
                     })
     }
 
