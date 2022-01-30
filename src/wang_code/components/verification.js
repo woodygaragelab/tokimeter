@@ -43,7 +43,7 @@ import { useHistory } from 'react-router-dom';
             <Box>
                 <TextField
                     required
-                    label="認証コード"
+                    label="確認コード"
                     id="verificationCode"
                     value={verificationCode}
                     onChange={e => setVerificationCode(e.target.value)}
