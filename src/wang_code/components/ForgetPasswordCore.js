@@ -71,9 +71,6 @@ const ForgetPasswordCore = () => {
                    Send verification code
                 </Button>
             </Box>
-
-
-
         )}
 
 

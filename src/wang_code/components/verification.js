@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 
 
 
- const Verification = ()=> {
+ const Verification = ({userEmail})=> {
 
     const [email, setEmail] = useState("");
     const [verificationCode, setVerificationCode] = useState("")
@@ -15,17 +15,18 @@ import { useHistory } from 'react-router-dom';
 
 
     const verifyCode = () => {
+        console.log("Email:",userEmail)
         const cognitoUser = new CognitoUser({
-            Username: email.toLowerCase(),
+            Username: userEmail.toLowerCase(),
             Pool: UserPool
         })
 
-        cognitoUser.confirmRegistration(verificationCode, true, (err, data) => {
+        cognitoUser.confirmRegistration(verificationCode.trim(), true, (err, data) => {
             if (err) {
                 alert(err.message || JSON.stringify(err))
                 return;
             }
-            console.log("compolete SignUp!")
+            console.log("complete SignUp!")
             setEmail("")
             setVerificationCode("")
             history.push('/loginpageW')
@@ -48,14 +49,14 @@ import { useHistory } from 'react-router-dom';
                     onChange={e => setVerificationCode(e.target.value)}
                     fullWidth />
 
-
+{/* 
                 <TextField
                     required
                     label="メールアドレス"
                     id="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    fullWidth />
+                    fullWidth /> */}
             </Box>
 
             <Box marginTop={3}>
