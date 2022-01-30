@@ -63,13 +63,15 @@ const ForgetPasswordCore = () => {
         {stage === 1 && (
             <Box>
                 <TextField label="メールアドレス" id="email" value={useremail} onChange={e => setUserEmail(e.target.value)} fullWidth />
-
+                <Box marginTop={3}>
                 <Button
                     id='signInButton'
                     onClick={sendCode}
                     variant="contained" color="secondary" style={{ width: '100%' }}>
-                   Send verification code
+                   確認コード送信
                 </Button>
+                </Box>
+              
             </Box>
         )}
 
@@ -79,12 +81,15 @@ const ForgetPasswordCore = () => {
                 <TextField label="認証コード" id="code" value={code} onChange={e => setCode(e.target.value)} fullWidth />
                 <TextField label="新パスワード" id="password" value={password} onChange={e => setPassword(e.target.value)} fullWidth />
                 <TextField label="新パスワード（確認）" id="confrimPassword" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} fullWidth />
+                <Box marginTop={3}>
                 <Button
                     id='signInButton'
                     onClick={resetPassword}
                     variant="contained" color="secondary" style={{ width: '100%' }}>
-                   Change Password
+                   パスワード変更
                 </Button>
+                </Box>
+               
             </Box>
         )
         }
