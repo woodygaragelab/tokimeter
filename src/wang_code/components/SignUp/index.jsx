@@ -57,7 +57,7 @@ function SignUp() {
                             onChange={e => setPassword(e.target.value)}
 
                             fullWidth />
-                        <TextField
+                        {/* <TextField
                             disabled
                             label="ID (Comming soon)"
                             id="userid"
@@ -70,7 +70,7 @@ function SignUp() {
                             id="mobiephone"
                             value={phonenumber}
                             onChange={e => setPhonenumber(e.target.value)}
-                            fullWidth />
+                            fullWidth /> */}
                         すでにアカウントをおもちですか?<Link to='/loginpageW'>ログイン</Link>
 
                     </Box>
