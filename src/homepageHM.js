@@ -63,9 +63,6 @@ class HomePage extends Component {       // HomePage:メインページ
         <Box sx={{height:100, width:100, position: 'absolute', top: 520, left:80}} >
           <img src={img8_suga} className="kzImage2" alt="img8"/>
         </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 400, left:300}} >
-          <img src={img9_songkang} className="kzImage2" alt="img9_songkang"/>
-        </Box>
       </Box>
       <Footer pageid="1"/> 
       </ThemeProvider>

@@ -8,6 +8,7 @@ import './App.css';                            // アプリ共通スタイル（
 import LoginPage  from './loginpage';
 import HomePageD  from './design_code/homepage';
 import HomePage   from './homepage';
+import HomePageHM   from './homepagehm';
 import HeartPage  from './heartpage';
 import GraphPage  from './graphpage';
 import GraphPageD  from './design_code/graphpage';
@@ -20,6 +21,7 @@ import signuppageW from './wang_code/components/signuppageW';
 import newPasswordW from './wang_code/components/newPassword';
 import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
+import SettingsPage  from './settingspage';
 
   class App extends React.Component {
 
@@ -36,6 +38,7 @@ import forgotPasswordW from './wang_code/components/forgotPassword'
             <Route exact={true} path='/signuppage' component={SignUp}/>
             <Route exact={true} path='/homepageD'  component={HomePageD}/>
             <Route exact={true} path='/homepage'   component={HomePage}/>
+            <Route exact={true} path='/homepagehm'   component={HomePageHM}/>
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
             <Route exact={true} path='/graphpage'  component={GraphPage}/>
             <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
@@ -47,6 +50,7 @@ import forgotPasswordW from './wang_code/components/forgotPassword'
             <Route exact={true} path='/newPasswordW' component={newPasswordW} />
             <Route exact={true} path='/newEmailW' component={newEmailW} />
             <Route exact={true} path='/forgotPasswordW' component={forgotPasswordW} />
+            <Route exact={true} path='/settingspage' component={SettingsPage} />
 
 
     
