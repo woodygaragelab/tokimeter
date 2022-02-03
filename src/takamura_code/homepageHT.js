@@ -48,10 +48,11 @@ const HomePage = () => {
       <Box sx={{height:800}}>
         <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:200}}>
           <img src={img1_me} className="kzImage2" alt="img1_me"/>
+          <button onClick={() => setScore(1)}>音を鳴らす</button>
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
           <img src={img2_jimin} className="kzImage2" alt="img2_jimin" onClick={() => play()}/>
-          <button onClick={() => play()}>音を鳴らす</button>
+          <button onClick={() => play()}>声を聴く</button>
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
           <img src={img3_jin} className="kzImage2" alt="img3_jin"/>
