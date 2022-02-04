@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "paths": {
+    "/activities": {
+      "name": "/activities",
+      "lambdaFunction": "activityfunction",
+      "permissions": {
+        "setting": "open"
+      }
+    }
+  }
+}

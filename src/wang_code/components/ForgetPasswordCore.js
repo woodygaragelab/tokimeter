@@ -62,7 +62,7 @@ const ForgetPasswordCore = () => {
     return <div>
         {stage === 1 && (
             <Box>
-                <TextField label="確認コード" id="email" value={useremail} onChange={e => setUserEmail(e.target.value)} fullWidth />
+                <TextField label="Eメール" id="email" value={useremail} onChange={e => setUserEmail(e.target.value)} fullWidth />
                 <Box marginTop={3}>
                 <Button
                     id='signInButton'

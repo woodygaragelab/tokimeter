@@ -1,0 +1,14 @@
+{
+  "resourceName": "koziproNosqlStorage",
+  "tableName": "koziproActivityStorage",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "number"
+  },
+  "sortKey": {
+    "fieldName": "time",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}
