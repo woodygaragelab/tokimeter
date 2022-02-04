@@ -41,6 +41,7 @@ const HomePage = () => {
   const clickA = () => {
     setScore(score_0+50);
     context.resume();
+    play();
   };
 
   const context = new AudioContext();
