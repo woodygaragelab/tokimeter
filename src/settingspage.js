@@ -11,7 +11,7 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 
 import Header from "./components/header";
 import Footer from "./components/footer";
-import img1_me       from './img/me.png'   // homepageに表示する顔写真
+import img1_me       from './img/me.png'   // settingspageに表示する顔写真
 
 const theme = createTheme({ 
   palette: {
@@ -20,7 +20,7 @@ const theme = createTheme({
   },
 });
 
-class HomePage extends Component {       // HomePage:メインページ
+class SettingsPage extends Component {       // HomePage:メインページ
   constructor(props){                    // props: HomePageコンポネントが受け取るパラメータ
     super(props);
     this.state = { };                    // state: HomePageコンポネントが保持するデータ
@@ -43,4 +43,4 @@ class HomePage extends Component {       // HomePage:メインページ
     );
   }
 }
-export default withRouter(HomePage) // 画面遷移対象にするので、withRoute()を使う
+export default withRouter(SettingsPage) // 画面遷移対象にするので、withRoute()を使う
