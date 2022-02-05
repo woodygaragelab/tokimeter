@@ -2,6 +2,7 @@ import React from 'react'
 import { Component } from 'react';
 import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
 import { useEffect } from 'react';                           // effect (state変化したときの処理機能)
+import { useRef } from 'react';   
 
 import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
 
@@ -42,14 +43,27 @@ const HomePage = () => {
   
   const clickA = () => {
     setScore(score_0+50);
-    context.resume();
+    if (audioContext.current.state === "suspended") {
+      audioContext.current.resume();
+    }
+
+    // context.resume();
     play();
   };
 
-  const context = new AudioContext();
-  useEffect(() => {
-  }, [])
+  // const context = new AudioContext();
+  // useEffect(() => {
+  // }, [])
   
+  const audioContext = useRef(null);
+  useEffect(() => {
+    audioContext.current = new AudioContext();
+  }, []);
+
+
+
+
+
     return (
       <ThemeProvider theme={theme}>
       <Header/>
@@ -57,10 +71,10 @@ const HomePage = () => {
         <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:200}}>
           <img src={img1_me} className="kzImage2" alt="img1_me"/>
           {/* <button onClick={() => setScore(score_0+10)}>score={score_0}</button> */}
-          <button onClick={() => playLoud()}> 音を鳴らす（大）</button>
+          {/* <button onClick={() => playLoud()}> 音を鳴らす（大）</button> */}
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
-          <img src={img2_jimin} className="kzImage2" alt="img2_jimin" onClick={() => play()}/>
+          <img src={img2_jimin} className="kzImage2" alt="img2_jimin" onClick={() => clickA()}/>
           {/* <button onClick={() => clickA()}>add score</button> */}
           {/* <button onClick={() => play()}>声を聴く</button> */}
         </Box>
