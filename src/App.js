@@ -23,6 +23,7 @@ import newPasswordW from './wang_code/components/newPassword';
 import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
 import SettingsPage  from './settingspage';
+import apiTest from './wang_code/components/apiTest'
 
   class App extends React.Component {
 
@@ -53,6 +54,7 @@ import SettingsPage  from './settingspage';
             <Route exact={true} path='/newEmailW' component={newEmailW} />
             <Route exact={true} path='/forgotPasswordW' component={forgotPasswordW} />
             <Route exact={true} path='/settingspage' component={SettingsPage} />
+            <Route exact={true} path='/apiTest' component={apiTest} />
 
 
     

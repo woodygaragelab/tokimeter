@@ -7,37 +7,12 @@
       "customAuth": false
     }
   },
-  "api": {
-    "koziproActivityRestApi": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "activityfunction",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
-    }
-  },
+  "api": {},
   "storage": {
     "imagestore": {
       "service": "S3",
       "providerPlugin": "awscloudformation"
-    },
-    "koziproNosqlStorage": {
-      "service": "DynamoDB",
-      "providerPlugin": "awscloudformation"
     }
   },
-  "function": {
-    "activityfunction": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    }
-  }
+  "function": {}
 }

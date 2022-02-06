@@ -27,7 +27,7 @@
     "font-awesome": "^4.7.0",
     "json-serve": "^0.1.0",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.6.1",
+    "react-bootstrap": "^1.6.4",
     "react-chartjs-2": "^3.0.3",
     "react-dom": "^17.0.1",
     "react-icons": "^4.2.0",
