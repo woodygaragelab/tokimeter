@@ -20,11 +20,11 @@ import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
-import ContentCut from '@mui/icons-material/ContentCut';
-import ContentCopy from '@mui/icons-material/ContentCopy';
-import ContentPaste from '@mui/icons-material/ContentPaste';
-import Cloud from '@mui/icons-material/Cloud';
+import MailIcon from '@mui/icons-material/Mail';
+import KeyIcon from '@mui/icons-material/Key';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import BrushIcon from '@mui/icons-material/Brush';
+import HelpIcon from '@mui/icons-material/Help';
 //テンプレから追加
 
 const theme = createTheme({ 
@@ -46,51 +46,53 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
       <ThemeProvider theme={theme}>
       <Header/>
 
-      <Box sx={{height:800}}>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:400}}>
+      <Box sx={{height:400}}>
+        <Box sx={{height:400, width:400, position: 'static', top: 800, left:800}}>
           <img src={img1_me} className="kzImage2" alt="img1_me"/>
         </Box>
       </Box>
       <Footer pageid="1"/> 
       //テンプレから追加
-      <Paper sx={{ width: 320, maxWidth: '100%' }}>
+      <Paper position="static" maxwidth="x1">
         <MenuList>
+          <Divider />
           <MenuItem>
             <ListItemIcon>
-              <ContentCut fontSize="small" />
+              <MailIcon fontSize="small" />
             </ListItemIcon>
-            <ListItemText>Change Email</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <ContentCopy fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Change Password</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <ContentPaste fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Notifications</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <ContentPaste fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Change Theme</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <ContentPaste fontSize="small" />
-            </ListItemIcon>
-            <ListItemText>Help</ListItemText>
+            <ListItemText align="left">Change Email</ListItemText>
           </MenuItem>
           <Divider />
           <MenuItem>
             <ListItemIcon>
-              <Cloud fontSize="small" />
+              <KeyIcon fontSize="small" />
             </ListItemIcon>
-            <ListItemText>Web Clipboard</ListItemText>
+            <ListItemText align="left">Change Password</ListItemText>
+          </MenuItem>
+          <Divider />
+          <MenuItem>
+            <ListItemIcon>
+              <NotificationsIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText align="left">Notifications</ListItemText>
+          </MenuItem>
+          <Divider />
+          <MenuItem>
+            <ListItemIcon>
+              <BrushIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText align="left">Change Theme</ListItemText>
+          </MenuItem>
+          <Divider />
+          <MenuItem>
+            <ListItemIcon>
+              <HelpIcon fontSize="small" />
+            </ListItemIcon>
+            <ListItemText align="left">Help</ListItemText>
+          </MenuItem>
+          <Divider />
+          <MenuItem>
+            <ListItemText>Sign out</ListItemText>
           </MenuItem>
         </MenuList>
       </Paper>
