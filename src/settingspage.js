@@ -27,12 +27,51 @@ import BrushIcon from '@mui/icons-material/Brush';
 import HelpIcon from '@mui/icons-material/Help';
 //テンプレから追加
 
+//テンプレから追加（Avatat with badge)
+import { styled } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+
+//テンプレから追加（Avatar with badge)
+
 const theme = createTheme({ 
   palette: {
     primary:   { main: pink[50],  },
     secondary: { main: pink[300], },
   },
 });
+//テンプレから追加（Avator with badge）
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'static',
+      top: 0,
+      left: 0,
+      width: '100%',//ステータスボタン点滅の範囲
+      height: '100%',//ステータスボタン点滅の範囲
+      borderRadius: '50%',
+      animation: 'ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""',
+    },
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1,
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0,
+    },
+  },
+}));
+
+//テンプレから追加（Avatar with badge）
 
 class SettingsPage extends Component {       // SettingsPage:設定ページ
   constructor(props){                    // props: SettingsPageコンポネントが受け取るパラメータ
@@ -44,15 +83,20 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
 
     return (
       <ThemeProvider theme={theme}>
-      <Header/>
+      <Footer pageid="1"/>
+      //テンプレから追加(Avatar)
+      <Stack direction="row" spacing={2}>
+      <StyledBadge
+        overlap="circular"
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}//緑のボタンの位置
+        variant="dot"
+        position="static"
+      >
+        <Avatar alt="Me"src={img1_me}/>
+      </StyledBadge>
+    </Stack>
 
-      <Box sx={{height:400}}>
-        <Box sx={{height:400, width:400, position: 'static', top: 800, left:800}}>
-          <img src={img1_me} className="kzImage2" alt="img1_me"/>
-        </Box>
-      </Box>
-      <Footer pageid="1"/> 
-      //テンプレから追加
+      //テンプレから追加(Avatar)
       <Paper position="static" maxwidth="x1">
         <MenuList>
           <Divider />
