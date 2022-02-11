@@ -34,12 +34,6 @@
     }
   },
   "function": {
-    "formfunction": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    },
     "tokimeterformfunction": {
       "build": true,
       "providerPlugin": "awscloudformation",
