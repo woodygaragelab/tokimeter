@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import awsExports from "../../aws-exports"
-import Amplify from "aws-amplify";
+import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
 import { Container, Button, Form } from 'react-bootstrap';
+import {listActivitys} from '../../graphql/queries'
 
 Amplify.configure(awsExports);
 
@@ -30,7 +31,26 @@ function updateFormState(key, value) {
 
 
 
-function apiTest() {
+function ApiTest() {
+
+  const [activities,setActivities] = useState([])
+
+  useEffect(() =>{
+    fetchActivity()
+  },[]);
+
+  const fetchActivity = async () =>{
+    try {
+      const activityData = await API.graphql(graphqlOperation(listActivitys))
+      const activityList = activityData.data.listActivitys.items;
+      console.log('activity list',activityList);
+      setActivities(activityList)
+    } catch (error) {
+        console.log('error on fetching activities',error)
+    }
+  }
+
+
 
   return (
     <Container>
@@ -57,9 +77,11 @@ function apiTest() {
           <Button onClick={addContact}>Send a message</Button>
         </Form>
 
+        
+
       </div>
     </Container>
   );
 }
 
-export default apiTest;
+export default ApiTest;

@@ -20,7 +20,7 @@
       "function": {
         "tokimeterformfunction": {
           "deploymentBucketName": "amplify-amplify4875b0fdf94f4-staging-41042-deployment",
-          "s3Key": "amplify-builds/tokimeterformfunction-77782f46416236736259-build.zip"
+          "s3Key": "amplify-builds/tokimeterformfunction-4a4c4575666c672f614f-build.zip"
         }
       }
     }
