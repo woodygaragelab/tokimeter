@@ -24,8 +24,22 @@ const awsmobile = {
     "aws_cognito_verification_mechanisms": [
         "EMAIL"
     ],
+    "aws_cloud_logic_custom": [
+        {
+            "name": "formapi",
+            "endpoint": "https://d82mhnamg6.execute-api.ap-northeast-1.amazonaws.com/staging",
+            "region": "ap-northeast-1"
+        }
+    ],
     "aws_user_files_s3_bucket": "tokimeterimage41042-staging",
-    "aws_user_files_s3_bucket_region": "ap-northeast-1"
+    "aws_user_files_s3_bucket_region": "ap-northeast-1",
+    "aws_dynamodb_all_tables_region": "ap-northeast-1",
+    "aws_dynamodb_table_schemas": [
+        {
+            "tableName": "dynamodbTokimeterTest-staging",
+            "region": "ap-northeast-1"
+        }
+    ]
 };
 
 

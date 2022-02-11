@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "storage": {
+      "dynamodbTokimeterTest": [
+        "create",
+        "read"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

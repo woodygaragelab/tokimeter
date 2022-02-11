@@ -1,0 +1,10 @@
+{
+  "resourceName": "dynamodbTokimeterTest",
+  "tableName": "dynamodbTokimeterTest",
+  "partitionKey": {
+    "fieldName": "id",
+    "fieldType": "string"
+  },
+  "gsi": [],
+  "triggerFunctions": []
+}

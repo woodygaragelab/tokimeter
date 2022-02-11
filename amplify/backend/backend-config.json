@@ -7,12 +7,54 @@
       "customAuth": false
     }
   },
-  "api": {},
+  "api": {
+    "formapi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "tokimeterformfunction",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  },
   "storage": {
     "imagestore": {
       "service": "S3",
       "providerPlugin": "awscloudformation"
+    },
+    "dynamodbTokimeterTest": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
     }
   },
-  "function": {}
+  "function": {
+    "formfunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": []
+    },
+    "tokimeterformfunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "dynamodbTokimeterTest",
+          "attributes": [
+            "Name",
+            "Arn",
+            "StreamArn"
+          ]
+        }
+      ]
+    }
+  }
 }
