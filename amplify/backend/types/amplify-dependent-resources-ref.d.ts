@@ -33,12 +33,6 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "function": {
-        "formfunction": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
         "tokimeterformfunction": {
             "Name": "string",
             "Arn": "string",

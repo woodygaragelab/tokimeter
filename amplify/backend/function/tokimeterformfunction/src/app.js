@@ -39,7 +39,7 @@ function id() {
 }
 
 app.post('/contact', function (req, res) {
-  console.log(req);
+  //console.log(req);
 
   var params = {
     TableName: process.env.STORAGE_DYNAMODBTOKIMETERTEST_NAME,
@@ -59,21 +59,11 @@ app.post('/contact', function (req, res) {
 
 )
 
-app.get('/contact',function(req,res){
-  console.log(req);
 
-  var params = {
-    TableName: process.env.STORAGE_DYNAMODBTOKIMETERTEST_NAME,
-    Key:{
-      "name":"bryan"
-    }
-  };
 
-  docClient.get(params,function(err,data){
-    if(err) res.json({err})
-    else res.json({success: 'Get contact data'})
-  })
-})
+
+
+
 
 
 

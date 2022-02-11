@@ -28,8 +28,6 @@ function updateFormState(key, value) {
   formState[key] = value;
 }
 
-// Get method Post.
-
 
 
 function apiTest() {
@@ -57,7 +55,6 @@ function apiTest() {
 
           </Form.Group>
           <Button onClick={addContact}>Send a message</Button>
-          
         </Form>
 
       </div>
