@@ -5,9 +5,7 @@ import { API } from 'aws-amplify';
 import { Container, Button, Form } from 'react-bootstrap';
 import { listActivitys } from '../../graphql/queries'
 import { Paper, IconButton } from '@material-ui/core';
-import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import { updateActivity } from '../../graphql/mutations';
+
 
 
 Amplify.configure(awsExports);
