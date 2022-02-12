@@ -4,6 +4,10 @@ import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
 import { Container, Button, Form } from 'react-bootstrap';
 import {listActivitys} from '../../graphql/queries'
+import { Paper, IconButton } from '@material-ui/core';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 Amplify.configure(awsExports);
 
@@ -77,6 +81,21 @@ function ApiTest() {
           <Button onClick={addContact}>Send a message</Button>
         </Form>
 
+        GraphQL API Test Part
+        <div>
+          {activities.map(activity => {
+            return <Paper variant='outlined' elevation={2}>
+          
+        
+              <div>Event: {activity.event}</div>
+              <div>Time: {activity.time}</div>
+              <div>Member1: {activity.member1}</div>
+              <div>Member2: {activity.member2}</div>
+              <div>Memeber3: {activity.member3}</div>
+              <div>Member4:{activity.member4}</div>
+            </Paper>
+          })}
+        </div>
         
 
       </div>
