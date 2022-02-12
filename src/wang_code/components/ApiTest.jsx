@@ -3,10 +3,11 @@ import awsExports from "../../aws-exports"
 import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
 import { Container, Button, Form } from 'react-bootstrap';
-import {listActivitys} from '../../graphql/queries'
+import { listActivitys } from '../../graphql/queries'
 import { Paper, IconButton } from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import { updateActivity } from '../../graphql/mutations';
 
 
 Amplify.configure(awsExports);
@@ -37,23 +38,42 @@ function updateFormState(key, value) {
 
 function ApiTest() {
 
-  const [activities,setActivities] = useState([])
+  const [activities, setActivities] = useState([])
 
-  useEffect(() =>{
+  useEffect(() => {
     fetchActivity()
-  },[]);
+  }, []);
 
-  const fetchActivity = async () =>{
+  const fetchActivity = async () => {
     try {
       const activityData = await API.graphql(graphqlOperation(listActivitys))
       const activityList = activityData.data.listActivitys.items;
-      console.log('activity list',activityList);
+      console.log('activity list', activityList);
       setActivities(activityList)
     } catch (error) {
-        console.log('error on fetching activities',error)
+      console.log('error on fetching activities', error)
     }
   }
 
+  // update posted content on Cloud.
+  // Comment out for further use.
+  // const updateActivity = async idx => {
+  //   try {
+  //     const activity = activities[idx];
+  //     activitity.like = activity.like + 1;
+  //     delete activity.createdAt;
+  //     delete activity.updatedAt;
+
+  //     const activityData = await API.graphql(graphqlOperation(updateActivity,{input: activity}));
+  //     const activitityList = [...activities];
+  //     activitityList[idx] = activityData.data.updateActivity;
+  //     setActivities(activitityList);
+  //   } catch (error) {
+  //     Console.log('error on updating activity data',error);
+  //   }
+  // }
+
+ 
 
 
   return (
@@ -83,20 +103,20 @@ function ApiTest() {
 
         GraphQL API Test Part
         <div>
-          {activities.map(activity => {
-            return <Paper variant='outlined' elevation={2}>
-          
-        
+          {activities.map((activity, idx) => {
+            return <Paper variant='outlined' elevation={2} key={`activity${idx}`}>
+
+
               <div>Event: {activity.event}</div>
               <div>Time: {activity.time}</div>
               <div>Member1: {activity.member1}</div>
               <div>Member2: {activity.member2}</div>
-              <div>Memeber3: {activity.member3}</div>
+              <div>Member3: {activity.member3}</div>
               <div>Member4:{activity.member4}</div>
             </Paper>
           })}
         </div>
-        
+
 
       </div>
     </Container>
