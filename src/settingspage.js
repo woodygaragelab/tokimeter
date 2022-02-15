@@ -5,7 +5,6 @@ import { withRouter } from 'react-router-dom';              // router (画面遷
 
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
-import { Box } from '@material-ui/core';
 
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 
@@ -31,9 +30,8 @@ import HelpIcon from '@mui/icons-material/Help';
 import { styled } from '@mui/material/styles';
 import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-
 //テンプレから追加（Avatar with badge)
+import { Box } from '@material-ui/core';
 
 const theme = createTheme({ 
   palette: {
@@ -80,24 +78,21 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
   }
 
   render() {
-
     return (
       <ThemeProvider theme={theme}>
-      <Footer pageid="1"/>
-      //テンプレから追加(Avatar)
-      <Stack direction="row" spacing={2}>
+      <Footer pageid="3"/>
+      <Header/>
+      <Box sx={{position: 'absolute', left:'50%', top:'200px'}}>
       <StyledBadge
         overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}//緑のボタンの位置
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}//緑のアイコンの位置
         variant="dot"
-        position="static"
       >
-        <Avatar alt="Me"src={img1_me}/>
+        <Avatar alt="Me"src={img1_me} sx={{ width: 56, height: 56 }}/>
       </StyledBadge>
-    </Stack>
+      </Box>
 
-      //テンプレから追加(Avatar)
-      <Paper position="static" maxwidth="x1">
+      <Paper sx={{position:'absolute', bottom:'55px', width:'100%'}}>
         <MenuList>
           <Divider />
           <MenuItem>
@@ -140,7 +135,6 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
           </MenuItem>
         </MenuList>
       </Paper>
-      //テンプレから追加
       </ThemeProvider>
     );
   }
