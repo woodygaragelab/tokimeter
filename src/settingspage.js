@@ -10,7 +10,10 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 
 import Header from "./components/header";
 import Footer from "./components/footer";
-import img1_me       from './img/me.png'   // settingspageに表示する顔写真
+import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
+
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import Button from '@mui/material/Button';
 
 //テンプレから追加
 import Divider from '@mui/material/Divider';
@@ -18,12 +21,6 @@ import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import MailIcon from '@mui/icons-material/Mail';
-import KeyIcon from '@mui/icons-material/Key';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import BrushIcon from '@mui/icons-material/Brush';
-import HelpIcon from '@mui/icons-material/Help';
 //テンプレから追加
 
 //テンプレから追加（Avatat with badge)
@@ -32,6 +29,29 @@ import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 //テンプレから追加（Avatar with badge)
 import { Box } from '@material-ui/core';
+
+//テンプレから追加（Upload button）// 
+import IconButton from '@mui/material/IconButton';
+import PhotoCamera from '@mui/icons-material/PhotoCamera';
+import Stack from '@mui/material/Stack';
+
+const Input = styled('input')({
+  display: 'none',
+});
+
+export function UploadButtons() {
+  return (
+    <Stack direction="row" alignItems="center" spacing={2}>
+      <label htmlFor="icon-button-file">
+        <Input accept="image/*" id="icon-button-file" type="file" />
+        <IconButton color="primary" aria-label="upload picture" component="span">
+          <PhotoCamera />
+        </IconButton>
+      </label>
+    </Stack>
+  );
+}
+//テンプレから追加（Upload button）// 
 
 const theme = createTheme({ 
   palette: {
@@ -82,13 +102,18 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
       <ThemeProvider theme={theme}>
       <Footer pageid="3"/>
       <Header/>
-      <Box sx={{position: 'absolute', left:'50%', top:'200px'}}>
+
+      <Box component="span" sx={{ p: 2, border: '1px dashed grey', bgcolor: 'text.disabled', position: 'absolute',left:0, top:0, width:'100%', height:'25%'}}>
+      <IconButton sx={{position: 'absolute', right:'3%', bottom:'3%', height:'25%'}}><AddAPhotoIcon fontSize="middle" /></IconButton>
+      </Box>
+
+      <Box sx={{position: 'absolute', left:'50%', top:'20%'}}>
       <StyledBadge
         overlap="circular"
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}//緑のアイコンの位置
         variant="dot"
       >
-        <Avatar alt="Me"src={img1_me} sx={{ width: 56, height: 56 }}/>
+        <Avatar alt="Me"src={default_icon} sx={{ width: 56, height: 56 }}/>
       </StyledBadge>
       </Box>
 
@@ -96,37 +121,22 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
         <MenuList>
           <Divider />
           <MenuItem>
-            <ListItemIcon>
-              <MailIcon fontSize="small" />
-            </ListItemIcon>
             <ListItemText align="left">Change Email</ListItemText>
           </MenuItem>
           <Divider />
           <MenuItem>
-            <ListItemIcon>
-              <KeyIcon fontSize="small" />
-            </ListItemIcon>
             <ListItemText align="left">Change Password</ListItemText>
           </MenuItem>
           <Divider />
           <MenuItem>
-            <ListItemIcon>
-              <NotificationsIcon fontSize="small" />
-            </ListItemIcon>
             <ListItemText align="left">Notifications</ListItemText>
           </MenuItem>
           <Divider />
           <MenuItem>
-            <ListItemIcon>
-              <BrushIcon fontSize="small" />
-            </ListItemIcon>
             <ListItemText align="left">Change Theme</ListItemText>
           </MenuItem>
           <Divider />
           <MenuItem>
-            <ListItemIcon>
-              <HelpIcon fontSize="small" />
-            </ListItemIcon>
             <ListItemText align="left">Help</ListItemText>
           </MenuItem>
           <Divider />
