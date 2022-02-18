@@ -19,26 +19,26 @@ import { createActivity, updateActivity } from '../../graphql/mutations';
 Amplify.configure(awsExports);
 
 // Post method test
-async function addContact() {
-  const data = {
-    body: {
-      name: formState.name,
-      email: formState.email,
-      message: formState.message
-    }
-  };
+// async function addContact() {
+//   const data = {
+//     body: {
+//       name: formState.name,
+//       email: formState.email,
+//       message: formState.message
+//     }
+//   };
 
-  console.log(data);
-  const apiData = await API.post('formapi', '/contact', data);
-  console.log({ apiData });
-  alert('Mail sent');
-}
+//   console.log(data);
+//   const apiData = await API.post('formapi', '/contact', data);
+//   console.log({ apiData });
+//   alert('Message sent');
+// }
 
-const formState = { name: '', email: '', message: '' };
+// const formState = { name: '', email: '', message: '' };
 
-function updateFormState(key, value) {
-  formState[key] = value;
-}
+// function updateFormState(key, value) {
+//   formState[key] = value;
+// }
 
 
 
