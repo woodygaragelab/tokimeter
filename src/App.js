@@ -14,6 +14,7 @@ import HeartPage  from './heartpage';
 import GraphPage  from './graphpage';
 import GraphPageD  from './design_code/graphpage';
 import TextPage   from './textpage';
+import TextPageHM   from './meguro_code/textpageHM'; //meguro2/18
 import UserPage   from './userpage';
 import ResultList from './TextAnalysisComponents/ResultList';
 import SignUp from './signuppage';
@@ -46,6 +47,7 @@ import ApiTest from './wang_code/components/ApiTest'
             <Route exact={true} path='/graphpage'  component={GraphPage}/>
             <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
             <Route exact={true} path='/textpage'   component={TextPage}/>
+            <Route exact={true} path='/textpageHM'   component={TextPageHM}/>
             <Route exact={true} path='/userpage'   component={UserPage}/>
             <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
             <Route exact={true} path='/loginpageW' component={LoginPageW}/>
