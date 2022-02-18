@@ -8,9 +8,12 @@ import HeartPage, { Heart } from '../heartpage'
 import { useFetch } from './useFetch'
 import heartpage from '../heartpage'
 
+//sound effects//
+import { useRef } from 'react'; 
 
-
-
+import useSound from 'use-sound';
+import Sound from '../sound/shiningsound_1.mp3';
+//sound effects//
 
 export const TextAnalysis = () => {
     const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
@@ -20,6 +23,30 @@ export const TextAnalysis = () => {
     const [isGetResult, setIsGetResult] = useState(false)
     const [isShowTextAnalizer, setIsShowTextAnalizer] = useState(false)
 
+//sound effects//
+    const [score_0, setScore] = useState(50)
+    const [play, { stop, pause }] = useSound(Sound);
+    const [playLoud] = useSound(Sound, { volume: 2 });
+    
+    const clickA = () => {
+      setScore(score_0+50);
+      if (audioContext.current.state === "suspended") {
+        audioContext.current.resume();
+      }
+  
+      // context.resume();
+      play();
+    };
+  
+    // const context = new AudioContext();
+    // useEffect(() => {
+    // }, [])
+    
+    const audioContext = useRef(null);
+    useEffect(() => {
+      audioContext.current = new AudioContext();
+    }, []);
+//sound effects//
 
     // スリープ用
     const sleep = (msec) => {
@@ -102,7 +129,7 @@ export const TextAnalysis = () => {
                                 id="sendText"
                                 variant="contained"
                                 color="secondary"
-                                type="submit">送信</Button>
+                                type="submit" onClick={() => clickA()}>送信</Button>
                         </Box>}
                     </div>
                 </form>
