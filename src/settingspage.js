@@ -33,20 +33,19 @@ import { Box } from '@material-ui/core';
 
 //テンプレから追加（Upload button）// 
 import IconButton from '@mui/material/IconButton';
-import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Stack from '@mui/material/Stack';
 
 const Input = styled('input')({
   display: 'none',
 });
 
-export function UploadButtons() {
+function UploadButtons() {
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
       <label htmlFor="icon-button-file">
         <Input accept="image/*" id="icon-button-file" type="file" />
         <IconButton color="primary" aria-label="upload picture" component="span">
-          <PhotoCamera />
+          <AddAPhotoIcon />
         </IconButton>
       </label>
     </Stack>
@@ -103,9 +102,8 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
       <ThemeProvider theme={theme}>
       <Footer pageid="3"/>
       <Header/>
-
       <Box component="span" sx={{ p: 2, border: '1px dashed grey', bgcolor: 'text.disabled', position: 'absolute',left:0, top:0, width:'100%', height:'25%'}}>
-      <IconButton sx={{position: 'absolute', right:'3%', bottom:'3%', height:'25%'}}><AddAPhotoIcon fontSize="middle" /></IconButton>
+      <Box sx={{position: 'absolute', right:'3%', bottom:'3%', height:'25%', fontSize:"middle"}}><UploadButtons><AddAPhotoIcon/></UploadButtons></Box>
       </Box>
 
       <Box sx={{position: 'absolute', left:'50%', top:'20%'}}>
