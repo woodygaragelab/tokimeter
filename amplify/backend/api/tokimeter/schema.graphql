@@ -7,4 +7,3 @@ type Activity @model {
   member3:String!
   member4:String!
 }
-
