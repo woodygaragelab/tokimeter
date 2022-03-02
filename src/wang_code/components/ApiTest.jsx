@@ -15,32 +15,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { createActivity, updateActivity } from '../../graphql/mutations';
 
 
-
 Amplify.configure(awsExports);
-
-// Post method test
-// async function addContact() {
-//   const data = {
-//     body: {
-//       name: formState.name,
-//       email: formState.email,
-//       message: formState.message
-//     }
-//   };
-
-//   console.log(data);
-//   const apiData = await API.post('formapi', '/contact', data);
-//   console.log({ apiData });
-//   alert('Message sent');
-// }
-
-// const formState = { name: '', email: '', message: '' };
-
-// function updateFormState(key, value) {
-//   formState[key] = value;
-// }
-
-
 
 function ApiTest() {
 
@@ -56,7 +31,7 @@ function ApiTest() {
     try {
       const activityData = await API.graphql(graphqlOperation(listActivitys))
       const activityList = activityData.data.listActivitys.items;
-      console.log('activity list', activityList);
+     
       setActivities(activityList)
     } catch (error) {
       console.log('error on fetching activities', error)
@@ -83,14 +58,47 @@ function ApiTest() {
 
   const AddActivity = ({ onUpload }) => {
 
-    const [activityData, setActivityData] = useState({});
+    const [activityData, setActivityData] = useState({ });
 
 
     const uploadActivity = async () => {
-      //
       console.log('activityData',activityData);
+
+      // 入力データ事前確認
+      if(!activityData.event){
+        alert("イベント名を入力ください")
+        return 
+      }
+
+      if(!activityData.time){
+        alert("時間を入力ください")
+        return 
+      }
+
+      if(!activityData.member1){
+        alert("イベント１が必須項目で、入力ください")
+      }
+      // メンバー２～３が必須ではなくて、空白の場合まま登録する
+      if(!activityData.member2){
+        activityData['member2'] = ''
+      }
+
+      if(!activityData.member3){
+        activityData['member3'] = ''
+      }
+
+      if(!activityData.member4){
+        activityData['member4'] = ''
+      }
+
+
+      console.log('new activityData',activityData)
+
+
+
       const {event,time,member1,member2,member3,member4} = activityData;
 
+    
       const createActivityInput = {
         id: uuid(),
         event,
@@ -101,7 +109,7 @@ function ApiTest() {
         member4
       }
       await API.graphql(graphqlOperation(createActivity,{input: createActivityInput}))
-      onUpload();
+      onUpload(); // set seen/unseen button & fetch data from cloud.
 
     }
 
@@ -114,7 +122,11 @@ function ApiTest() {
         />
         <TextField
           label="Time"
+          type="time"
           value={activityData.time}
+          InputLabelProps={{
+            shrink: true,
+          }}
           onChange={e => setActivityData({ ...activityData, time: e.target.value })} />
         <TextField
           label="Member1"
@@ -123,7 +135,7 @@ function ApiTest() {
         <TextField
           label="Member2"
           value={activityData.member2}
-          onChange={e => setActivityData({ ...activityData, member2: e.target.value })} />
+          onChange={e => setActivityData({ ...activityData, member2: e.target.value})} />
         <TextField
           label="Member3"
           value={activityData.member3}
@@ -133,6 +145,9 @@ function ApiTest() {
           value={activityData.member4}
           onChange={e => setActivityData({ ...activityData, member4: e.target.value })}
         />
+  
+      
+       
         <ExpandLessIcon onClick={uploadActivity} />
       </div>
     )
@@ -146,26 +161,7 @@ function ApiTest() {
       <div>
         <h3>Get in touch with Kozipro</h3>
         <br />
-        {/* <Form>
-          <Form.Group>
-            <Form.Label>Name</Form.Label>
-            <Form.Control placeholder="Name" onChange={e => updateFormState('name', e.target.value)} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Email</Form.Label>
-            <Form.Control placeholder="Email" onChange={e => updateFormState('email', e.target.value)} />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Message</Form.Label>
-            <Form.Control placeholder="Message" onChange={e => updateFormState('message', e.target.value)} />
-          </Form.Group>
-          <Form.Group>
-
-
-          </Form.Group>
-          <Button onClick={addContact}>Send a message</Button>
-        </Form> */}
-
+       
         GraphQL API Test Part
         <div>
           {activities.map((activity, idx) => {
@@ -175,10 +171,10 @@ function ApiTest() {
               <div>Event: {activity.event}</div>
               <div>Time: {activity.time}</div>
               <div>Member1: {activity.member1}</div>
-              <div>Member2: {activity.member2}</div>
-              <div>Member3: {activity.member3}</div>
-              <div>Member4:{activity.member4}</div>
-
+           
+              {activity.member2 ? (<div>Member2: {activity.member2}</div>): <div></div>}
+              {activity.member3 ? (<div>Member3: {activity.member3}</div>):<div></div>}
+              {activity.member4 ? (<div>Member4: {activity.member4}</div>):<div></div>}
             </Paper>
           })}
           {
