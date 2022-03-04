@@ -6,6 +6,7 @@ import { Container, Button, Form } from 'react-bootstrap';
 import { listActivitys } from '../../../graphql/queries'
 import { Paper, IconButton } from '@material-ui/core';
 import { v4 as uuid } from 'uuid';
+import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 import TextField from '@mui/material/TextField'
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -14,11 +15,13 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { createActivity, updateActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
+import pink from '@material-ui/core/colors/pink';
+
 
 
 Amplify.configure(awsExports);
 
-function EventActivity() {
+function EventActivityCore() {
 
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
@@ -98,7 +101,7 @@ function EventActivity() {
 
     return (
       <div className="newActivity">
-     
+        <Header />
         <Paper>
 
     
@@ -158,7 +161,7 @@ function EventActivity() {
         />
         </Box>
         <Box marginTop={3}>
-        <Button onClick={uploadActivity} color="secondary">Save</Button>
+        <Button onClick={uploadActivity}>Save</Button>
         </Box>
         <ExpandLessIcon onClick={() => setShowAddActivity(false)} />
         </Paper>
@@ -211,4 +214,4 @@ function EventActivity() {
   );
 }
 
-export default EventActivity;
+export default EventActivityCore;
