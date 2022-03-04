@@ -37,31 +37,19 @@ const theme = createTheme({
   
 const HomePage = () => {
 
-  const [score_0, setScore] = useState(50)
+  //const [score_0, setScore] = useState(50)
   const [play, { stop, pause }] = useSound(Sound);
-  const [playLoud] = useSound(Sound, { volume: 1 });
+  //const [playLoud] = useSound(Sound, { volume: 1 });
   
   const clickA = () => {
-    setScore(score_0+50);
-    if (audioContext.current.state === "suspended") {
-      audioContext.current.resume();
-    }
-
-    // context.resume();
+    var context = new AudioContext();
     play();
   };
-
-  // const context = new AudioContext();
+ 
+  // const audioContext = useRef(null);
   // useEffect(() => {
-  // }, [])
-  
-  const audioContext = useRef(null);
-  useEffect(() => {
-    audioContext.current = new AudioContext();
-  }, []);
-
-
-
+  //   audioContext.current = new AudioContext();
+  // }, []);
 
 
     return (
@@ -70,13 +58,9 @@ const HomePage = () => {
       <Box sx={{height:800}}>
         <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:200}}>
           <img src={img1_me} className="kzImage2" alt="img1_me"/>
-          {/* <button onClick={() => setScore(score_0+10)}>score={score_0}</button> */}
-          {/* <button onClick={() => playLoud()}> 音を鳴らす（大）</button> */}
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
           <img src={img2_jimin} className="kzImage2" alt="img2_jimin" onClick={() => clickA()}/>
-          {/* <button onClick={() => clickA()}>add score</button> */}
-          {/* <button onClick={() => play()}>声を聴く</button> */}
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
           <img src={img3_jin} className="kzImage2" alt="img3_jin"/>
@@ -107,3 +91,24 @@ const HomePage = () => {
   }
 // }
 export default withRouter(HomePage) // 画面遷移対象にするので、withRoute()を使う
+
+// old code
+//
+// const clickA = () => {
+//   setScore(score_0+50);
+//   if (audioContext.current.state === "suspended") {
+//     audioContext.current.resume();
+//   }
+
+//   // context.resume();
+//   play();
+// };
+
+// // const context = new AudioContext();
+// // useEffect(() => {
+// // }, [])
+
+// const audioContext = useRef(null);
+// useEffect(() => {
+//   audioContext.current = new AudioContext();
+// }, []);
