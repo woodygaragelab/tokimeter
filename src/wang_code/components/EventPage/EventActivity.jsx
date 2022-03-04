@@ -99,7 +99,9 @@ function EventActivity() {
     return (
       <div className="newActivity">
      
+        <Paper>
 
+    
         <Box>
         <TextField
           label="Event"
@@ -109,7 +111,7 @@ function EventActivity() {
         />
         </Box>
        
-
+        <Box>
         <TextField
           label="Time"
           type="time"
@@ -120,30 +122,46 @@ function EventActivity() {
           }}
           onChange={e => setActivityData({ ...activityData, time: e.target.value })} />
 
-        <TextField
+        </Box>
+          <Box>
+          <TextField
           label="Member1"
           value={activityData.member1}
           variant="standard"
           onChange={e => setActivityData({ ...activityData, member1: e.target.value })} />
+          </Box>
+          <Box>
         <TextField
           label="Member2"
           value={activityData.member2}
           variant="standard"
           onChange={e => setActivityData({ ...activityData, member2: e.target.value })} />
+
+          </Box>
+      
+        <Box>
         <TextField
           label="Member3"
           value={activityData.member3}
           variant="standard"
           onChange={e => setActivityData({ ...activityData, member3: e.target.value })} />
+
+        </Box>
+      
+        <Box>
+        
         <TextField
           label="Member4"
           value={activityData.member4}
           variant="standard"
           onChange={e => setActivityData({ ...activityData, member4: e.target.value })}
         />
-      <Button onClick={uploadActivity}>Save</Button>
-      
+        </Box>
+        <Box marginTop={3}>
+        <Button onClick={uploadActivity} color="secondary">Save</Button>
+        </Box>
         <ExpandLessIcon onClick={() => setShowAddActivity(false)} />
+        </Paper>
 
      
     
