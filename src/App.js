@@ -24,7 +24,7 @@ import newPasswordW from './wang_code/components/newPassword';
 import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
 import SettingsPage  from './settingspage';
-import ApiTest from './wang_code/components/ApiTest'
+import EventActivity from './wang_code/components/EventPage/EventActivity'
 
   class App extends React.Component {
 
@@ -56,7 +56,7 @@ import ApiTest from './wang_code/components/ApiTest'
             <Route exact={true} path='/newEmailW' component={newEmailW} />
             <Route exact={true} path='/forgotPasswordW' component={forgotPasswordW} />
             <Route exact={true} path='/settingspage' component={SettingsPage} />
-            <Route exact={true} path='/ApiTest' component={ApiTest} />
+            <Route exact={true} path='/EventActivity' component={EventActivity} />
 
 
     

@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import awsExports from "../../aws-exports"
+import awsExports from "../../../aws-exports"
 import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
 import { Container, Button, Form } from 'react-bootstrap';
-import { listActivitys } from '../../graphql/queries'
+import { listActivitys } from '../../../graphql/queries'
 import { Paper, IconButton } from '@material-ui/core';
 import { v4 as uuid } from 'uuid';
 
-import AddIcon from '@material-ui/icons/Add'
 import TextField from '@mui/material/TextField'
 import RemoveIcon from '@mui/icons-material/Remove';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { createActivity, updateActivity } from '../../graphql/mutations';
+import { createActivity, updateActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
-import SaveIcon from '@mui/icons-material/Save'
-
-import DeleteIcon from '@mui/icons-material/Delete';
-import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
-
+import Box from '@mui/material/Box'
 
 
 Amplify.configure(awsExports);
 
-function ApiTest() {
+function EventActivity() {
 
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
@@ -44,24 +38,6 @@ function ApiTest() {
       console.log('error on fetching activities', error)
     }
   }
-
-  // update posted content on Cloud.
-  // Comment out for further use.
-  // const updateActivity = async idx => {
-  //   try {
-  //     const activity = activities[idx];
-  //     activitity.like = activity.like + 1;
-  //     delete activity.createdAt;
-  //     delete activity.updatedAt;
-
-  //     const activityData = await API.graphql(graphqlOperation(updateActivity,{input: activity}));
-  //     const activitityList = [...activities];
-  //     activitityList[idx] = activityData.data.updateActivity;
-  //     setActivities(activitityList);
-  //   } catch (error) {
-  //     Console.log('error on updating activity data',error);
-  //   }
-  // }
 
   const AddActivity = ({ onUpload }) => {
 
@@ -122,13 +98,17 @@ function ApiTest() {
 
     return (
       <div className="newActivity">
+     
 
+        <Box>
         <TextField
           label="Event"
           value={activityData.event}
           onChange={e => setActivityData({ ...activityData, event: e.target.value })}
           variant="standard"
         />
+        </Box>
+       
 
         <TextField
           label="Time"
@@ -164,6 +144,8 @@ function ApiTest() {
       <Button onClick={uploadActivity}>Save</Button>
       
         <ExpandLessIcon onClick={() => setShowAddActivity(false)} />
+
+     
     
       </div>
     )
@@ -211,4 +193,4 @@ function ApiTest() {
   );
 }
 
-export default ApiTest;
+export default EventActivity;
