@@ -34,16 +34,16 @@ const awsmobile = {
     "aws_appsync_graphqlEndpoint": "https://e3r3lhzgd5hajf55g4zrvclkb4.appsync-api.ap-northeast-1.amazonaws.com/graphql",
     "aws_appsync_region": "ap-northeast-1",
     "aws_appsync_authenticationType": "API_KEY",
-    "aws_appsync_apiKey": "da2-c3hr3qiuqzdgxa7tcuqcbfa5iy",
-    "aws_user_files_s3_bucket": "tokimeterimage41042-staging",
-    "aws_user_files_s3_bucket_region": "ap-northeast-1",
+    "aws_appsync_apiKey": "da2-qbf63mjhhzfu7lilg6ttx5ve4i",
     "aws_dynamodb_all_tables_region": "ap-northeast-1",
     "aws_dynamodb_table_schemas": [
         {
             "tableName": "dynamodbTokimeterTest-staging",
             "region": "ap-northeast-1"
         }
-    ]
+    ],
+    "aws_user_files_s3_bucket": "bio-heartbeat-storage41042-staging",
+    "aws_user_files_s3_bucket_region": "ap-northeast-1"
 };
 
 

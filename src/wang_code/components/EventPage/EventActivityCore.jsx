@@ -9,19 +9,18 @@ import { v4 as uuid } from 'uuid';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 import TextField from '@mui/material/TextField'
-import RemoveIcon from '@mui/icons-material/Remove';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { createActivity, updateActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
-import pink from '@material-ui/core/colors/pink';
+
 
 
 
 Amplify.configure(awsExports);
 
-function EventActivityCore() {
+function EventActivityCore() { 
 
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
@@ -178,10 +177,8 @@ function EventActivityCore() {
   return (
     <Container>
       <div>
-        <h3>Get in touch with Kozipro</h3>
+        <h3> 脈ありイベント</h3>
         <br />
-
-        GraphQL API Test Part
         <div>
           {activities.map((activity, idx) => {
             return <Paper variant='outlined' elevation={2} key={`activity${idx}`}>

@@ -23,16 +23,16 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "storage": {
-        "imagestore": {
-            "BucketName": "string",
-            "Region": "string"
-        },
         "dynamodbTokimeterTest": {
             "Name": "string",
             "Arn": "string",
             "StreamArn": "string",
             "PartitionKeyName": "string",
             "PartitionKeyType": "string",
+            "Region": "string"
+        },
+        "heartBeatStorage": {
+            "BucketName": "string",
             "Region": "string"
         }
     },

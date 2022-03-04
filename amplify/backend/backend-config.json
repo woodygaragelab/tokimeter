@@ -39,13 +39,14 @@
     }
   },
   "storage": {
-    "imagestore": {
-      "service": "S3",
-      "providerPlugin": "awscloudformation"
-    },
     "dynamodbTokimeterTest": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
+    },
+    "heartBeatStorage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
     }
   },
   "function": {
