@@ -14,7 +14,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { createActivity, updateActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
-
+import PublishIcon from '@mui/icons-material/Publish';
 
 
 
@@ -162,6 +162,7 @@ function EventActivityCore() {
         <Box marginTop={3}>
         <Button onClick={uploadActivity}>Save</Button>
         </Box>
+      
         <ExpandLessIcon onClick={() => setShowAddActivity(false)} />
         </Paper>
 
