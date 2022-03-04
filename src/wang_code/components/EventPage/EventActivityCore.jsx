@@ -101,7 +101,7 @@ function EventActivityCore() {
 
     return (
       <div className="newActivity">
-        <Header />
+       
         <Paper>
 
     
