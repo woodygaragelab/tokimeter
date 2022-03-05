@@ -53,6 +53,7 @@ const HomePage = () => {
 
   const clickA = () => {
     if (audioContext.current.state === "suspended") {
+      console.log('Playback resumed successfully');
       audioContext.current.resume();
     }
     play();
