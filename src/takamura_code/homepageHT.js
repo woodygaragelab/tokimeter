@@ -51,14 +51,22 @@ const HomePage = () => {
     audioContext.current = new AudioContext();
   }, []);
 
+  // const clickA = () => {
+  //   if (audioContext.current.state === "suspended") {
+  //     console.log('Playback resumed successfully');
+  //     audioContext.current.resume();
+  //   }
+  //   play();
+  // };
   const clickA = () => {
     if (audioContext.current.state === "suspended") {
-      console.log('Playback resumed successfully');
-      audioContext.current.resume();
+      audioContext.current.resume().then(() => {
+        console.log('Playback resumed successfully');
+        play();
+      });
     }
-    play();
   };
-
+    
 
     return (
       <ThemeProvider theme={theme}>
