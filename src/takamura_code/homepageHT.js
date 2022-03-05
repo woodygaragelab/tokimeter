@@ -41,15 +41,22 @@ const HomePage = () => {
   const [play, { stop, pause }] = useSound(Sound);
   //const [playLoud] = useSound(Sound, { volume: 1 });
   
+  // const clickA = () => {
+  //   var context = new AudioContext();
+  //   play();
+  // };
+ 
+  const audioContext = useRef(null);
+  useEffect(() => {
+    audioContext.current = new AudioContext();
+  }, []);
+
   const clickA = () => {
-    var context = new AudioContext();
+    if (audioContext.current.state === "suspended") {
+      audioContext.current.resume();
+    }
     play();
   };
- 
-  // const audioContext = useRef(null);
-  // useEffect(() => {
-  //   audioContext.current = new AudioContext();
-  // }, []);
 
 
     return (
