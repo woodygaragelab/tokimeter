@@ -10,6 +10,7 @@ import HomePageD  from './design_code/homepage';
 import HomePage   from './homepage';
 import HomePageHM   from './homepageHM';  // takamura 2/2
 import HomePageHT   from './takamura_code/homepageHT';  // takamura 2/3
+import UploadPageHT from './takamura_code/uploadpageHT';  // takamura 3/5
 import HeartPage  from './heartpage';
 import GraphPage  from './graphpage';
 import GraphPageD  from './design_code/graphpage';
@@ -43,6 +44,7 @@ import EventActivity from './wang_code/components/EventPage/EventActivityPage'
             <Route exact={true} path='/homepage'   component={HomePage}/>
             <Route exact={true} path='/homepagehm'   component={HomePageHM}/>
             <Route exact={true} path='/homepageht'   component={HomePageHT}/>
+            <Route exact={true} path='/uploadpageht' component={UploadPageHT}/>
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
             <Route exact={true} path='/graphpage'  component={GraphPage}/>
             <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
