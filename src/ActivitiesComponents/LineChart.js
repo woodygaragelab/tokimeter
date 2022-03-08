@@ -1,11 +1,12 @@
 import React from 'react'
 import { Fragment } from 'react'
 import { Line } from 'react-chartjs-2'
-import heartRateData from '../BioData/heart_rate_example.json'
 
-const LineChart = () => {
+function LineChart(props){
 
-    const heartRateRawData = heartRateData;
+    const heartRateRawData = props.heartRateData;
+
+    console.log(heartRateRawData)
 
     // すべての心拍数をbpmListに保存
     const bpmList = heartRateRawData.map((s, index) => {

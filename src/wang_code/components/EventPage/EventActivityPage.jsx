@@ -11,7 +11,9 @@ import AddIcon from '@mui/icons-material/Add';
 import PublishIcon from '@mui/icons-material/Publish';
 import { useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import Storage from 'aws-amplify'
+import { Storage } from 'aws-amplify';
+import heartRateDataTemp from '../../../BioData/heart_rate_example.json'
+
 
 const theme = createTheme({
     palette: {
@@ -22,37 +24,46 @@ const theme = createTheme({
 
 
 function EventActivityPage() {
-    
-    const [bioData,setBioData] = useState();
+
+    const [bioData, setBioData] = useState();
+    const [heartRateData, setHeartrateData] = useState();
+    const [showGraph, setShowGraph] = useState(true);
 
     const uploadBioData = async () => {
         // Upload the bio data
-       console.log('bioData',bioData)
-       // uuid() unique name
-       //const {key} = await Storage.put(`${uuid()}.json`,{contentType:'application/json'})
-       
-    }
+        console.log('bioData', bioData)
+        // uuid() unique name
+        const fileName = `${uuid()}.json`;
+        await Storage.put(fileName, bioData, { contentType: 'application/json' },{ level: 'public' })
+        if (bioData) {
+            const heartRateDataUrl = await Storage.get(fileName);
+            console.log("Output: ",heartRateDataUrl)
+            setHeartrateData(heartRateData)
+           
+        }
 
+    }
     return (
         <div>
             <ThemeProvider theme={theme}>
                 <Header />
-               
+
                 <Box marginTop={10}>
-               
-            
-                <input type="file" accept=".json" onChange={e => setBioData(e.target.files[0])} />
-                <IconButton onClick={uploadBioData}> 
-                      Upload Bio Data(Coming soon)
-                      <PublishIcon />
+
+
+                    <input type="file" accept=".json" onChange={e => setBioData(e.target.files[0])} />
+                    <IconButton onClick={uploadBioData}>
+                        Upload Bio Data(Coming soon)
+                        <PublishIcon />
                     </IconButton>
-            
+
                 </Box>
-           
+
 
                 <Box sx={{ height: 200 }}>
                     <Box sx={{ background: '#eecccc' }}>
-                        <LineChart />
+                       
+                            {/* {showGraph ?(<LineChart heartRateData={heartRateData}/>):"No"} */}
                     </Box>
 
                 </Box>
