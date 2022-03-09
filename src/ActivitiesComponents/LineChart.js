@@ -1,10 +1,12 @@
 import React from 'react'
 import { Fragment } from 'react'
 import { Line } from 'react-chartjs-2'
+import heartRateRawData from '../BioData/heart_rate_example.json'
 
 function LineChart(props){
 
-    const heartRateRawData = props.heartRateData;
+    // const heartRateRawData = props.heartRateData; // for testing code (release)
+    const heartRateData = heartRateRawData; // for production 
 
     console.log(heartRateRawData)
 
