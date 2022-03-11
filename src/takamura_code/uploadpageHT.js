@@ -2,9 +2,19 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { Storage } from 'aws-amplify';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
+import { Box } from '@material-ui/core';
 import Button from 'react-bootstrap/Button';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import IconButton from '@mui/material/IconButton';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+
 
 // const TIMEZONEOFFSET = -9;     // UTC-表示したいタイムゾーン(単位:hour)。JSTなら-9
+const Input = styled('input')({
+  display: 'none',
+});
 
 class UploadPageHT extends Component{
 
@@ -30,16 +40,25 @@ class UploadPageHT extends Component{
     }
   }
 
+  
   render(){
     return(
       <div className="container-fluid">
       <form>
         <div className="form-group">
           <img src={this.state.imageurl} style={{width: 100,height:100}} alt=""/>
-          <input
+          {/* <input
              type="file" className="form-control" id="itemimage"
              onChange={this.onChangeImage}
-          />
+          /> */}
+          <label htmlFor="icon-button-file">
+            <Input accept="image/*" id="icon-button-file" type="file" className="form-control" onChange={this.onChangeImage}/>
+            <IconButton color="primary" aria-label="upload picture" component="span">
+              <AddAPhotoIcon />
+            </IconButton>
+          </label>
+
+
         </div>
       </form>
     </div>

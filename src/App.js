@@ -25,6 +25,7 @@ import newPasswordW from './wang_code/components/newPassword';
 import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
 import SettingsPage  from './settingspage';
+import SettingsPageHT  from './settingspageHT';
 import EventActivity from './wang_code/components/EventPage/EventActivityPage'
 
   class App extends React.Component {
@@ -58,6 +59,7 @@ import EventActivity from './wang_code/components/EventPage/EventActivityPage'
             <Route exact={true} path='/newEmailW' component={newEmailW} />
             <Route exact={true} path='/forgotPasswordW' component={forgotPasswordW} />
             <Route exact={true} path='/settingspage' component={SettingsPage} />
+            <Route exact={true} path='/settingspageHT' component={SettingsPageHT} />
             <Route exact={true} path='/EventActivity' component={EventActivity} />
 
 
