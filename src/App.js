@@ -25,7 +25,7 @@ import newPasswordW from './wang_code/components/newPassword';
 import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
 import SettingsPage  from './settingspage';
-import SettingsPageHT  from './settingspageHT';
+import SettingsPageHT  from './takamura_code/settingspageHT';
 import EventActivity from './wang_code/components/EventPage/EventActivityPage'
 
   class App extends React.Component {

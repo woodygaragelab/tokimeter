@@ -9,10 +9,10 @@ import { Link, useHistory } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
 
-import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
+import '../App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 
-import Header from "./components/header";
-import Footer from "./components/footer";
+import Header from "../components/header";
+import Footer from "../components/footer";
 //import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
