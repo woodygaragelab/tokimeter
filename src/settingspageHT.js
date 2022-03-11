@@ -13,7 +13,7 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 
 import Header from "./components/header";
 import Footer from "./components/footer";
-import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
+//import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 

@@ -10,8 +10,6 @@ import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 
-
-// const TIMEZONEOFFSET = -9;     // UTC-表示したいタイムゾーン(単位:hour)。JSTなら-9
 const Input = styled('input')({
   display: 'none',
 });
@@ -47,25 +45,17 @@ class UploadPageHT extends Component{
       <form>
         <div className="form-group">
           <img src={this.state.imageurl} style={{width: 100,height:100}} alt=""/>
-          {/* <input
-             type="file" className="form-control" id="itemimage"
-             onChange={this.onChangeImage}
-          /> */}
           <label htmlFor="icon-button-file">
             <Input accept="image/*" id="icon-button-file" type="file" className="form-control" onChange={this.onChangeImage}/>
             <IconButton color="primary" aria-label="upload picture" component="span">
               <AddAPhotoIcon />
             </IconButton>
           </label>
-
-
         </div>
       </form>
     </div>
     )
   }
 }
-{/* <p>imageUrl:{this.state.item.imageurl}</p> */}
-
 
 export default withRouter(UploadPageHT);
