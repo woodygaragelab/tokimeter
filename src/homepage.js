@@ -22,6 +22,8 @@ import img6_rm       from './img/rm.jpg'
 import img7_jhope    from './img/jhope.jpg'
 import img8_suga     from './img/suga.jpg'
 
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
 import useSound from 'use-sound';
 import Sound from './sound/buttonsound_37.mp3';
 
@@ -93,6 +95,11 @@ const HomePage = () => {
           <img src={img8_suga} className="kzImage2" alt="img8"/>
         </Box>
       </Box>
+      <Link to='/registerpage'>
+        <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'5%'}} >
+          <AddCircleIcon/>
+        </Box>
+        </Link>
       <Footer pageid="1"/> 
       </ThemeProvider>
 
