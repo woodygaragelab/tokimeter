@@ -23,6 +23,8 @@ import { Box } from '@material-ui/core';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 
+import ListItemText from '@mui/material/ListItemText';
+
 const Input = styled('input')({
   display: 'none',
 });
@@ -68,20 +70,20 @@ class RegisterPage extends Component {       // RegisterPage:設定ページ
       <ThemeProvider theme={theme}>
       <Footer pageid="3"/>
       <Header/>
-      <Box sx={{position: 'absolute', right:'3%', bottom:'3%', height:'25%', fontSize:"middle"}}>
+      <Box sx={{position: 'absolute', left:'47%', bottom:'40%', fontSize:"middle"}}>
         <Stack direction="row" alignItems="center" spacing={2}>
         <label htmlFor="icon-button-file">
           <Input accept="image/*" id="icon-button-file" type="file" className="form-control" onChange={this.onChangeImage}/>
           <IconButton color="primary" aria-label="upload picture" component="span">
-            <AddAPhotoIcon />
+            <ListItemText>Add Photo</ListItemText>
           </IconButton>
         </label>
         </Stack>
       {/* <-- change takamura */}
       </Box>
 
-      <Box sx={{position: 'absolute', left:'50%', top:'20%'}}>
-        <Avatar alt="Me" src={this.state.imageurl} sx={{ width: 56, height: 56 }}/>
+      <Box sx={{position: 'absolute', left:'45%', top:'30%'}}>
+        <Avatar alt="Me" src={this.state.imageurl} sx={{ width: 120, height: 120 }}/>
       </Box>
       </ThemeProvider>
     );
