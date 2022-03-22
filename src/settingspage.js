@@ -1,7 +1,7 @@
-//homepageをコピーして作成。編集中。
 import React from 'react'
 import { Component } from 'react';
 import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
+import { Storage } from 'aws-amplify';
 
 import { Link, useHistory } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 
 import Header from "./components/header";
 import Footer from "./components/footer";
-import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
+//import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
 
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
@@ -38,20 +38,6 @@ import Stack from '@mui/material/Stack';
 const Input = styled('input')({
   display: 'none',
 });
-
-function UploadButtons() {
-  return (
-    <Stack direction="row" alignItems="center" spacing={2}>
-      <label htmlFor="icon-button-file">
-        <Input accept="image/*" id="icon-button-file" type="file" />
-        <IconButton color="primary" aria-label="upload picture" component="span">
-          <AddAPhotoIcon />
-        </IconButton>
-      </label>
-    </Stack>
-  );
-}
-//テンプレから追加（Upload button）// 
 
 const theme = createTheme({ 
   palette: {
@@ -94,8 +80,31 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 class SettingsPage extends Component {       // SettingsPage:設定ページ
   constructor(props){                    // props: SettingsPageコンポネントが受け取るパラメータ
     super(props);
-    this.state = { };                    // state: SettingsPageコンポネントが保持するデータ
+    // takamura 追加 -->>
+    this.onChangeImage = this.onChangeImage.bind(this);
+    this.state = {
+      imagefilename: "",
+      imageurl: ""
+    };
+    // <<-- takamura 追加
+
   }
+  
+  // takamura 追加 -->>
+  async onChangeImage(e) {
+    if (!e.target.files[0]) return
+    const file = e.target.files[0];
+    this.setState({imagefile: file.name });
+    // imageFileをStorage(s3 service)に保存する
+    await Storage.put(file.name, file,{ level: 'public' }); // publicにしないとStorage.getできない
+    if (this.state.imagefile) {
+      // imageFile名からimageUrlを取得する
+      const imageurl = await Storage.get(this.state.imagefile);
+      this.setState({imageurl: imageurl});
+    }
+  }
+  // <<-- takamura 追加
+
 
   render() {
     return (
@@ -103,7 +112,19 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
       <Footer pageid="3"/>
       <Header/>
       <Box component="span" sx={{ p: 2, border: '1px dashed grey', bgcolor: 'text.disabled', position: 'absolute',left:0, top:0, width:'100%', height:'25%'}}>
-      <Box sx={{position: 'absolute', right:'3%', bottom:'3%', height:'25%', fontSize:"middle"}}><UploadButtons><AddAPhotoIcon/></UploadButtons></Box>
+      <Box sx={{position: 'absolute', right:'3%', bottom:'3%', height:'25%', fontSize:"middle"}}>
+      {/* change takamura --> */}
+        {/* <UploadButtons><AddAPhotoIcon/></UploadButtons> */}
+        <Stack direction="row" alignItems="center" spacing={2}>
+        <label htmlFor="icon-button-file">
+          <Input accept="image/*" id="icon-button-file" type="file" className="form-control" onChange={this.onChangeImage}/>
+          <IconButton color="primary" aria-label="upload picture" component="span">
+            <AddAPhotoIcon />
+          </IconButton>
+        </label>
+        </Stack>
+      {/* <-- change takamura */}
+      </Box>
       </Box>
 
       <Box sx={{position: 'absolute', left:'50%', top:'20%'}}>
@@ -112,7 +133,10 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}//緑のアイコンの位置
         variant="dot"
       >
-        <Avatar alt="Me"src={default_icon} sx={{ width: 56, height: 56 }}/>
+        {/* change takamura */}
+        {/* <Avatar alt="Me"src={default_icon} sx={{ width: 56, height: 56 }}/> */}
+        <Avatar alt="Me" src={this.state.imageurl} sx={{ width: 56, height: 56 }}/>
+        
       </StyledBadge>
       </Box>
 

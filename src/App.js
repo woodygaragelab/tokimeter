@@ -15,7 +15,6 @@ import HeartPage  from './heartpage';
 import GraphPage  from './graphpage';
 import GraphPageD  from './design_code/graphpage';
 import TextPage   from './textpage';
-import TextPageHM   from './meguro_code/textpageHM'; //meguro2/18
 import UserPage   from './userpage';
 import ResultList from './TextAnalysisComponents/ResultList';
 import SignUp from './signuppage';
@@ -26,6 +25,7 @@ import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
 import SettingsPage  from './settingspage';
 import SettingsPageHT  from './takamura_code/settingspageHT';
+import RegisterPage  from './meguro_code/registerpage'; //meguro 3/22
 import EventActivity from './wang_code/components/EventPage/EventActivityPage'
 
   class App extends React.Component {
@@ -50,7 +50,6 @@ import EventActivity from './wang_code/components/EventPage/EventActivityPage'
             <Route exact={true} path='/graphpage'  component={GraphPage}/>
             <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
             <Route exact={true} path='/textpage'   component={TextPage}/>
-            <Route exact={true} path='/textpageHM'   component={TextPageHM}/>
             <Route exact={true} path='/userpage'   component={UserPage}/>
             <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
             <Route exact={true} path='/loginpageW' component={LoginPageW}/>
@@ -60,6 +59,7 @@ import EventActivity from './wang_code/components/EventPage/EventActivityPage'
             <Route exact={true} path='/forgotPasswordW' component={forgotPasswordW} />
             <Route exact={true} path='/settingspage' component={SettingsPage} />
             <Route exact={true} path='/settingspageHT' component={SettingsPageHT} />
+            <Route exact={true} path='/registerpage' component={RegisterPage} />
             <Route exact={true} path='/EventActivity' component={EventActivity} />
 
 
