@@ -13,13 +13,10 @@ import '../App.css';                  // アプリ共通StyleSheet。kzXxxxx の
 import Header from "../components/header";
 import Footer from "../components/footer";
 
-import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-
 import { styled } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';
-import { Box } from '@material-ui/core';
+import { Box,TextField,Button } from '@material-ui/core';
 
-//テンプレから追加（Upload button）// 
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 
@@ -39,17 +36,13 @@ const theme = createTheme({
 class RegisterPage extends Component {       // RegisterPage:設定ページ
   constructor(props){                    // props: RegisterPageコンポネントが受け取るパラメータ
     super(props);
-    // takamura 追加 -->>
     this.onChangeImage = this.onChangeImage.bind(this);
     this.state = {
       imagefilename: "",
       imageurl: ""
     };
-    // <<-- takamura 追加
-
   }
   
-  // takamura 追加 -->>
   async onChangeImage(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
@@ -62,7 +55,6 @@ class RegisterPage extends Component {       // RegisterPage:設定ページ
       this.setState({imageurl: imageurl});
     }
   }
-  // <<-- takamura 追加
 
 
   render() {
@@ -70,7 +62,12 @@ class RegisterPage extends Component {       // RegisterPage:設定ページ
       <ThemeProvider theme={theme}>
       <Footer pageid="3"/>
       <Header/>
-      <Box sx={{position: 'absolute', left:'47%', bottom:'40%', fontSize:"middle"}}>
+      <Box sx={{position: 'absolute', left:'42%', top:'20%', fontSize:"middle"}}>
+      <TextField
+          label="name" //3/24 テキストフィールドを表示させているだけの状態(入力データは保存されない)
+          />
+      </Box>
+      <Box sx={{position: 'absolute', left:'47%', top:'50%', fontSize:"middle"}}>
         <Stack direction="row" alignItems="center" spacing={2}>
         <label htmlFor="icon-button-file">
           <Input accept="image/*" id="icon-button-file" type="file" className="form-control" onChange={this.onChangeImage}/>
@@ -79,12 +76,21 @@ class RegisterPage extends Component {       // RegisterPage:設定ページ
           </IconButton>
         </label>
         </Stack>
-      {/* <-- change takamura */}
       </Box>
 
       <Box sx={{position: 'absolute', left:'45%', top:'30%'}}>
         <Avatar alt="Me" src={this.state.imageurl} sx={{ width: 120, height: 120 }}/>
       </Box>
+
+      <Box sx={{position: 'absolute', left:'47%', top:'70%'}}>
+      <Button
+              id='saveButton'   
+              //onClick={selectHome} 3/24 Saveボタンを押してもホーム画面に戻るだけ（入力データは保存されない）
+              variant="contained" color="secondary" style={{ width: '100%' }}>
+              Save
+            </Button>
+        </Box>
+
       </ThemeProvider>
     );
   }
