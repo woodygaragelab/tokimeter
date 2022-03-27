@@ -14,6 +14,7 @@ import '../App.css';                  // アプリ共通StyleSheet。kzXxxxx の
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+import img_circle    from '../img/circle.png' 
 import img1_me       from '../img/me.png'   // homepageに表示する顔写真
 import img2_jimin    from '../img/jimin2.jpg'
 import img3_jin      from '../img/jin2.jpg'
@@ -23,9 +24,7 @@ import img6_rm       from '../img/rm.jpg'
 import img7_jhope    from '../img/jhope.jpg'
 import img8_suga     from '../img/suga.jpg'
 import img9_songkang from '../img/songkang.jpg'
-
-import useSound from 'use-sound';
-import Sound from '../sound/jimin_bwl.mp3';
+import { CropLandscapeOutlined } from '@material-ui/icons';
 
 const theme = createTheme({ 
   palette: {
@@ -34,71 +33,116 @@ const theme = createTheme({
   },
 });
 
-  
 const HomePage = () => {
 
-  //const [score_0, setScore] = useState(50)
-  const [play, { stop, pause }] = useSound(Sound);
-  //const [playLoud] = useSound(Sound, { volume: 1 });
+  const x_me    = 400;        // meのx座標(left)
+  const y_me    = 300;        // meのy座標(top)
+  const size_me = 100;        // meの大きさ(width,height)
+  const distance_init = 300;  // meとの距離の初期値(score=0の時の距離)
+  const circle_dia = 200;     // meの周りの同心円の直径の初期値
+  const circle_amp = 50;      // meの周りの同心円の直径の振幅
   
-  // const clickA = () => {
-  //   var context = new AudioContext();
-  //   play();
-  // };
- 
-  const audioContext = useRef(null);
-  useEffect(() => {
-    audioContext.current = new AudioContext();
-  }, []);
+  const persons_init = [      // personのリストの初期値
+          {id:0, img:img2_jimin,    score:0.25, dir:45},
+          {id:1, img:img3_jin,      score:0.25, dir:90},
+          {id:2, img:img4_jungkook, score:0.25, dir:135},
+          {id:3, img:img5_v,        score:0.25, dir:180},
+          {id:4, img:img6_rm,       score:0.25, dir:225},
+          {id:5, img:img7_jhope,    score:0.25, dir:270},
+          {id:6, img:img8_suga,     score:0.25, dir:315},
+          {id:7, img:img9_songkang, score:0.25, dir:360},      
+        ];
+  const [persons, setPersons] = useState(persons_init);  // personのデータ
+  const images_init = [                                    
+    {id:0, img:img2_jimin,    x:0, y:0, dir:0},
+  ]
+  const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
+  const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
+  const [datetime, setDateTime] = useState(new Date());  
+  const [circle,   setCircle]   = useState(circle_init);  
+  
 
-  // const clickA = () => {
-  //   if (audioContext.current.state === "suspended") {
-  //     console.log('Playback resumed successfully');
-  //     audioContext.current.resume();
-  //   }
-  //   play();
-  // };
-  const clickA = () => {
-    if (audioContext.current.state === "suspended") {
-      audioContext.current.resume().then(() => {
-        console.log('Playback resumed successfully');
-        play();
-      });
-    }
+  useEffect(() => {                         // scoreからmeとの距離,xy座標を計算したimage listを作る
+    let images = persons.map((person,index)=>{      // imageのリストを personsからmapして作成する
+      let image = {"id":person.id, "img":person.img, "dir":person.dir}; // imgはpersonからコピー
+      let distance = distance_init * (1.0 - person.score);              // meとの距離
+      let dx = distance * Math.cos(Math.PI / 180 * person.dir);         // meとの距離(x座標)
+      let dy = distance * Math.sin(Math.PI / 180 * person.dir) * -1.0;  // meとの距離(y座標)(上下逆)
+      image.x = x_me+dx;                                                // imageのx座標(left)
+      image.y = y_me+dy;                                                // imageのy座標(top)
+      // console.log("image.id="+image.id);
+      // console.log("person.score="+person.score);
+      // console.log("distance="+distance);
+      // console.log("dx="+dx);
+      // console.log("dy="+dy);
+      // console.log("image.x="+image.x);
+      // console.log("image.y="+image.y);
+      return image;
+    });
+    setImages(images);
+  },[persons])
+
+  useEffect(() => {                            // 描画後の処理。タイマーでデータを定期更新する。
+    moveImage();                               // imageを動かす
+    const interval = setInterval(() => {       // timerをセットして、繰り返し実行する
+        setDateTime(new Date());               // datetimeを更新
+    }, 20);                                    // ミリ秒ごと
+    return () => clearInterval(interval);      // 再描画が終わったらinterval（タイマー）停止
+  }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
+
+
+  const clickC = (index) => {
+    let persons_new = [...persons];  // personsのコピーを作ってから更新する
+    persons_new[index].score = 1.0-(1.0-persons_new[index].score)*0.8; // scoreの更新
+    setPersons(persons_new);  // コピーを新たにセットしないと、更新が反映しない（描画されない）
   };
-    
+
+  const clickD = () => {
+    setPersons(persons_init);  // データのリセット
+    setCircle(circle_init);
+  };
+
+  const moveImage = () => {                                // imageの表示位置を動かす
+    let persons_new = persons.map((person,index)=>{        // imageのリストをpersonsからmapして作成する
+      let person_new = {"id":person.id, "img":person.img}; // imgはpersonからコピー
+      person_new.dir   = person.dir + 0.3;                 // meの周りの表示位置角度を進める
+      person_new.score = Math.sin(Math.PI / 45 * person_new.dir) * 0.3; // scoreを変化させる
+      return person_new;
+    });
+    setPersons(persons_new);
+
+    // meの周りの同心円を直径を変えて表示
+    let circle_new      = {...circle};                                    // 現在の円をコピー
+    circle_new.dir      = circle.dir + 1;                                 // 振動の角度を1°進める
+    let ds              = Math.sin(Math.PI/45 * circle.dir) * circle_amp; // 円直径の振幅
+    circle_new.size     = circle_dia + ds;                                // 円直径
+    circle_new.x        = x_me + size_me/2 - circle_new.size/2;           // 円のleft x座標
+    circle_new.y        = y_me + size_me/2 - circle_new.size/2;           // 円のtop  y座標
+    setCircle(circle_new);
+  };
 
     return (
       <ThemeProvider theme={theme}>
       <Header/>
       <Box sx={{height:800}}>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 200, left:200}}>
-          <img src={img1_me} className="kzImage2" alt="img1_me"/>
+
+        {/* circleを配置する */}
+        <Box sx={{height:circle.size, width:circle.size, position: 'absolute', left:circle.x, top: circle.y}}>
+          <img src={circle.img} height="100%" width="100%" alt="circle"/>
         </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
-          <img src={img2_jimin} className="kzImage2" alt="img2_jimin" onClick={() => clickA()}/>
+        {/* meを配置する */}
+        <Box sx={{height:size_me, width:size_me, position: 'absolute', left:x_me, top: y_me}}>
+        {/* <Box sx={{height:100, width:100, position: 'absolute', left:300, top: 300}}> */}
+          <img src={img1_me} className="kzImage2" alt="img1_me" onClick={() => clickD()}/>
         </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
-          <img src={img3_jin} className="kzImage2" alt="img3_jin"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:400}} >
-          <img src={img4_jungkook} className="kzImage2" alt="img4_jungkook"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:40}} >
-          <img src={img5_v} className="kzImage2" alt="img5_v"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 450, left:420}} >
-          <img src={img6_rm} className="kzImage2" alt="img6_rm"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 350, left:180}} >
-          <img src={img7_jhope} className="kzImage2" alt="img7"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 520, left:80}} >
-          <img src={img8_suga} className="kzImage2" alt="img8"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 400, left:300}} >
-          <img src={img9_songkang} className="kzImage2" alt="img9_songkang"/>
-        </Box>
+
+        {/* person imgageを配置する */}
+        {images.map((image, index) => (
+          <Box key={image.id} sx={{height:100, width:100, position:'absolute', left:image.x, top:image.y }} >
+            <img src={image.img} className="kzImage2" alt="imgX" onClick={() => clickC(index)}/>
+          </Box>
+        ))}
+
       </Box>
       <Footer pageid="1"/> 
       </ThemeProvider>
@@ -107,6 +151,50 @@ const HomePage = () => {
   }
 // }
 export default withRouter(HomePage) // 画面遷移対象にするので、withRoute()を使う
+
+// old code
+// useEffect(() => {
+//   persons.forEach((person,index)=>{
+//     let distance = distance_init * (1.0 - person.score);
+//     let dx = distance * Math.sin(Math.PI / 360 * person.dir);
+//     let dy = distance * Math.cos(Math.PI / 360 * person.dir);
+//     person.x = x_me-dx;
+//     person.y = y_me+dy;
+//     console.log("person.id="+person.id);
+//     console.log("person.score="+person.score);
+//     console.log("distance="+distance);
+//     console.log("dx="+dx);
+//     console.log("dy="+dy);
+//     console.log("person.x="+person.x);
+//     console.log("person.y="+person.y);
+//     persons[index] = person;
+//   });
+//   //let persons_new = [...persons];
+  
+//   setPersons(persons);
+// },[persons])
+
+
+
+
+//
+// import useSound from 'use-sound';
+// import Sound from '../sound/jimin_bwl.mp3';
+// const [play, { stop, pause }] = useSound(Sound);
+
+// const audioContext = useRef(null);
+// useEffect(() => {
+//   audioContext.current = new AudioContext();
+// }, []);
+
+// const clickA = () => {
+//   if (audioContext.current.state === "suspended") {
+//     audioContext.current.resume().then(() => {
+//       console.log('Playback resumed successfully');
+//       play();
+//     });
+//   }
+// };
 
 // old code
 //
@@ -128,3 +216,6 @@ export default withRouter(HomePage) // 画面遷移対象にするので、withR
 // useEffect(() => {
 //   audioContext.current = new AudioContext();
 // }, []);
+
+//const [playLoud] = useSound(Sound, { volume: 1 });
+  
