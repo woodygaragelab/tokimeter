@@ -124,7 +124,7 @@ const HomePage = () => {
     return (
       <ThemeProvider theme={theme}>
       <Header/>
-      <Box sx={{height:800}}>
+      <Box sx={{height:400, background:theme.palette.primary}}>
 
         {/* 同心円(circle)を配置する */}
         <Box sx={{height:circle.size, width:circle.size, position: 'absolute', left:circle.x, top: circle.y}}>
