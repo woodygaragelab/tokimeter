@@ -126,7 +126,7 @@ const HomePage = () => {
       <Header/>
       <Box sx={{height:800}}>
 
-        {/* circleを配置する */}
+        {/* 同心円(circle)を配置する */}
         <Box sx={{height:circle.size, width:circle.size, position: 'absolute', left:circle.x, top: circle.y}}>
           <img src={circle.img} height="100%" width="100%" alt="circle"/>
         </Box>
