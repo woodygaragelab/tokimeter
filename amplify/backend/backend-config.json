@@ -21,23 +21,6 @@
           ]
         }
       ]
-    },
-    "tokimeter": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "API_KEY",
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 365,
-              "apiKeyExpirationDate": "2023-04-01T05:15:34.026Z",
-              "description": "demo"
-            }
-          },
-          "additionalAuthenticationProviders": []
-        }
-      }
     }
   },
   "storage": {
