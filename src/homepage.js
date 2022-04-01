@@ -13,7 +13,9 @@ import './App.css';                  // アプリ共通StyleSheet。kzXxxxx の�
 
 import Header from "./components/header";
 import Footer from "./components/footer";
-import default_icon       from './img/default_icon.jpg'   // homepageに表示する顔写真
+
+import default_icon  from './img/default_icon.jpg'   // homepageに表示する顔写真
+import img_circle    from './img/circle.png' 
 import img2_jimin    from './img/jimin2.jpg'
 import img3_jin      from './img/jin2.jpg'
 import img4_jungkook from './img/jungkook.jpg'
@@ -21,6 +23,8 @@ import img5_v        from './img/v.jpg'
 import img6_rm       from './img/rm.jpg'
 import img7_jhope    from './img/jhope.jpg'
 import img8_suga     from './img/suga.jpg'
+import img9_songkang from './img/songkang.jpg'
+
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
@@ -38,12 +42,42 @@ const theme = createTheme({
   
 const HomePage = () => {
 
-  const [score_0, setScore] = useState(50)
+  const x_me    = 400;        // meのx座標(left)
+  const y_me    = 300;        // meのy座標(top)
+  const size_me = 100;        // meの大きさ(width,height)
+  const distance_init = 300;  // meとの距離の初期値(score=0の時の距離)
+  const circle_dia = 200;     // meの周りの同心円の直径の初期値
+  const circle_amp = 50;      // meの周りの同心円の直径の振幅
+  
+  const persons_init = [      // personのリストの初期値
+          {id:0, img:img2_jimin,    score:0.25, dir:45},
+          {id:1, img:img3_jin,      score:0.25, dir:90},
+          {id:2, img:img4_jungkook, score:0.25, dir:135},
+          {id:3, img:img5_v,        score:0.25, dir:180},
+          {id:4, img:img6_rm,       score:0.25, dir:225},
+          {id:5, img:img7_jhope,    score:0.25, dir:270},
+          {id:6, img:img8_suga,     score:0.25, dir:315},
+          {id:7, img:img9_songkang, score:0.25, dir:360},      
+        ];
+  const [persons, setPersons] = useState(persons_init);  // personのデータ
+  const images_init = [                                    
+    {id:0, img:img2_jimin,    x:0, y:0, dir:0},
+  ]
+  const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
+  const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
   const [play, { stop, pause }] = useSound(Sound);
+
+  const [datetime, setDateTime] = useState(new Date());  
+  const [circle,   setCircle]   = useState(circle_init);  
+
+  const [score_0, setScore] = useState(50)
   const [playLoud] = useSound(Sound, { volume: 2 });
+
+
+
   
   const clickA = () => {
-    setScore(score_0+50);
+    //setScore(score_0+50);
     if (audioContext.current.state === "suspended") {
       audioContext.current.resume();
     }
