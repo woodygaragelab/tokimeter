@@ -3,10 +3,14 @@
   "serviceConfiguration": {
     "apiName": "tokimeter",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "C:\\Users\\ZhibinWang\\Desktop\\TS\\Kozipro\\tokimeter\\amplify\\backend\\api\\tokimeter\\schema.graphql",
+    "gqlSchemaPath": "C:\\#woodygaragelab\\projects\\kozipro\\tokimeter\\amplify\\backend\\api\\tokimeter\\schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
-      "expirationTime": 7
-    }
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-04-01T02:17:25.522Z",
+      "keyDescription": "demo"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": []
   }
 }
