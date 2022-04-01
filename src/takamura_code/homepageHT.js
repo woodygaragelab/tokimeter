@@ -24,7 +24,6 @@ import img6_rm       from '../img/rm.jpg'
 import img7_jhope    from '../img/jhope.jpg'
 import img8_suga     from '../img/suga.jpg'
 import img9_songkang from '../img/songkang.jpg'
-//import { CropLandscapeOutlined } from '@material-ui/icons';
 
 const theme = createTheme({ 
   palette: {
