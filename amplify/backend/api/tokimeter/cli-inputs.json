@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "tokimeter",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "C:\\#woodygaragelab\\projects\\kozipro\\tokimeter\\amplify\\backend\\api\\tokimeter\\schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 365,
+      "apiKeyExpirationDate": "2023-04-01T06:49:57.733Z",
+      "keyDescription": "dmeo"
+    }
+  }
+}

@@ -31,6 +31,10 @@ const awsmobile = {
             "region": "ap-northeast-1"
         }
     ],
+    "aws_appsync_graphqlEndpoint": "https://q4yjqe43ejgzrnuz3rbuwyjsda.appsync-api.ap-northeast-1.amazonaws.com/graphql",
+    "aws_appsync_region": "ap-northeast-1",
+    "aws_appsync_authenticationType": "API_KEY",
+    "aws_appsync_apiKey": "da2-xy56a5taonfedjik3gpdnjgk4q",
     "aws_dynamodb_all_tables_region": "ap-northeast-1",
     "aws_dynamodb_table_schemas": [
         {
