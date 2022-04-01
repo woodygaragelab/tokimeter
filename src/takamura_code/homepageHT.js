@@ -1,19 +1,21 @@
 import React from 'react'
 import { Component } from 'react';
-import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
-import { useEffect } from 'react';                           // effect (state変化したときの処理機能)
-import { useRef } from 'react';   
+import { useState }  from 'react';                        // state（コンポネント単位のデータ保存機能）
+import { useEffect } from 'react';                        // effect (state変化したときの処理機能)
+import { useRef }    from 'react';   
 
-import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
+import { withRouter }       from 'react-router-dom';              // router (画面遷移制御)機能
+import { Link, useHistory } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/pink';
-import { Box } from '@material-ui/core';
+import pink                           from '@material-ui/core/colors/pink';
+import { Box }                        from '@material-ui/core';
 
 import '../App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 
 import Header from "../components/header";
 import Footer from "../components/footer";
+
 import img_circle    from '../img/circle.png' 
 import img1_me       from '../img/me.png'   // homepageに表示する顔写真
 import img2_jimin    from '../img/jimin2.jpg'
@@ -24,6 +26,12 @@ import img6_rm       from '../img/rm.jpg'
 import img7_jhope    from '../img/jhope.jpg'
 import img8_suga     from '../img/suga.jpg'
 import img9_songkang from '../img/songkang.jpg'
+
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+
+import useSound      from 'use-sound';
+import Sound         from '../sound/buttonsound_37.mp3';
+
 
 const theme = createTheme({ 
   palette: {
@@ -57,6 +65,8 @@ const HomePage = () => {
   ]
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
+  const [play, { stop, pause }] = useSound(Sound);
+
   const [datetime, setDateTime] = useState(new Date());  
   const [circle,   setCircle]   = useState(circle_init);  
   
@@ -89,6 +99,10 @@ const HomePage = () => {
     return () => clearInterval(interval);      // 再描画が終わったらinterval（タイマー）停止
   }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
 
+
+  const clickA = () => {
+    play();
+  };
 
   const clickC = (index) => {
     let persons_new = [...persons];  // personsのコピーを作ってから更新する
@@ -130,10 +144,11 @@ const HomePage = () => {
           <img src={circle.img} height="100%" width="100%" alt="circle"/>
         </Box>
         {/* meを配置する */}
-        <Box sx={{height:size_me, width:size_me, position: 'absolute', left:x_me, top: y_me}}>
-        {/* <Box sx={{height:100, width:100, position: 'absolute', left:300, top: 300}}> */}
-          <img src={img1_me} className="kzImage2" alt="img1_me" onClick={() => clickD()}/>
-        </Box>
+        <Link to='/settingspage'>
+          <Box sx={{height:size_me, width:size_me, position: 'absolute', left:x_me, top: y_me}}>
+            <img src={img1_me} className="kzImage2" alt="img1_me" onClick={() => clickA()}/>
+          </Box>
+        </Link>
 
         {/* person imgageを配置する */}
         {images.map((image, index) => (
@@ -143,6 +158,11 @@ const HomePage = () => {
         ))}
 
       </Box>
+      <Link to='/registerpage'>
+        <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'5%'}} >
+          <AddCircleIcon/>
+        </Box>
+      </Link>
       <Footer pageid="1"/> 
       </ThemeProvider>
 
