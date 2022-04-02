@@ -48,22 +48,45 @@ const HomePage = () => {
   const circle_dia    = 200;     // meの周りの同心円の直径の初期値
   const circle_amp    = 50;      // meの周りの同心円の直径の振幅
   
-  const persons_init = [         // personのリストの初期値
-          {id:0, img:img2_jimin,    score:0.25, dir:45},
-          {id:1, img:img3_jin,      score:0.25, dir:90},
-          {id:2, img:img4_jungkook, score:0.25, dir:135},
-          {id:3, img:img5_v,        score:0.25, dir:180},
-          {id:4, img:img6_rm,       score:0.25, dir:225},
-          {id:5, img:img7_jhope,    score:0.25, dir:270},
-          {id:6, img:img8_suga,     score:0.25, dir:315},
-          {id:7, img:img9_songkang, score:0.25, dir:360},      
-        ];
+  // const persons_init = [         // personのリストの初期値
+  //         {id:0, img:img2_jimin,    score:0.25, dir:45},
+  //         {id:1, img:img3_jin,      score:0.25, dir:90},
+  //         {id:2, img:img4_jungkook, score:0.25, dir:135},
+  //         {id:3, img:img5_v,        score:0.25, dir:180},
+  //         {id:4, img:img6_rm,       score:0.25, dir:225},
+  //         {id:5, img:img7_jhope,    score:0.25, dir:270},
+  //         {id:6, img:img8_suga,     score:0.25, dir:315},
+  //         {id:7, img:img9_songkang, score:0.25, dir:360},      
+  //       ];
+  const persons_init = [      // personのリストの初期値
+        {id:0, img:img2_jimin,    score:0.6, dir:45},
+        {id:1, img:img3_jin,      score:0.4, dir:90},
+        {id:2, img:img4_jungkook, score:0.1, dir:135},
+        {id:3, img:img5_v,        score:0.2, dir:180},
+        {id:4, img:img6_rm,       score:0.1, dir:225},
+        {id:5, img:img7_jhope,    score:0.1, dir:270},
+        {id:6, img:img8_suga,     score:0.1, dir:315},
+        {id:7, img:img9_songkang, score:0.6, dir:360},      
+      ];
   const [persons, setPersons] = useState(persons_init);  // personのデータ
+  // const images_init = [                                    
+  //   {id:0, img:img2_jimin,    x:0, y:0, dir:0},
+  // ]
+  // const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
+  // const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
   const images_init = [                                    
     {id:0, img:img2_jimin,    x:0, y:0, dir:0},
+    {id:1, img:img3_jin,      x:0, y:0, dir:45},
+    {id:2, img:img4_jungkook, x:0, y:0, dir:90},
+    {id:3, img:img5_v,        x:0, y:0, dir:135},
+    {id:4, img:img6_rm,       x:0, y:0, dir:180},
+    {id:5, img:img7_jhope,    x:0, y:0, dir:225},
+    {id:6, img:img8_suga,     x:0, y:0, dir:270},
+    {id:7, img:img9_songkang, x:0, y:0, dir:315},      
   ]
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
+
   const [play, { stop, pause }] = useSound(Sound);
 
   const [datetime, setDateTime] = useState(new Date());  
@@ -84,6 +107,33 @@ const HomePage = () => {
     audioContext.current = new AudioContext();
   }, []);
 
+  const moveImage = () => {                                // imageの表示位置を動かす
+
+    let images_new = images.map((image,index)=>{      // imageのリストを personsからmapして作成する
+      let image_new = {"id":image.id, "img":image.img, "dir":image.dir}; // imgはpersonからコピー
+      let dd        = Math.sin(Math.PI / 45 * image.dir) * 0.2;          // meとの距離の振動変位
+      let score     = persons[index].score; 
+      let distance  = distance_init * (1.0 + dd) * (1.0-score*score);    // meとの距離
+      image_new.dir = image.dir + 0.3;                                   // 表示位置角度を進める
+
+      let dx = distance * Math.cos(Math.PI / 180 * image.dir);           // meとの距離(x座標)
+      let dy = distance * Math.sin(Math.PI / 180 * image.dir) * -1.0;    // meとの距離(y座標)(上下逆)
+      image_new.x = x_me+dx;                                             // imageのx座標(left)
+      image_new.y = y_me+dy;                                             // imageのy座標(top)
+      return image_new;
+    });
+    setImages(images_new);
+
+    // meの周りの同心円を直径を変えて表示
+    let circle_new      = {...circle};                                    // 現在の円をコピー
+    circle_new.dir      = circle.dir + 1;                                 // 振動の角度を1°進める
+    let ds              = Math.sin(Math.PI/45 * circle.dir) * circle_amp; // 円直径の振幅
+    circle_new.size     = circle_dia + ds;                                // 円直径
+    circle_new.x        = x_me + size_me/2 - circle_new.size/2;           // 円のleft x座標
+    circle_new.y        = y_me + size_me/2 - circle_new.size/2;           // 円のtop  y座標
+    setCircle(circle_new);
+  };
+  
     return (
       <ThemeProvider theme={theme}>
       <Header/>

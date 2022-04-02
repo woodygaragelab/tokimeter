@@ -96,10 +96,10 @@ const HomePage = () => {
     setPersons(persons_new);  // コピーを新たにセットしないと、更新が反映しない（描画されない）
   };
 
-  const clickD = () => {
-    setPersons(persons_init);  // データのリセット
-    setCircle(circle_init);
-  };
+  // const clickD = () => {
+  //   setPersons(persons_init);  // データのリセット
+  //   setCircle(circle_init);
+  // };
 
   const moveImage = () => {                                // imageの表示位置を動かす
 
