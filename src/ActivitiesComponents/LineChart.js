@@ -5,8 +5,8 @@ import heartRateRawData from '../BioData/heart_rate_example.json'
 
 function LineChart(props){
 
-    // const heartRateRawData = props.heartRateData; // for testing code (release)
-    const heartRateData = heartRateRawData; // for production 
+    const heartRateRawData = props.heartRateData; // for testing code (release)
+    // const heartRateData = heartRateRawData; // for production 
 
     console.log(heartRateRawData)
 
