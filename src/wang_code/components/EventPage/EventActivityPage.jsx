@@ -9,7 +9,7 @@ import Box from '@material-ui/core/Box'
 import { IconButton, TextField } from '@material-ui/core';
 import AddIcon from '@mui/icons-material/Add';
 import PublishIcon from '@mui/icons-material/Publish';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
 import { Storage } from 'aws-amplify';
 import heartRateDataTemp from '../../../BioData/heart_rate_example.json'
@@ -23,17 +23,24 @@ const theme = createTheme({
 });
 
 
+
+
 function EventActivityPage() {
 
     const [bioData, setBioData] = useState();
     const [heartRateData, setHeartrateData] = useState();
     const [showGraph, setShowGraph] = useState(false);
+    const [fileName,setFileName] = useState();
+
+    console.log('outer bioData', bioData)
+ 
 
     const uploadBioData = async () => {
+        
         // Upload the bio data
         console.log('bioData', bioData)
         // uuid() unique name
-        const fileName = `${uuid()}.json`;
+        setFileName(`${uuid()}.json`);
         await Storage.put(fileName, bioData, { contentType: 'application/json' }, { level: 'public' })
         if (bioData) {
             const heartRateDataUrl = await Storage.get(fileName);
@@ -50,6 +57,8 @@ function EventActivityPage() {
         }
 
     }
+
+
     return (
         <div>
             <ThemeProvider theme={theme}>
