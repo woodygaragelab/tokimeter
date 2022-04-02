@@ -8,7 +8,9 @@ import { withRouter }       from 'react-router-dom';              // router (画
 import { Link, useHistory } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import pink                           from '@material-ui/core/colors/pink';
+//import pink                           from '@material-ui/core/colors/pink';
+import { pink, purple }               from '@mui/material/colors';
+
 import { Box }                        from '@material-ui/core';
 
 import '../App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
@@ -35,7 +37,7 @@ import Sound         from '../sound/buttonsound_37.mp3';
 
 const theme = createTheme({ 
   palette: {
-    primary:   { main: pink[50],  },
+    primary:   { main: purple[500],  },
     secondary: { main: pink[300], },
   },
 });

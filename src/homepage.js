@@ -25,7 +25,6 @@ import img7_jhope    from './img/jhope.jpg'
 import img8_suga     from './img/suga.jpg'
 import img9_songkang from './img/songkang.jpg'
 
-
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import useSound from 'use-sound';
@@ -35,21 +34,21 @@ import { Link, useHistory } from 'react-router-dom';
 
 const theme = createTheme({ 
   palette: {
-    primary:   { main: pink[50],  },
+    primary:   { main: '#f8bbd0',  },  // pink[100]=#f8bbd0
     secondary: { main: pink[300], },
   },
 });
   
 const HomePage = () => {
 
-  const x_me    = 400;        // meのx座標(left)
-  const y_me    = 300;        // meのy座標(top)
-  const size_me = 100;        // meの大きさ(width,height)
-  const distance_init = 300;  // meとの距離の初期値(score=0の時の距離)
-  const circle_dia = 200;     // meの周りの同心円の直径の初期値
-  const circle_amp = 50;      // meの周りの同心円の直径の振幅
+  const x_me          = 400;     // meのx座標(left)
+  const y_me          = 300;     // meのy座標(top)
+  const size_me       = 100;     // meの大きさ(width,height)
+  const distance_init = 300;     // meとの距離の初期値(score=0の時の距離)
+  const circle_dia    = 200;     // meの周りの同心円の直径の初期値
+  const circle_amp    = 50;      // meの周りの同心円の直径の振幅
   
-  const persons_init = [      // personのリストの初期値
+  const persons_init = [         // personのリストの初期値
           {id:0, img:img2_jimin,    score:0.25, dir:45},
           {id:1, img:img3_jin,      score:0.25, dir:90},
           {id:2, img:img4_jungkook, score:0.25, dir:135},
@@ -70,26 +69,16 @@ const HomePage = () => {
   const [datetime, setDateTime] = useState(new Date());  
   const [circle,   setCircle]   = useState(circle_init);  
 
-  const [score_0, setScore] = useState(50)
-  const [playLoud] = useSound(Sound, { volume: 2 });
-
-
-
+  //const [score_0, setScore] = useState(50)
+  //const [playLoud] = useSound(Sound, { volume: 2 });
   
   const clickA = () => {
-    //setScore(score_0+50);
     if (audioContext.current.state === "suspended") {
       audioContext.current.resume();
     }
-
-    // context.resume();
     play();
   };
 
-  // const context = new AudioContext();
-  // useEffect(() => {
-  // }, [])
-  
   const audioContext = useRef(null);
   useEffect(() => {
     audioContext.current = new AudioContext();
@@ -102,13 +91,10 @@ const HomePage = () => {
         <Link to='/settingspage'>
         <Box sx={{height:100, width:100, position: 'absolute', top: '50%', left:'50%'}}>
           <img src={default_icon} className="kzImage2" alt="default_icon" onClick={() => clickA()}/>
-          {/* <button onClick={() => clickA()}>add score</button> */}
-          {/* <button onClick={() => play()}>声を聴く</button> */}
         </Box>
         </Link>
         <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
           <img src={img2_jimin} className="kzImage2" alt="img2_jimin"/>
-
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
           <img src={img3_jin} className="kzImage2" alt="img3_jin"/>
@@ -129,11 +115,12 @@ const HomePage = () => {
           <img src={img8_suga} className="kzImage2" alt="img8"/>
         </Box>
       </Box>
+
       <Link to='/registerpage'>
         <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'5%'}} >
           <AddCircleIcon/>
         </Box>
-        </Link>
+      </Link>
       <Footer pageid="1"/> 
       </ThemeProvider>
 
