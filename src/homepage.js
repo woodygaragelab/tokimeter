@@ -1,9 +1,9 @@
 import React from 'react'
-import { Component } from 'react';
+import { Component }  from 'react';
 import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
-import { useState } from 'react';                           // state（コンポネント単位のデータ保存機能）
-import { useEffect } from 'react';                           // effect (state変化したときの処理機能)
-import { useRef } from 'react'; 
+import { useState }   from 'react';                         // state（コンポネント単位のデータ保存機能）
+import { useEffect }  from 'react';                         // effect (state変化したときの処理機能)
+import { useRef }     from 'react'; 
 
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
@@ -48,16 +48,6 @@ const HomePage = () => {
   const circle_dia    = 200;     // meの周りの同心円の直径の初期値
   const circle_amp    = 50;      // meの周りの同心円の直径の振幅
   
-  // const persons_init = [         // personのリストの初期値
-  //         {id:0, img:img2_jimin,    score:0.25, dir:45},
-  //         {id:1, img:img3_jin,      score:0.25, dir:90},
-  //         {id:2, img:img4_jungkook, score:0.25, dir:135},
-  //         {id:3, img:img5_v,        score:0.25, dir:180},
-  //         {id:4, img:img6_rm,       score:0.25, dir:225},
-  //         {id:5, img:img7_jhope,    score:0.25, dir:270},
-  //         {id:6, img:img8_suga,     score:0.25, dir:315},
-  //         {id:7, img:img9_songkang, score:0.25, dir:360},      
-  //       ];
   const persons_init = [      // personのリストの初期値
         {id:0, img:img2_jimin,    score:0.6, dir:45},
         {id:1, img:img3_jin,      score:0.4, dir:90},
@@ -69,20 +59,15 @@ const HomePage = () => {
         {id:7, img:img9_songkang, score:0.6, dir:360},      
       ];
   const [persons, setPersons] = useState(persons_init);  // personのデータ
-  // const images_init = [                                    
-  //   {id:0, img:img2_jimin,    x:0, y:0, dir:0},
-  // ]
-  // const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
-  // const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
   const images_init = [                                    
-    {id:0, img:img2_jimin,    x:0, y:0, dir:0},
-    {id:1, img:img3_jin,      x:0, y:0, dir:45},
-    {id:2, img:img4_jungkook, x:0, y:0, dir:90},
-    {id:3, img:img5_v,        x:0, y:0, dir:135},
-    {id:4, img:img6_rm,       x:0, y:0, dir:180},
-    {id:5, img:img7_jhope,    x:0, y:0, dir:225},
-    {id:6, img:img8_suga,     x:0, y:0, dir:270},
-    {id:7, img:img9_songkang, x:0, y:0, dir:315},      
+    {id:0, img:img2_jimin,    x:100, y:50, dir:0},
+    {id:1, img:img3_jin,      x:600, y:50, dir:45},
+    {id:2, img:img4_jungkook, x:100, y:100, dir:90},
+    {id:3, img:img5_v,        x:600, y:100, dir:135},
+    {id:4, img:img6_rm,       x:100, y:250, dir:180},
+    {id:5, img:img7_jhope,    x:600, y:250, dir:225},
+    {id:6, img:img8_suga,     x:100, y:400, dir:270},
+    {id:7, img:img9_songkang, x:600, y:400, dir:315},      
   ]
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
@@ -91,9 +76,6 @@ const HomePage = () => {
 
   const [datetime, setDateTime] = useState(new Date());  
   const [circle,   setCircle]   = useState(circle_init);  
-
-  //const [score_0, setScore] = useState(50)
-  //const [playLoud] = useSound(Sound, { volume: 2 });
   
   const clickA = () => {
     if (audioContext.current.state === "suspended") {
@@ -101,11 +83,24 @@ const HomePage = () => {
     }
     play();
   };
+  const clickC = (index) => {
+    let persons_new = [...persons];  // personsのコピーを作ってから更新する
+    persons_new[index].score = 1.0-(1.0-persons_new[index].score)*0.8; // scoreの更新
+    setPersons(persons_new);  // コピーを新たにセットしないと、更新が反映しない（描画されない）
+  };
 
   const audioContext = useRef(null);
   useEffect(() => {
     audioContext.current = new AudioContext();
   }, []);
+
+  useEffect(() => {                            // 描画後の処理。タイマーでデータを定期更新する。
+    //moveImage();                               // imageを動かす
+    const interval = setInterval(() => {       // timerをセットして、繰り返し実行する
+        setDateTime(new Date());               // datetimeを更新
+      }, 20);                                    // ミリ秒ごと
+    return () => clearInterval(interval);      // 再描画が終わったらinterval（タイマー）停止
+  }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
 
   const moveImage = () => {                                // imageの表示位置を動かす
 
@@ -133,17 +128,29 @@ const HomePage = () => {
     circle_new.y        = y_me + size_me/2 - circle_new.size/2;           // 円のtop  y座標
     setCircle(circle_new);
   };
-  
+
     return (
       <ThemeProvider theme={theme}>
       <Header/>
       <Box sx={{height:800}}>
-        <Link to='/settingspage'>
-        <Box sx={{height:100, width:100, position: 'absolute', top: '50%', left:'50%'}}>
-          <img src={default_icon} className="kzImage2" alt="default_icon" onClick={() => clickA()}/>
+        {/* 同心円(circle)を配置する */}
+        <Box sx={{height:circle.size, width:circle.size, position: 'absolute', left:circle.x, top: circle.y}}>
+          <img src={circle.img} height="100%" width="100%" alt="circle"/>
         </Box>
+        {/* meを配置する */}
+        <Link to='/settingspage'>
+          <Box sx={{height:size_me, width:size_me, position: 'absolute', left:x_me, top: y_me}}>
+            <img src={default_icon} className="kzImage2" alt="img1_me" onClick={() => clickA()}/>
+          </Box>
         </Link>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
+        {/* person imgageを配置する */}
+        {images.map((image, index) => (
+          <Box key={image.id} sx={{height:100, width:100, position:'absolute', left:image.x, top:image.y }} >
+            <img src={image.img} className="kzImage2" alt="imgX" onClick={() => clickC(index)}/>
+          </Box>
+        ))}
+
+        {/* <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
           <img src={img2_jimin} className="kzImage2" alt="img2_jimin"/>
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
@@ -163,7 +170,8 @@ const HomePage = () => {
         </Box>
         <Box sx={{height:100, width:100, position: 'absolute', top: 520, left:80}} >
           <img src={img8_suga} className="kzImage2" alt="img8"/>
-        </Box>
+        </Box> */}
+
       </Box>
 
       <Link to='/registerpage'>

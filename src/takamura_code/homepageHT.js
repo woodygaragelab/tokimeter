@@ -18,7 +18,8 @@ import Header from "../components/header";
 import Footer from "../components/footer";
 
 import img_circle    from '../img/circle.png' 
-import img1_me       from '../img/me.png'   // homepageに表示する顔写真
+import default_icon  from '../img/default_icon.jpg'   
+//import img1_me       from '../img/me.png'   // homepageに表示する顔写真
 import img2_jimin    from '../img/jimin2.jpg'
 import img3_jin      from '../img/jin2.jpg'
 import img4_jungkook from '../img/jungkook.jpg'
@@ -62,14 +63,14 @@ const HomePage = () => {
         ];
   const [persons, setPersons] = useState(persons_init);  // personのデータ
   const images_init = [                                    
-    {id:0, img:img2_jimin,    x:0, y:0, dir:0},
-    {id:1, img:img3_jin,      x:0, y:0, dir:45},
-    {id:2, img:img4_jungkook, x:0, y:0, dir:90},
-    {id:3, img:img5_v,        x:0, y:0, dir:135},
-    {id:4, img:img6_rm,       x:0, y:0, dir:180},
-    {id:5, img:img7_jhope,    x:0, y:0, dir:225},
-    {id:6, img:img8_suga,     x:0, y:0, dir:270},
-    {id:7, img:img9_songkang, x:0, y:0, dir:315},      
+    {id:0, img:img2_jimin,    x:100, y:50, dir:0},
+    {id:1, img:img3_jin,      x:600, y:50, dir:45},
+    {id:2, img:img4_jungkook, x:100, y:100, dir:90},
+    {id:3, img:img5_v,        x:600, y:100, dir:135},
+    {id:4, img:img6_rm,       x:100, y:250, dir:180},
+    {id:5, img:img7_jhope,    x:600, y:250, dir:225},
+    {id:6, img:img8_suga,     x:100, y:400, dir:270},
+    {id:7, img:img9_songkang, x:600, y:400, dir:315},      
   ]
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
@@ -95,11 +96,6 @@ const HomePage = () => {
     persons_new[index].score = 1.0-(1.0-persons_new[index].score)*0.8; // scoreの更新
     setPersons(persons_new);  // コピーを新たにセットしないと、更新が反映しない（描画されない）
   };
-
-  // const clickD = () => {
-  //   setPersons(persons_init);  // データのリセット
-  //   setCircle(circle_init);
-  // };
 
   const moveImage = () => {                                // imageの表示位置を動かす
 
@@ -140,7 +136,7 @@ const HomePage = () => {
         {/* meを配置する */}
         <Link to='/settingspage'>
           <Box sx={{height:size_me, width:size_me, position: 'absolute', left:x_me, top: y_me}}>
-            <img src={img1_me} className="kzImage2" alt="img1_me" onClick={() => clickA()}/>
+            <img src={default_icon} className="kzImage2" alt="img1_me" onClick={() => clickA()}/>
           </Box>
         </Link>
 
