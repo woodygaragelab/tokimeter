@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import awsExports from "../../../aws-exports"
 import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
-import { Container, Button, Form } from 'react-bootstrap';
+import { Container, Form } from 'react-bootstrap';
+import Button from '@mui/material/Button';
 import { listActivitys } from '../../../graphql/queries'
-import { Paper, IconButton } from '@material-ui/core';
+import { Paper, IconButton, CardContent } from '@material-ui/core';
 import { v4 as uuid } from 'uuid';
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
@@ -15,12 +16,13 @@ import { createActivity, updateActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
 import PublishIcon from '@mui/icons-material/Publish';
-
-
+import CardActions from '@mui/material/CardActions'
+import DeleteIcon from '@mui/icons-material/Delete';
+import SaveIcon from '@mui/icons-material/Save';
 
 Amplify.configure(awsExports);
 
-function EventActivityCore() { 
+function EventActivityCore() {
 
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
@@ -40,6 +42,8 @@ function EventActivityCore() {
       console.log('error on fetching activities', error)
     }
   }
+
+  // イベントの追加
 
   const AddActivity = ({ onUpload }) => {
 
@@ -94,84 +98,92 @@ function EventActivityCore() {
         member4
       }
       await API.graphql(graphqlOperation(createActivity, { input: createActivityInput }))
-      onUpload(); // set seen/unseen button & fetch data from cloud.
+      onUpload(); // set seen/unseen button & fetch data from cloud. onUpload works as an parameter.
 
     }
 
+
+
     return (
       <div className="newActivity">
-       
+
         <Paper>
 
-    
-        <Box>
-        <TextField
-          label="Event"
-          value={activityData.event}
-          onChange={e => setActivityData({ ...activityData, event: e.target.value })}
-          variant="standard"
-        />
-        </Box>
-       
-        <Box>
-        <TextField
-          label="Time"
-          type="time"
-          value={activityData.time}
-          variant="standard"
-          InputLabelProps={{
-            shrink: true,
-          }}
-          onChange={e => setActivityData({ ...activityData, time: e.target.value })} />
 
-        </Box>
           <Box>
-          <TextField
-          label="Member1"
-          value={activityData.member1}
-          variant="standard"
-          onChange={e => setActivityData({ ...activityData, member1: e.target.value })} />
+            <TextField
+              label="Event"
+              value={activityData.event}
+              onChange={e => setActivityData({ ...activityData, event: e.target.value })}
+              variant="standard"
+            />
+          </Box>
+
+          <Box>
+            <TextField
+              label="Time"
+              type="time"
+              value={activityData.time}
+              variant="standard"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={e => setActivityData({ ...activityData, time: e.target.value })} />
+
           </Box>
           <Box>
-        <TextField
-          label="Member2"
-          value={activityData.member2}
-          variant="standard"
-          onChange={e => setActivityData({ ...activityData, member2: e.target.value })} />
+            <TextField
+              label="Member1"
+              value={activityData.member1}
+              variant="standard"
+              onChange={e => setActivityData({ ...activityData, member1: e.target.value })} />
+          </Box>
+          <Box>
+            <TextField
+              label="Member2"
+              value={activityData.member2}
+              variant="standard"
+              onChange={e => setActivityData({ ...activityData, member2: e.target.value })} />
 
           </Box>
-      
-        <Box>
-        <TextField
-          label="Member3"
-          value={activityData.member3}
-          variant="standard"
-          onChange={e => setActivityData({ ...activityData, member3: e.target.value })} />
 
-        </Box>
-      
-        <Box>
-        
-        <TextField
-          label="Member4"
-          value={activityData.member4}
-          variant="standard"
-          onChange={e => setActivityData({ ...activityData, member4: e.target.value })}
-        />
-        </Box>
-        <Box marginTop={3}>
-        <Button onClick={uploadActivity}>Save</Button>
-        </Box>
-      
-        <ExpandLessIcon onClick={() => setShowAddActivity(false)} />
+          <Box>
+            <TextField
+              label="Member3"
+              value={activityData.member3}
+              variant="standard"
+              onChange={e => setActivityData({ ...activityData, member3: e.target.value })} />
+
+          </Box>
+
+          <Box>
+
+            <TextField
+              label="Member4"
+              value={activityData.member4}
+              variant="standard"
+              onChange={e => setActivityData({ ...activityData, member4: e.target.value })}
+            />
+          </Box>
+          <Box marginTop={3}>
+            <Button color="secondary" startIcon={<SaveIcon />} onClick={uploadActivity} >保存</Button>
+          
+
+          </Box>
+
+          <ExpandLessIcon onClick={() => setShowAddActivity(false)} />
         </Paper>
 
-     
-    
+
+
       </div>
     )
   }
 
+  //イベントの削除
+  const deleteActivity = () => {
+    console.log("Pushed")
+  }
 
 
 
@@ -184,14 +196,26 @@ function EventActivityCore() {
           {activities.map((activity, idx) => {
             return <Paper variant='outlined' elevation={2} key={`activity${idx}`}>
               <Card>
+                <CardContent>
 
-                <div>Event: {activity.event}</div>
-                <div>Time: {activity.time}</div>
-                <div>Member1: {activity.member1}</div>
 
-                {activity.member2 ? (<div>Member2: {activity.member2}</div>) : <div></div>}
-                {activity.member3 ? (<div>Member3: {activity.member3}</div>) : <div></div>}
-                {activity.member4 ? (<div>Member4: {activity.member4}</div>) : <div></div>}
+                  <div>Event: {activity.event}</div>
+                  <div>Time: {activity.time}</div>
+                  <div>Member1: {activity.member1}</div>
+
+                  {activity.member2 ? (<div>Member2: {activity.member2}</div>) : <div></div>}
+                  {activity.member3 ? (<div>Member3: {activity.member3}</div>) : <div></div>}
+                  {activity.member4 ? (<div>Member4: {activity.member4}</div>) : <div></div>}
+
+                </CardContent>
+                <CardActions>
+                  {/* <Button variant="outlined" startIcon={<DeleteIcon />}>
+                    Delete
+                  </Button> */}
+                  <IconButton aria-label="delete" size='small' onClick={deleteActivity}>
+                    <DeleteIcon />
+                  </IconButton>
+                </CardActions>
 
               </Card>
             </Paper>
