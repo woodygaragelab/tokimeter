@@ -47,7 +47,7 @@ import EventActivity from './wang_code/components/EventPage/EventActivityPage'
             <Route exact={true} path='/homepageht'   component={HomePageHT}/>
             <Route exact={true} path='/uploadpageht' component={UploadPageHT}/>
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
-            <Route exact={true} path='/graphpage'  component={GraphPage}/>
+            <Route exact={true} path='/graphpage'  component={EventActivity}/>
             <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
             <Route exact={true} path='/textpage'   component={TextPage}/>
             <Route exact={true} path='/userpage'   component={UserPage}/>
