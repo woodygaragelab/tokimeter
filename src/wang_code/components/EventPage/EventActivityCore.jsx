@@ -18,6 +18,7 @@ import PublishIcon from '@mui/icons-material/Publish';
 import CardActions from '@mui/material/CardActions'
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
+import EditIcon from '@mui/icons-material/Edit';
 
 Amplify.configure(awsExports);
 
@@ -227,6 +228,11 @@ function EventActivityCore() {
 
                     <DeleteIcon />
                     削除
+                  </IconButton>
+                  <IconButton aria-label="delete" size='small' disabled>
+
+                    <EditIcon />
+                    編集（Coming soon)
                   </IconButton>
                 </CardActions>
 
