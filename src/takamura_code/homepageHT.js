@@ -65,8 +65,8 @@ const HomePage = () => {
   const images_init = [                                    
     {id:0, img:img2_jimin,    x:100, y:50, dir:0},
     {id:1, img:img3_jin,      x:600, y:50, dir:45},
-    {id:2, img:img4_jungkook, x:100, y:100, dir:90},
-    {id:3, img:img5_v,        x:600, y:100, dir:135},
+    {id:2, img:img4_jungkook, x:200, y:100, dir:90},
+    {id:3, img:img5_v,        x:500, y:100, dir:135},
     {id:4, img:img6_rm,       x:100, y:250, dir:180},
     {id:5, img:img7_jhope,    x:600, y:250, dir:225},
     {id:6, img:img8_suga,     x:100, y:400, dir:270},
