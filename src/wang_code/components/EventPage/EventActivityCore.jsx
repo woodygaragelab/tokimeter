@@ -7,12 +7,11 @@ import Button from '@mui/material/Button';
 import { listActivitys } from '../../../graphql/queries'
 import { Paper, IconButton, CardContent } from '@material-ui/core';
 import { v4 as uuid } from 'uuid';
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 
 import TextField from '@mui/material/TextField'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { createActivity, updateActivity } from '../../../graphql/mutations';
+import { createActivity, updateActivity, deleteActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
 import PublishIcon from '@mui/icons-material/Publish';
@@ -167,7 +166,7 @@ function EventActivityCore() {
           </Box>
           <Box marginTop={3}>
             <Button color="secondary" startIcon={<SaveIcon />} onClick={uploadActivity} >保存</Button>
-          
+
 
           </Box>
 
@@ -181,8 +180,22 @@ function EventActivityCore() {
   }
 
   //イベントの削除
-  const deleteActivity = () => {
-    console.log("Pushed")
+  const removeActivity = async (id) => {
+    const activityId = id // GraphQLのdelete関数に引数として渡すとき、id変数名と区別するため
+    const isDelete = window.confirm("イベントを削除しましょうか？")
+    if (isDelete) {
+      console.log(id)
+
+      const activityDetails = {
+        id: activityId,
+      };
+
+      await API.graphql(graphqlOperation(deleteActivity, { input: activityDetails }))
+      // イベントリストのリフレッシュと表示
+      setShowAddActivity(false)
+      fetchActivity()
+    }
+
   }
 
 
@@ -203,17 +216,17 @@ function EventActivityCore() {
                   <div>Time: {activity.time}</div>
                   <div>Member1: {activity.member1}</div>
 
+
                   {activity.member2 ? (<div>Member2: {activity.member2}</div>) : <div></div>}
                   {activity.member3 ? (<div>Member3: {activity.member3}</div>) : <div></div>}
                   {activity.member4 ? (<div>Member4: {activity.member4}</div>) : <div></div>}
 
                 </CardContent>
                 <CardActions>
-                  {/* <Button variant="outlined" startIcon={<DeleteIcon />}>
-                    Delete
-                  </Button> */}
-                  <IconButton aria-label="delete" size='small' onClick={deleteActivity}>
+                  <IconButton aria-label="delete" size='small' onClick={() => removeActivity(activity.id)}　>
+
                     <DeleteIcon />
+                    削除
                   </IconButton>
                 </CardActions>
 
