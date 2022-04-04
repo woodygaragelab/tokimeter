@@ -27,6 +27,7 @@ import SettingsPage  from './settingspage';
 import SettingsPageHT  from './takamura_code/settingspageHT';
 import RegisterPage  from './meguro_code/registerpage'; //meguro 3/22
 import EventActivity from './wang_code/components/EventPage/EventActivityPage'
+import TextAnalysis from './wang_code/components/TextPage/TextAnalysisPage'
 
   class App extends React.Component {
 
@@ -61,6 +62,7 @@ import EventActivity from './wang_code/components/EventPage/EventActivityPage'
             <Route exact={true} path='/settingspageHT' component={SettingsPageHT} />
             <Route exact={true} path='/registerpage' component={RegisterPage} />
             <Route exact={true} path='/EventActivity' component={EventActivity} />
+            <Route exact={true} paht='/TextAnalysisW' component={TextAnalysis} />
 
 
     
