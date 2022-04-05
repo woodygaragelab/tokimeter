@@ -49,33 +49,27 @@ const HomePage = () => {
   const circle_amp    = 50;      // meの周りの同心円の直径の振幅
   
   const persons_init = [      // personのリストの初期値
-        {id:0, img:img2_jimin,    score:0.6, dir:45},
-        {id:1, img:img3_jin,      score:0.4, dir:90},
-        {id:2, img:img4_jungkook, score:0.1, dir:135},
-        {id:3, img:img5_v,        score:0.2, dir:180},
-        {id:4, img:img6_rm,       score:0.1, dir:225},
-        {id:5, img:img7_jhope,    score:0.1, dir:270},
-        {id:6, img:img8_suga,     score:0.1, dir:315},
-        {id:7, img:img9_songkang, score:0.6, dir:360},      
+        {id:0, img:img2_jimin,    score:0.6}, 
+        {id:1, img:img3_jin,      score:0.4},
+        {id:2, img:img4_jungkook, score:0.1},
+        {id:3, img:img5_v,        score:0.2},
+        {id:4, img:img6_rm,       score:0.1},
+        {id:5, img:img7_jhope,    score:0.1},
+        {id:6, img:img8_suga,     score:0.1},
+        {id:7, img:img9_songkang, score:0.6},
       ];
   const [persons, setPersons] = useState(persons_init);  // personのデータ
-  const images_init = [                                    
-    {id:0, img:img2_jimin,    x:100, y:50,  dir:0},
-    {id:1, img:img3_jin,      x:600, y:50,  dir:45},
-    {id:2, img:img4_jungkook, x:200, y:100, dir:90},
-    {id:3, img:img5_v,        x:500, y:100, dir:135},
-    {id:4, img:img6_rm,       x:100, y:250, dir:180},
-    {id:5, img:img7_jhope,    x:600, y:250, dir:225},
-    {id:6, img:img8_suga,     x:100, y:400, dir:270},
-    {id:7, img:img9_songkang, x:600, y:400, dir:315},      
-  ]
-  const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
+  const images_init = persons.map((person)=>{
+    return {id:person.id, img:person.img, dir:person.id*45, x:0, y:0};
+  })
   const [images,   setImages]   = useState(images_init); // 表示用のimages。personsから作る
+
+  const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
+  const [circle,   setCircle]   = useState(circle_init);  
 
   const [play, { stop, pause }] = useSound(Sound);
 
   const [datetime, setDateTime] = useState(new Date());  
-  const [circle,   setCircle]   = useState(circle_init);  
   
   const clickA = () => {
     if (audioContext.current.state === "suspended") {
@@ -98,34 +92,34 @@ const HomePage = () => {
     moveImage();                               // imageを動かす
     const interval = setInterval(() => {       // timerをセットして、繰り返し実行する
         setDateTime(new Date());               // datetimeを更新
-      }, 20);                                    // ミリ秒ごと
+      }, 20);                                  // ミリ秒ごと
     return () => clearInterval(interval);      // 再描画が終わったらinterval（タイマー）停止
   }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
 
   const moveImage = () => {                                // imageの表示位置を動かす
 
-    let images_new = images.map((image,index)=>{      // imageのリストを personsからmapして作成する
-      let image_new = {"id":image.id, "img":image.img, "dir":image.dir}; // imgはpersonからコピー
-      let dd        = Math.sin(Math.PI / 45 * image.dir) * 0.2;          // meとの距離の振動変位
+    let images_new = images.map((image,index)=>{      // imageのリストをcopyして更新する
+      let image_new = {"id":image.id, "img":image.img, "dir":image.dir}; // imageをコピーする
+      let dd        = Math.sin(Math.PI/180 * image.dir * 4) * 0.2;          // meとの距離の振動変位
       let score     = persons[index].score; 
       let distance  = distance_init * (1.0 + dd) * (1.0-score*score);    // meとの距離
-      image_new.dir = image.dir + 0.3;                                   // 表示位置角度を進める
+      image_new.dir = image.dir + 0.1;                                   // 表示位置角度を進める
 
-      let dx = distance * Math.cos(Math.PI / 180 * image.dir);           // meとの距離(x座標)
-      let dy = distance * Math.sin(Math.PI / 180 * image.dir) * -1.0;    // meとの距離(y座標)(上下逆)
-      image_new.x = x_me+dx;                                             // imageのx座標(left)
-      image_new.y = y_me+dy;                                             // imageのy座標(top)
+      let dx = distance * Math.cos(Math.PI/180 * image.dir);           // meとの距離(x座標)
+      let dy = distance * Math.sin(Math.PI/180 * image.dir) * -1.0;    // meとの距離(y座標)(上下逆)
+      image_new.x = x_me+dx;                                           // imageのx座標(left)
+      image_new.y = y_me+dy;                                           // imageのy座標(top)
       return image_new;
     });
     setImages(images_new);
 
-    // meの周りの同心円を直径を変えて表示
+    // meの周りの同心円を直径(size)を変化（振動）させて表示。直径の変化は三角関数で計算する
     let circle_new      = {...circle};                                    // 現在の円をコピー
-    circle_new.dir      = circle.dir + 1;                                 // 振動の角度を1°進める
-    let ds              = Math.sin(Math.PI/45 * circle.dir) * circle_amp; // 円直径の振幅
+    circle_new.dir      = circle.dir + 5;                                 // 振動の角度を5°進める
+    let ds              = Math.sin(Math.PI/180 * circle_new.dir) * circle_amp; // 円直径の振幅
     circle_new.size     = circle_dia + ds;                                // 円直径
-    circle_new.x        = x_me + size_me/2 - circle_new.size/2;           // 円のleft x座標
-    circle_new.y        = y_me + size_me/2 - circle_new.size/2;           // 円のtop  y座標
+    circle_new.x        = x_me + size_me/2 - circle_new.size/2;  // 円の座標
+    circle_new.y        = y_me + size_me/2 - circle_new.size/2;  // 円とmeの中心が一致するように計算
     setCircle(circle_new);
   };
 
@@ -149,28 +143,6 @@ const HomePage = () => {
             <img src={image.img} className="kzImage2" alt="imgX" onClick={() => clickC(index)}/>
           </Box>
         ))}
-
-        {/* <Box sx={{height:100, width:100, position: 'absolute', top: 100, left:50}} >
-          <img src={img2_jimin} className="kzImage2" alt="img2_jimin"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 80, left:250}} >
-          <img src={img3_jin} className="kzImage2" alt="img3_jin"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:400}} >
-          <img src={img4_jungkook} className="kzImage2" alt="img4_jungkook"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 250, left:40}} >
-          <img src={img5_v} className="kzImage2" alt="img5_v"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 450, left:420}} >
-          <img src={img6_rm} className="kzImage2" alt="img6_rm"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 350, left:180}} >
-          <img src={img7_jhope} className="kzImage2" alt="img7"/>
-        </Box>
-        <Box sx={{height:100, width:100, position: 'absolute', top: 520, left:80}} >
-          <img src={img8_suga} className="kzImage2" alt="img8"/>
-        </Box> */}
 
       </Box>
 
