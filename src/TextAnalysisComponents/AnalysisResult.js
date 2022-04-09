@@ -16,29 +16,6 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
   const [analysisResults, setAnalysisResult] = useState([])
 
-
-  useEffect(() => {
-    // const getResults = async () => {
-    //   const resultsFromServer = await fetchResults()
-    //   setAnalysisResult(resultsFromServer)
-    // }
-
-    fetchAnalysisResult()
-
-    // getResults()
-  }, [])
-
-
-  //分析結果をサーバーから取得
-  // const fetchResults = async () => {
-  //   const res = await fetch('http://localhost:5200/analysisResults')
-  //   const data = await res.json()
-
-  //   return data
-
-
-  // }
-
   const history = useHistory()
 
   //分析結果一覧をサーバーから取得
@@ -46,10 +23,6 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
     history.push({ pathname: '/TextAnalysisComponents/ResultList' })
 
   }
-
-
-
-
 
   //分析結果をレーダーチャートで表示させるためのリスト
   const analysisResultList = []
@@ -65,8 +38,6 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
 
   //分析結果の新規、取得など操作するためのメソッド
-
-
 
   //新規の分析結果をサーバーに保存
 
