@@ -1,14 +1,9 @@
 import React from 'react'
-//import { History } from 'history'
 import { useHistory } from 'react-router-dom'
-//import { Doughnut, Radar } from 'react-chartjs-2'
 import { Radar } from 'react-chartjs-2'
-import Results from './Results'
 import AddAnalysisResult from './AddAnalysisResult'
 
-import { useEffect, useState } from "react";
-import ResultList from './ResultList';
-import { Api } from '@mui/icons-material'
+import { useState } from "react";
 
 
 
@@ -41,20 +36,26 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
   //新規の分析結果をサーバーに保存
 
-  const addResult = async (analysisResult) => {
-    const res_add = await fetch('http://localhost:5200/analysisResults', {
-      method: 'Post',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(analysisResult),
-    })
+  // const addResult = async (analysisResult) => {
+  //   const res_add = await fetch('http://localhost:5200/analysisResults', {
+  //     method: 'Post',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify(analysisResult),
+  //   })
 
-    const data = await res_add.json()
-    setAnalysisResult([...analysisResults, data])
+  //   const data = await res_add.json()
+  //   setAnalysisResult([...analysisResults, data])
 
-  }
+  // }
 
+
+  
+console.log("user",objectName)
+console.log("content",objectText)
+console.log("result",koziproResult)
+  
 
   return (
     <>
@@ -90,7 +91,7 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
 
       />
 
-      <AddAnalysisResult onAdd={addResult} user={objectName} content={objectText} koziproResult={koziproResult} />
+      <AddAnalysisResult user={objectName} content={objectText} koziproResult={koziproResult} />
       <button className="btn btn-success btn-lg" id="checkResult" onClick={() => resultList()}>結果一覧</button>
 
     </>

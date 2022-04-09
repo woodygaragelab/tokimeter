@@ -19,6 +19,7 @@ const theme = createTheme({
   },
 });
 
+console.log("Test")
 
 const TextAnalysisPage = () => {
 

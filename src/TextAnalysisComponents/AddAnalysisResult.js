@@ -1,12 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
+import {createTextAnalysisResult} from '../../src/graphql/mutations'
+import Amplify, { graphqlOperation } from "aws-amplify";
+import { API } from 'aws-amplify';
+import { v4 as uuid } from 'uuid';
 
-const AddAnalysisResult = ({ onAdd, user, content, koziproResult }) => {
+
+const AddAnalysisResult =  ({ user, content, koziproResult }) => {
 
   //ユーザー情報、会話内容と分析結果の保存用
-  const [name, setName] = useState(user)
-  const [text, setText] = useState(content)
-  const [excite, setExcite] = useState(Number(koziproResult.excite))
+  const [Name, setName] = useState(user)
+  const [TextContent, setTextContent] = useState(content)
+  //const [excite, setExcite] = useState(Number(koziproResult.excite))
+  const [excite,setExcite] = useState(0)
   const [pleasant, setPleasant] = useState(Number(koziproResult.pleasant))
   const [calm, setCalm] = useState(Number(koziproResult.calm))
   const [nervous, setNervous] = useState(Number(koziproResult.nervous))
@@ -18,13 +24,12 @@ const AddAnalysisResult = ({ onAdd, user, content, koziproResult }) => {
 
   const [isShowSaveButton,setIsShowSaveButton] = useState(true)
 
-  const onSubmit = (e) => {
-    e.preventDefault()
+  const onSubmit = async () => {
 
     //名前、テキスト、各評価軸を保存する
     setName(user)
-    setText(content)
-    setExcite(koziproResult.excite)
+    setTextContent(TextContent)
+    setExcite((koziproResult.excite))
     setPleasant(koziproResult.pleasant)
     setCalm(koziproResult.calm)
     setNervous(koziproResult.nervous)
@@ -34,9 +39,30 @@ const AddAnalysisResult = ({ onAdd, user, content, koziproResult }) => {
     setSleepy(koziproResult.sleepy)
     setMyakuari(koziproResult.myakuari)
 
-    onAdd({ name, text, excite, pleasant, calm, nervous, boring, unpleasant, surprise, sleepy, myakuari })
+   
+    console.log("user",user)
+    console.log("excite",excite)
 
-    setIsShowSaveButton(!isShowSaveButton)
+    const analysisResultInput = {
+      id:uuid(),
+      Name,
+      TextContent,
+      excite,
+      pleasant,
+      calm,
+      nervous,
+      boring,
+      unpleasant,
+      surprise,
+      sleepy,
+      myakuari
+    }
+
+    console.log("analysisResultInput: ", analysisResultInput)
+
+    await API.graphql(graphqlOperation(createTextAnalysisResult, { input: analysisResultInput }))
+
+    //setIsShowSaveButton(!isShowSaveButton)
 
 
   }

@@ -5,6 +5,7 @@ import { FaTimes } from 'react-icons/fa'
 function Result({result,onDelete}) {
     return (
         <div>
+            console.log("result",result)
             <h3>{result.name} <FaTimes 
             style={{ color: 'red', cursor: 'pointer' }} 
             onClick={() => onDelete(result.id)}

@@ -97,6 +97,9 @@ function EventActivityCore() {
         member3,
         member4
       }
+
+      console.log("activity input",createActivityInput)
+
       await API.graphql(graphqlOperation(createActivity, { input: createActivityInput }))
       onUpload(); // set seen/unseen button & fetch data from cloud. onUpload works as an parameter.
 

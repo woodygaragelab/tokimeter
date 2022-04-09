@@ -21,9 +21,9 @@ import Sound from '../../../sound/shiningsound_1.mp3'
 
 export const TextAnalysis = () => {
     const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
-    const [data, setData] = useState('')
-    const [result, setResult] = useState('')
-    const [member, setMember] = useState('')
+    const [data, setData] = useState('') // 会話内容
+    const [result, setResult] = useState('')　// 分析後の結果
+    const [member, setMember] = useState('') // 名前
     const [isGetResult, setIsGetResult] = useState(false)
     const [isShowTextAnalizer, setIsShowTextAnalizer] = useState(false)
 
