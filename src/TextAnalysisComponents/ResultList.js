@@ -5,32 +5,29 @@ import { useHistory, withRouter } from 'react-router-dom';
 import { addAnalysisResult } from './AddAnalysisResult';
 import Results from './Results';
 import Result from './Result'
+import Amplify,{API,graphqlOperation} from 'aws-amplify'
+import {listTextAnalysisResults} from '../graphql/queries';
 
 
 const ResultList = () => {
 
     const [analysisResults, setAnalysisResult] = useState([])
 
-
     useEffect(() => {
-        const getResults = async () => {
-            const resultsFromServer = await fetchResults()
-            setAnalysisResult(resultsFromServer)
+        fetchAnalysisResult()
+      }, [])
+
+    // fetch results by graphQL
+    const fetchAnalysisResult = async () => {
+        try {
+          const analysisResultData = await API.graphql(graphqlOperation(listTextAnalysisResults))
+          const analysisResultList = analysisResultData.data.listTextAnalysisResults.items
+          console.log('text analysis results list',analysisResultList)
+          setAnalysisResult(analysisResultList)
+        } catch (error) {
+          console.log('error on fetching text analysis result',error);
         }
-
-        getResults()
-    }, [])
-
-
-    //分析結果をサーバーから取得
-    const fetchResults = async () => {
-        const res = await fetch('http://localhost:5200/analysisResults')
-        const data = await res.json()
-
-        return data
-
-
-    }
+      }
 
     // 分析結果の削除 
     const deleteResult = async (id) => {

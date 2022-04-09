@@ -8,6 +8,9 @@ import AddAnalysisResult from './AddAnalysisResult'
 
 import { useEffect, useState } from "react";
 import ResultList from './ResultList';
+import { Api } from '@mui/icons-material'
+
+
 
 function AnalysisResult({ koziproResult, objectName, objectText }) {
 
@@ -19,6 +22,8 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
     //   const resultsFromServer = await fetchResults()
     //   setAnalysisResult(resultsFromServer)
     // }
+
+    fetchAnalysisResult()
 
     // getResults()
   }, [])
@@ -41,6 +46,8 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
     history.push({ pathname: '/TextAnalysisComponents/ResultList' })
 
   }
+
+
 
 
 

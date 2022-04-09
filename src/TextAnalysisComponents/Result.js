@@ -10,16 +10,17 @@ function Result({result,onDelete}) {
             onClick={() => onDelete(result.id)}
             /></h3>
             {/* 脈アリの値のみ表示させる */}
-            {/* <p>{result.text}</p>
-            <p>{result.excite}</p>
-            <p>{result.pleasant}</p>
-            <p>{result.calm}</p>
-            <p>{result.nervous}</p>
-            <p>{result.boring}</p>
-            <p>{result.unpleasant}</p>
-            <p>{result.surprise}</p>
-            <p>{result.sleepy}</p> */}
-            <p>{result.myakuari}</p>
+            <p>名前:{result.Name}</p>
+            <p>会話内容：{result.TextContent}</p>
+            <p>excite:{result.excite}</p>
+            <p>pleasant:{result.pleasant}</p>
+            <p>calm:{result.calm}</p>
+            <p>nervous:{result.nervous}</p>
+            <p>boring: {result.boring}</p>
+            <p>unpleasant: {result.unpleasant}</p>
+            <p>surprise: {result.surprise}</p>
+            <p>sleepy: {result.sleepy}</p>
+            <p>MYAKUARI: {result.myakuari}</p>
         </div>
     )
 }

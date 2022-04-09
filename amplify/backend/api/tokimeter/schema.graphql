@@ -22,3 +22,6 @@ type TextAnalysisResult @model {
   sleepy:Float!
   myakuari:Float!
 }
+
+
+
