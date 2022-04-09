@@ -38,3 +38,54 @@ export const listActivitys = /* GraphQL */ `
     }
   }
 `;
+export const getTextAnalysisResult = /* GraphQL */ `
+  query GetTextAnalysisResult($id: ID!) {
+    getTextAnalysisResult(id: $id) {
+      id
+      Name
+      TextContent
+      excite
+      pleasant
+      calm
+      nervous
+      boring
+      unpleasant
+      surprise
+      sleepy
+      myakuari
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listTextAnalysisResults = /* GraphQL */ `
+  query ListTextAnalysisResults(
+    $filter: ModelTextAnalysisResultFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTextAnalysisResults(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        Name
+        TextContent
+        excite
+        pleasant
+        calm
+        nervous
+        boring
+        unpleasant
+        surprise
+        sleepy
+        myakuari
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;

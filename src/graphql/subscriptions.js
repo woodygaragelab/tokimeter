@@ -46,3 +46,63 @@ export const onDeleteActivity = /* GraphQL */ `
     }
   }
 `;
+export const onCreateTextAnalysisResult = /* GraphQL */ `
+  subscription OnCreateTextAnalysisResult {
+    onCreateTextAnalysisResult {
+      id
+      Name
+      TextContent
+      excite
+      pleasant
+      calm
+      nervous
+      boring
+      unpleasant
+      surprise
+      sleepy
+      myakuari
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTextAnalysisResult = /* GraphQL */ `
+  subscription OnUpdateTextAnalysisResult {
+    onUpdateTextAnalysisResult {
+      id
+      Name
+      TextContent
+      excite
+      pleasant
+      calm
+      nervous
+      boring
+      unpleasant
+      surprise
+      sleepy
+      myakuari
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTextAnalysisResult = /* GraphQL */ `
+  subscription OnDeleteTextAnalysisResult {
+    onDeleteTextAnalysisResult {
+      id
+      Name
+      TextContent
+      excite
+      pleasant
+      calm
+      nervous
+      boring
+      unpleasant
+      surprise
+      sleepy
+      myakuari
+      createdAt
+      updatedAt
+    }
+  }
+`;

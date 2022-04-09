@@ -55,3 +55,72 @@ export const deleteActivity = /* GraphQL */ `
     }
   }
 `;
+export const createTextAnalysisResult = /* GraphQL */ `
+  mutation CreateTextAnalysisResult(
+    $input: CreateTextAnalysisResultInput!
+    $condition: ModelTextAnalysisResultConditionInput
+  ) {
+    createTextAnalysisResult(input: $input, condition: $condition) {
+      id
+      Name
+      TextContent
+      excite
+      pleasant
+      calm
+      nervous
+      boring
+      unpleasant
+      surprise
+      sleepy
+      myakuari
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateTextAnalysisResult = /* GraphQL */ `
+  mutation UpdateTextAnalysisResult(
+    $input: UpdateTextAnalysisResultInput!
+    $condition: ModelTextAnalysisResultConditionInput
+  ) {
+    updateTextAnalysisResult(input: $input, condition: $condition) {
+      id
+      Name
+      TextContent
+      excite
+      pleasant
+      calm
+      nervous
+      boring
+      unpleasant
+      surprise
+      sleepy
+      myakuari
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteTextAnalysisResult = /* GraphQL */ `
+  mutation DeleteTextAnalysisResult(
+    $input: DeleteTextAnalysisResultInput!
+    $condition: ModelTextAnalysisResultConditionInput
+  ) {
+    deleteTextAnalysisResult(input: $input, condition: $condition) {
+      id
+      Name
+      TextContent
+      excite
+      pleasant
+      calm
+      nervous
+      boring
+      unpleasant
+      surprise
+      sleepy
+      myakuari
+      createdAt
+      updatedAt
+    }
+  }
+`;

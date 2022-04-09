@@ -7,3 +7,18 @@ type Activity @model {
   member3:String!
   member4:String!
 }
+
+type TextAnalysisResult @model {
+  id: ID!
+  Name: String!
+  TextContent:String!
+  excite:Float!
+  pleasant:Float!
+  calm:Float!
+  nervous:Float!
+  boring:Float!
+  unpleasant:Float!
+  surprise:Float!
+  sleepy:Float!
+  myakuari:Float!
+}
