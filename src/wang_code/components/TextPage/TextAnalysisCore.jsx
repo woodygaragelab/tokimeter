@@ -10,6 +10,7 @@ import Select from '@mui/material/Select'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import SendIcon from '@mui/icons-material/Send'
 
 
 //sound effects//
@@ -144,6 +145,7 @@ export const TextAnalysis = () => {
                                     id="sendText"
                                     variant="contained"
                                     color="secondary"
+                                    endIcon={<SendIcon />}
                                     type="submit" onClick={() => clickA()}>送信</Button>
                             </Box>}
                         </div>

@@ -1,32 +1,15 @@
 import React from 'react'
 import { FaTimes } from 'react-icons/fa'
-import { deleteTextAnalysisResult} from '../graphql/mutations';
-import { API } from 'aws-amplify';
-import Amplify, { graphqlOperation } from "aws-amplify";
+
 
 //ユーザーと脈アリ点数だけ表示させる
-function Result({result}) {
-
-    const removeAnalysisResult = async (id) =>{
-        const resultId = id
-        const isDelete = window.confirm('分析結果を削除しましょうか。')
-        if(isDelete){
-            const analysisResultId = {
-                id: resultId,
-            };
-
-            await API.graphql(graphqlOperation(deleteTextAnalysisResult,{input: analysisResultId}))
-        }
-    }
-
-
+function Result({result,onDelete}) {
 
     return (
         <div>
-            console.log("result",result)
             <h3>{result.name} <FaTimes 
             style={{ color: 'red', cursor: 'pointer' }} 
-            onClick={() => removeAnalysisResult(result.id)}
+            onClick={() => onDelete(result.id)}
             /></h3>
             {/* 脈アリの値のみ表示させる */}
             <p>名前:{result.Name}</p>

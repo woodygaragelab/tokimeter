@@ -4,6 +4,8 @@ import {createTextAnalysisResult} from '../../src/graphql/mutations'
 import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
 import { v4 as uuid } from 'uuid';
+import Button from '@mui/material/Button';
+import LoyaltyOutlinedIcon from '@mui/icons-material/LoyaltyOutlined';
 
 
 const AddAnalysisResult =  ({ user, content, koziproResult }) => {
@@ -71,9 +73,9 @@ const AddAnalysisResult =  ({ user, content, koziproResult }) => {
   return (
     <div>
       {isShowSaveButton &&
-      <button onClick={onSubmit}>
+      <Button variant="contained" size="small" color="success" onClick={onSubmit} startIcon={<LoyaltyOutlinedIcon />}>
         Save
-      </button>
+      </Button>
       }
     </div>
   )

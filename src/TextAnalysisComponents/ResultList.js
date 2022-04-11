@@ -7,6 +7,7 @@ import Results from './Results';
 import Result from './Result'
 import Amplify,{API,graphqlOperation} from 'aws-amplify'
 import {listTextAnalysisResults} from '../graphql/queries';
+import { deleteTextAnalysisResult } from '../graphql/mutations';
 
 
 const ResultList = () => {
@@ -30,20 +31,19 @@ const ResultList = () => {
       }
 
     // 分析結果の削除 
-    const deleteResult = async (id) => {
-        const isDelete = window.confirm("分析結果を削除しましょうか？")
-        if (isDelete) {
-            await fetch(`http://localhost:5200/analysisResults/${id}`, {
-                method: 'DELETE',
-            })
+    const removeAnalysisResult = async (id) =>{
+        const resultId = id
+        const isDelete = window.confirm('分析結果を削除しましょうか。')
+        if(isDelete){
+            const analysisResultId = {
+                id: resultId,
+            };
 
-            //  削除されたid以外のイベントのみを表示する
-            setAnalysisResult(analysisResults.filter((analysisResult) => analysisResult.id !== id))
-        }
+            await API.graphql(graphqlOperation(deleteTextAnalysisResult,{input: analysisResultId}))
+            fetchAnalysisResult();
 
-        else {
-            //削除をキャンセルする時、何もしない
         }
+        
     }
 
     return (
@@ -52,7 +52,7 @@ const ResultList = () => {
 
             {/* <Results results={analysisResults}/> */}
             {analysisResults.map((result, index) => (
-                <Result key={index} result={result} onDelete={deleteResult} />
+                <Result key={index} result={result} onDelete={removeAnalysisResult} />
             ))}
 
         </div>

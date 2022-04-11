@@ -4,6 +4,8 @@ import { Radar } from 'react-chartjs-2'
 import AddAnalysisResult from './AddAnalysisResult'
 
 import { useState } from "react";
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 
 
@@ -30,32 +32,6 @@ function AnalysisResult({ koziproResult, objectName, objectText }) {
   analysisResultList.push(koziproResult.surprise)
   analysisResultList.push(koziproResult.sleepy)
   analysisResultList.push(koziproResult.myakuari)
-
-
-  //分析結果の新規、取得など操作するためのメソッド
-
-  //新規の分析結果をサーバーに保存
-
-  // const addResult = async (analysisResult) => {
-  //   const res_add = await fetch('http://localhost:5200/analysisResults', {
-  //     method: 'Post',
-  //     headers: {
-  //       'Content-type': 'application/json',
-  //     },
-  //     body: JSON.stringify(analysisResult),
-  //   })
-
-  //   const data = await res_add.json()
-  //   setAnalysisResult([...analysisResults, data])
-
-  // }
-
-
-  
-console.log("user",objectName)
-console.log("content",objectText)
-console.log("result",koziproResult)
-  
 
   return (
     <>
@@ -92,7 +68,10 @@ console.log("result",koziproResult)
       />
 
       <AddAnalysisResult user={objectName} content={objectText} koziproResult={koziproResult} />
-      <button className="btn btn-success btn-lg" id="checkResult" onClick={() => resultList()}>結果一覧</button>
+      <Box marginTop={2}>
+        <Button variant="contained" color="secondary" id="checkResult" onClick={() => resultList()}>結果一覧</Button>
+
+      </Box>
 
     </>
   )

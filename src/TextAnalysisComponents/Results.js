@@ -6,7 +6,7 @@ function Results({results}) {
     return (
         <>
          {results.map((result,index)=>(
-             <Result key={index} result={result} />
+             <Result key={index} result={result}/>
          ))}
         </>
     )
