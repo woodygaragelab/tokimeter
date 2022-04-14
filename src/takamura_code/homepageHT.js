@@ -1,5 +1,5 @@
 import React from 'react'
-import { Component }  from 'react';
+//import { Component }  from 'react';
 import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
 import { useState }   from 'react';                         // state（コンポネント単位のデータ保存機能）
 import { useEffect }  from 'react';                         // effect (state変化したときの処理機能)
@@ -17,14 +17,6 @@ import Footer from "../components/footer";
 
 import default_icon  from '../img/default_icon.jpg'   // homepageに表示する顔写真
 import img_circle    from '../img/circle.png' 
-import img2_jimin    from '../img/jimin2.jpg'
-import img3_jin      from '../img/jin2.jpg'
-import img4_jungkook from '../img/jungkook.jpg'
-import img5_v        from '../img/v.jpg'
-import img6_rm       from '../img/rm.jpg'
-import img7_jhope    from '../img/jhope.jpg'
-import img8_suga     from '../img/suga.jpg'
-import img9_songkang from '../img/songkang.jpg'
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 
@@ -40,7 +32,7 @@ const theme = createTheme({
   },
 });
   
-const HomePage = () => {
+const HomePage = (props) => {
 
   const x_me          = 400;     // meのx座標(left)
   const y_me          = 300;     // meのy座標(top)
@@ -49,21 +41,8 @@ const HomePage = () => {
   const circle_dia    = 200;     // meの周りの同心円の直径の初期値
   const circle_amp    = 50;      // meの周りの同心円の直径の振幅
   
-  const member_init = [      // memberのリストの初期値
-        {id:0, imageurl:img2_jimin,    score:0.6}, 
-        {id:1, imageurl:img3_jin,      score:0.4},
-        {id:2, imageurl:img4_jungkook, score:0.1},
-        {id:3, imageurl:img5_v,        score:0.2},
-        {id:4, imageurl:img6_rm,       score:0.1},
-        {id:5, imageurl:img7_jhope,    score:0.1},
-        {id:6, imageurl:img8_suga,     score:0.1},
-        {id:7, imageurl:img9_songkang, score:0.6},
-      ];
-  const [members, setMembers] = useState(member_init);  // memberのデータ
-  const images_init = members.map((member)=>{
-    return {id:member.id, imageurl:member.imageurl, dir:member.id*45, x:0, y:0};
-  })
-  const [images,   setImages]   = useState(images_init); // 表示用のimages。membersから作る
+  const [members, setMembers]   = useState([]); // memberのデータ
+  const [images,   setImages]   = useState([]); // 表示用のimages。membersから作る
 
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [circle,   setCircle]   = useState(circle_init);  
@@ -133,8 +112,8 @@ const HomePage = () => {
   }, [members]);             
 
   const moveImage = () => {                                // imageの表示位置を動かす
-    console.log("members=",members);
-    console.log("images=",images);
+    //console.log("members=",members);
+    //console.log("images=",images);
 
     let images_new = images.map((image,index)=>{      // imageのリストをcopyして更新する
       let image_new = {"id":image.id, "imageurl":image.imageurl,
@@ -163,6 +142,14 @@ const HomePage = () => {
     setCircle(circle_new);
   };
 
+  const addMember = () => {                   // memberを追加する
+    props.history.push({
+      pathname: '/registerPageHT',
+      state: {  memberid:members.length+1  }  // memberid=現人数+1
+    });
+  }
+
+
 
     return (
       <ThemeProvider theme={theme}>
@@ -190,11 +177,11 @@ const HomePage = () => {
       <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'15%'}} >
           <AddCircleIcon  onClick={() => getMembers()}/>
       </Box>
-      <Link to='/registerpage'>
+      {/* <Link to='/registerpageHT'> */}
         <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'5%'}} >
-          <AddCircleIcon/>
+          <AddCircleIcon onClick={()=>addMember()} />
         </Box>
-      </Link>
+      {/* </Link> */}
       <Footer pageid="1"/> 
       </ThemeProvider>
 
@@ -202,3 +189,27 @@ const HomePage = () => {
   }
 // }
 export default withRouter(HomePage) // 画面遷移対象にするので、withRoute()を使う
+
+// old code
+// import img2_jimin    from '../img/jimin2.jpg'
+// import img3_jin      from '../img/jin2.jpg'
+// import img4_jungkook from '../img/jungkook.jpg'
+// import img5_v        from '../img/v.jpg'
+// import img6_rm       from '../img/rm.jpg'
+// import img7_jhope    from '../img/jhope.jpg'
+// import img8_suga     from '../img/suga.jpg'
+// import img9_songkang from '../img/songkang.jpg'
+// const member_init = [      // memberのリストの初期値
+//       {id:0, imageurl:img2_jimin,    score:0.6}, 
+//       {id:1, imageurl:img3_jin,      score:0.4},
+//       {id:2, imageurl:img4_jungkook, score:0.1},
+//       {id:3, imageurl:img5_v,        score:0.2},
+//       {id:4, imageurl:img6_rm,       score:0.1},
+//       {id:5, imageurl:img7_jhope,    score:0.1},
+//       {id:6, imageurl:img8_suga,     score:0.1},
+//       {id:7, imageurl:img9_songkang, score:0.6},
+//     ];
+//const [members, setMembers] = useState(member_init);  // memberのデータ
+// const images_init = members.map((member)=>{
+//   return {id:member.id, imageurl:member.imageurl, dir:member.id*45, x:0, y:0};
+// })
