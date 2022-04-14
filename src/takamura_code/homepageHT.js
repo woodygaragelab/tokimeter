@@ -144,7 +144,7 @@ const HomePage = (props) => {
 
   const addMember = () => {                   // memberを追加する
     props.history.push({
-      pathname: '/registerPageHT',
+      pathname: '/registerPage',
       state: {  memberid:members.length+1  }  // memberid=現人数+1
     });
   }

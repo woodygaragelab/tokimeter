@@ -25,8 +25,8 @@ import newEmailW from './wang_code/components/newEmail';
 import forgotPasswordW from './wang_code/components/forgotPassword'
 import SettingsPage  from './settingspage';
 import SettingsPageHT  from './takamura_code/settingspageHT';
-import RegisterPage  from './meguro_code/registerpage'; //meguro 3/22
-import RegisterPageHT  from './takamura_code/registerpage'; //takamura 4/14
+//import RegisterPage  from './meguro_code/registerpage'; //meguro 3/22
+import RegisterPage  from './registerpage'; //takamura 4/14
 import EventActivity from './wang_code/components/EventPage/EventActivityPage'
 import TextAnalysis from './wang_code/components/TextPage/TextAnalysisPage'
 
@@ -62,7 +62,6 @@ import TextAnalysis from './wang_code/components/TextPage/TextAnalysisPage'
             <Route exact={true} path='/settingspage' component={SettingsPage} />
             <Route exact={true} path='/settingspageHT' component={SettingsPageHT} />
             <Route exact={true} path='/registerpage' component={RegisterPage} />
-            <Route exact={true} path='/registerpageHT' component={RegisterPageHT} />
             <Route exact={true} path='/EventActivity' component={EventActivity} />
             <Route exact={true} paht='/TextAnalysisW' component={TextAnalysis} />
 
