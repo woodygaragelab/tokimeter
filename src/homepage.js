@@ -19,6 +19,7 @@ import default_icon  from './img/default_icon.jpg'   // homepageに表示する�
 import img_circle    from './img/circle.png' 
 
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import SyncIcon      from '@mui/icons-material/Sync';
 
 import useSound from 'use-sound';
 import Sound from './sound/buttonsound_37.mp3';
@@ -52,6 +53,7 @@ const HomePage = (props) => {
   const [datetime, setDateTime] = useState(new Date());  
   
   const getMembers = () => {
+    console.log("getMembers");
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var raw = JSON.stringify({"userid":"woody"});
@@ -67,6 +69,7 @@ const HomePage = (props) => {
           let dataExpireSeconds = (3 * 60);
           const imageurl = await Storage.get(item.imagefile, { expires: dataExpireSeconds });
           item.imageurl = imageurl;
+          console.log("imageurl set")
           setMembers(apiData);
           return item;    
         }
@@ -103,6 +106,8 @@ const HomePage = (props) => {
   }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
 
   useEffect(() => {            // membersが更新されたらimagesを更新する
+    console.log("members useeffect")
+
     let images_new = members.map((member,index)=>{   
       let image_new = {"id":member.memberid, "imageurl":member.imageurl,
                      "dir":member.memberid*45, "score":member.score}; 
@@ -119,6 +124,7 @@ const HomePage = (props) => {
       let image_new = {"id":image.id, "imageurl":image.imageurl,
                        "dir":image.dir, "score":image.score}; // imageをコピーする
       image_new.imageurl = members[index].imageurl; // image urlはmembersから再度取得する。非同期で遅れて更新されるので 
+      //console.log("moveimage image_new.imageurl=",image_new.imageurl);
       let dd        = Math.sin(Math.PI/180 * image.dir * 4) * 0.2;      // meとの距離の振動変位
       let score     = image.score; 
       let distance  = distance_init * (1.0 + dd) * (1.0-score*score);    // meとの距離
@@ -175,7 +181,7 @@ const HomePage = (props) => {
       </Box>
 
       <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'15%'}} >
-          <AddCircleIcon  onClick={() => getMembers()}/>
+          <SyncIcon  onClick={() => getMembers()}/>
       </Box>
       {/* <Link to='/registerpageHT'> */}
         <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'5%'}} >
