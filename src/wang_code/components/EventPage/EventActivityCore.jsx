@@ -18,6 +18,10 @@ import CardActions from '@mui/material/CardActions'
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
 import EditIcon from '@mui/icons-material/Edit';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import InputAdornment from '@mui/material/InputAdornment';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 Amplify.configure(awsExports);
 
@@ -25,6 +29,8 @@ function EventActivityCore() {
 
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
+
+  const [editing,setEditing] = useState(false)
 
 
   useEffect(() => {
@@ -112,12 +118,20 @@ function EventActivityCore() {
         <Paper>
 
 
-          <Box>
+          <Box >
             <TextField
               label="Event"
               value={activityData.event}
               onChange={e => setActivityData({ ...activityData, event: e.target.value })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <EventAvailableIcon />
+                  </InputAdornment>
+                ),
+              }}
               variant="standard"
+
             />
           </Box>
 
@@ -130,7 +144,14 @@ function EventActivityCore() {
               InputLabelProps={{
                 shrink: true,
               }}
-              onChange={e => setActivityData({ ...activityData, time: e.target.value })} />
+              onChange={e => setActivityData({ ...activityData, time: e.target.value })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccessTimeIcon />
+                  </InputAdornment>
+                ),
+              }} />
 
           </Box>
           <Box>
@@ -138,14 +159,29 @@ function EventActivityCore() {
               label="Member1"
               value={activityData.member1}
               variant="standard"
-              onChange={e => setActivityData({ ...activityData, member1: e.target.value })} />
+              onChange={e => setActivityData({ ...activityData, member1: e.target.value })} 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
+              />
           </Box>
           <Box>
             <TextField
               label="Member2"
               value={activityData.member2}
               variant="standard"
-              onChange={e => setActivityData({ ...activityData, member2: e.target.value })} />
+              onChange={e => setActivityData({ ...activityData, member2: e.target.value })} 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}/>
 
           </Box>
 
@@ -154,7 +190,14 @@ function EventActivityCore() {
               label="Member3"
               value={activityData.member3}
               variant="standard"
-              onChange={e => setActivityData({ ...activityData, member3: e.target.value })} />
+              onChange={e => setActivityData({ ...activityData, member3: e.target.value })} 
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}/>
 
           </Box>
 
@@ -165,6 +208,13 @@ function EventActivityCore() {
               value={activityData.member4}
               variant="standard"
               onChange={e => setActivityData({ ...activityData, member4: e.target.value })}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <AccountCircle />
+                  </InputAdornment>
+                ),
+              }}
             />
           </Box>
           <Box marginTop={3}>
