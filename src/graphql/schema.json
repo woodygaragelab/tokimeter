@@ -77,7 +77,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "getTextAnalysisResult",
+          "name" : "getKzTextAnalysisResult",
           "description" : null,
           "args" : [ {
             "name" : "id",
@@ -95,20 +95,20 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "TextAnalysisResult",
+            "name" : "KzTextAnalysisResult",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "listTextAnalysisResults",
+          "name" : "listKzTextAnalysisResults",
           "description" : null,
           "args" : [ {
             "name" : "filter",
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultFilterInput",
+              "name" : "ModelKzTextAnalysisResultFilterInput",
               "ofType" : null
             },
             "defaultValue" : null
@@ -133,7 +133,7 @@
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "ModelTextAnalysisResultConnection",
+            "name" : "ModelKzTextAnalysisResultConnection",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -875,7 +875,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "TextAnalysisResult",
+        "name" : "KzTextAnalysisResult",
         "description" : null,
         "fields" : [ {
           "name" : "id",
@@ -1103,7 +1103,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "OBJECT",
-        "name" : "ModelTextAnalysisResultConnection",
+        "name" : "ModelKzTextAnalysisResultConnection",
         "description" : null,
         "fields" : [ {
           "name" : "items",
@@ -1117,7 +1117,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "OBJECT",
-                "name" : "TextAnalysisResult",
+                "name" : "KzTextAnalysisResult",
                 "ofType" : null
               }
             }
@@ -1142,7 +1142,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelTextAnalysisResultFilterInput",
+        "name" : "ModelKzTextAnalysisResultFilterInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -1261,7 +1261,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultFilterInput",
+              "name" : "ModelKzTextAnalysisResultFilterInput",
               "ofType" : null
             }
           },
@@ -1274,7 +1274,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultFilterInput",
+              "name" : "ModelKzTextAnalysisResultFilterInput",
               "ofType" : null
             }
           },
@@ -1284,7 +1284,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelTextAnalysisResultFilterInput",
+            "name" : "ModelKzTextAnalysisResultFilterInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -1490,7 +1490,7 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "createTextAnalysisResult",
+          "name" : "createKzTextAnalysisResult",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1500,7 +1500,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "CreateTextAnalysisResultInput",
+                "name" : "CreateKzTextAnalysisResultInput",
                 "ofType" : null
               }
             },
@@ -1510,20 +1510,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultConditionInput",
+              "name" : "ModelKzTextAnalysisResultConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "TextAnalysisResult",
+            "name" : "KzTextAnalysisResult",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "updateTextAnalysisResult",
+          "name" : "updateKzTextAnalysisResult",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1533,7 +1533,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "UpdateTextAnalysisResultInput",
+                "name" : "UpdateKzTextAnalysisResultInput",
                 "ofType" : null
               }
             },
@@ -1543,20 +1543,20 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultConditionInput",
+              "name" : "ModelKzTextAnalysisResultConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "TextAnalysisResult",
+            "name" : "KzTextAnalysisResult",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "deleteTextAnalysisResult",
+          "name" : "deleteKzTextAnalysisResult",
           "description" : null,
           "args" : [ {
             "name" : "input",
@@ -1566,7 +1566,7 @@
               "name" : null,
               "ofType" : {
                 "kind" : "INPUT_OBJECT",
-                "name" : "DeleteTextAnalysisResultInput",
+                "name" : "DeleteKzTextAnalysisResultInput",
                 "ofType" : null
               }
             },
@@ -1576,14 +1576,14 @@
             "description" : null,
             "type" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultConditionInput",
+              "name" : "ModelKzTextAnalysisResultConditionInput",
               "ofType" : null
             },
             "defaultValue" : null
           } ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "TextAnalysisResult",
+            "name" : "KzTextAnalysisResult",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -1887,7 +1887,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "CreateTextAnalysisResultInput",
+        "name" : "CreateKzTextAnalysisResultInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2048,7 +2048,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "ModelTextAnalysisResultConditionInput",
+        "name" : "ModelKzTextAnalysisResultConditionInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2158,7 +2158,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultConditionInput",
+              "name" : "ModelKzTextAnalysisResultConditionInput",
               "ofType" : null
             }
           },
@@ -2171,7 +2171,7 @@
             "name" : null,
             "ofType" : {
               "kind" : "INPUT_OBJECT",
-              "name" : "ModelTextAnalysisResultConditionInput",
+              "name" : "ModelKzTextAnalysisResultConditionInput",
               "ofType" : null
             }
           },
@@ -2181,7 +2181,7 @@
           "description" : null,
           "type" : {
             "kind" : "INPUT_OBJECT",
-            "name" : "ModelTextAnalysisResultConditionInput",
+            "name" : "ModelKzTextAnalysisResultConditionInput",
             "ofType" : null
           },
           "defaultValue" : null
@@ -2191,7 +2191,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "UpdateTextAnalysisResultInput",
+        "name" : "UpdateKzTextAnalysisResultInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2312,7 +2312,7 @@
         "possibleTypes" : null
       }, {
         "kind" : "INPUT_OBJECT",
-        "name" : "DeleteTextAnalysisResultInput",
+        "name" : "DeleteKzTextAnalysisResultInput",
         "description" : null,
         "fields" : null,
         "inputFields" : [ {
@@ -2370,34 +2370,34 @@
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onCreateTextAnalysisResult",
+          "name" : "onCreateKzTextAnalysisResult",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "TextAnalysisResult",
+            "name" : "KzTextAnalysisResult",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onUpdateTextAnalysisResult",
+          "name" : "onUpdateKzTextAnalysisResult",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "TextAnalysisResult",
+            "name" : "KzTextAnalysisResult",
             "ofType" : null
           },
           "isDeprecated" : false,
           "deprecationReason" : null
         }, {
-          "name" : "onDeleteTextAnalysisResult",
+          "name" : "onDeleteKzTextAnalysisResult",
           "description" : null,
           "args" : [ ],
           "type" : {
             "kind" : "OBJECT",
-            "name" : "TextAnalysisResult",
+            "name" : "KzTextAnalysisResult",
             "ofType" : null
           },
           "isDeprecated" : false,
@@ -2405,51 +2405,6 @@
         } ],
         "inputFields" : null,
         "interfaces" : [ ],
-        "enumValues" : null,
-        "possibleTypes" : null
-      }, {
-        "kind" : "INPUT_OBJECT",
-        "name" : "ModelBooleanInput",
-        "description" : null,
-        "fields" : null,
-        "inputFields" : [ {
-          "name" : "ne",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "eq",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeExists",
-          "description" : null,
-          "type" : {
-            "kind" : "SCALAR",
-            "name" : "Boolean",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        }, {
-          "name" : "attributeType",
-          "description" : null,
-          "type" : {
-            "kind" : "ENUM",
-            "name" : "ModelAttributeTypes",
-            "ofType" : null
-          },
-          "defaultValue" : null
-        } ],
-        "interfaces" : null,
         "enumValues" : null,
         "possibleTypes" : null
       }, {
@@ -2522,6 +2477,51 @@
               "name" : "Int",
               "ofType" : null
             }
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "attributeExists",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "attributeType",
+          "description" : null,
+          "type" : {
+            "kind" : "ENUM",
+            "name" : "ModelAttributeTypes",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        } ],
+        "interfaces" : null,
+        "enumValues" : null,
+        "possibleTypes" : null
+      }, {
+        "kind" : "INPUT_OBJECT",
+        "name" : "ModelBooleanInput",
+        "description" : null,
+        "fields" : null,
+        "inputFields" : [ {
+          "name" : "ne",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
+          },
+          "defaultValue" : null
+        }, {
+          "name" : "eq",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "Boolean",
+            "ofType" : null
           },
           "defaultValue" : null
         }, {
@@ -3349,6 +3349,14 @@
         "onFragment" : false,
         "onField" : true
       }, {
+        "name" : "aws_iam",
+        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
+        "args" : [ ],
+        "onOperation" : false,
+        "onFragment" : false,
+        "onField" : false
+      }, {
         "name" : "aws_subscribe",
         "description" : "Tells the service which mutation triggers this subscription.",
         "locations" : [ "FIELD_DEFINITION" ],
@@ -3399,18 +3407,22 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "deprecated",
-        "description" : null,
-        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "name" : "aws_publish",
+        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
+        "locations" : [ "FIELD_DEFINITION" ],
         "args" : [ {
-          "name" : "reason",
-          "description" : null,
+          "name" : "subscriptions",
+          "description" : "List of subscriptions which will be published to when this mutation is called.",
           "type" : {
-            "kind" : "SCALAR",
-            "name" : "String",
-            "ofType" : null
+            "kind" : "LIST",
+            "name" : null,
+            "ofType" : {
+              "kind" : "SCALAR",
+              "name" : "String",
+              "ofType" : null
+            }
           },
-          "defaultValue" : "\"No longer supported\""
+          "defaultValue" : null
         } ],
         "onOperation" : false,
         "onFragment" : false,
@@ -3437,10 +3449,19 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_lambda",
-        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
-        "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
-        "args" : [ ],
+        "name" : "deprecated",
+        "description" : null,
+        "locations" : [ "FIELD_DEFINITION", "ENUM_VALUE" ],
+        "args" : [ {
+          "name" : "reason",
+          "description" : null,
+          "type" : {
+            "kind" : "SCALAR",
+            "name" : "String",
+            "ofType" : null
+          },
+          "defaultValue" : "\"No longer supported\""
+        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false
@@ -3453,31 +3474,10 @@
         "onFragment" : false,
         "onField" : false
       }, {
-        "name" : "aws_iam",
-        "description" : "Tells the service this field/object has access authorized by sigv4 signing.",
+        "name" : "aws_lambda",
+        "description" : "Tells the service this field/object has access authorized by a Lambda Authorizer.",
         "locations" : [ "OBJECT", "FIELD_DEFINITION" ],
         "args" : [ ],
-        "onOperation" : false,
-        "onFragment" : false,
-        "onField" : false
-      }, {
-        "name" : "aws_publish",
-        "description" : "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
-        "locations" : [ "FIELD_DEFINITION" ],
-        "args" : [ {
-          "name" : "subscriptions",
-          "description" : "List of subscriptions which will be published to when this mutation is called.",
-          "type" : {
-            "kind" : "LIST",
-            "name" : null,
-            "ofType" : {
-              "kind" : "SCALAR",
-              "name" : "String",
-              "ofType" : null
-            }
-          },
-          "defaultValue" : null
-        } ],
         "onOperation" : false,
         "onFragment" : false,
         "onField" : false

@@ -46,9 +46,9 @@ export const onDeleteActivity = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTextAnalysisResult = /* GraphQL */ `
-  subscription OnCreateTextAnalysisResult {
-    onCreateTextAnalysisResult {
+export const onCreateKzTextAnalysisResult = /* GraphQL */ `
+  subscription OnCreateKzTextAnalysisResult {
+    onCreateKzTextAnalysisResult {
       id
       Name
       TextContent
@@ -66,9 +66,9 @@ export const onCreateTextAnalysisResult = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTextAnalysisResult = /* GraphQL */ `
-  subscription OnUpdateTextAnalysisResult {
-    onUpdateTextAnalysisResult {
+export const onUpdateKzTextAnalysisResult = /* GraphQL */ `
+  subscription OnUpdateKzTextAnalysisResult {
+    onUpdateKzTextAnalysisResult {
       id
       Name
       TextContent
@@ -86,9 +86,9 @@ export const onUpdateTextAnalysisResult = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTextAnalysisResult = /* GraphQL */ `
-  subscription OnDeleteTextAnalysisResult {
-    onDeleteTextAnalysisResult {
+export const onDeleteKzTextAnalysisResult = /* GraphQL */ `
+  subscription OnDeleteKzTextAnalysisResult {
+    onDeleteKzTextAnalysisResult {
       id
       Name
       TextContent

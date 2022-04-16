@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import {createTextAnalysisResult} from '../../src/graphql/mutations'
+import {createKzTextAnalysisResult} from '../../src/graphql/mutations'
 import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
 import { v4 as uuid } from 'uuid';
@@ -62,7 +62,7 @@ const AddAnalysisResult =  ({ user, content, koziproResult }) => {
 
     console.log("analysisResultInput: ", analysisResultInput)
 
-    await API.graphql(graphqlOperation(createTextAnalysisResult, { input: analysisResultInput }))
+    await API.graphql(graphqlOperation(createKzTextAnalysisResult, { input: analysisResultInput }))
 
     //setIsShowSaveButton(!isShowSaveButton)
 

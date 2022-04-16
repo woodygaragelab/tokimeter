@@ -38,9 +38,9 @@ export const listActivitys = /* GraphQL */ `
     }
   }
 `;
-export const getTextAnalysisResult = /* GraphQL */ `
-  query GetTextAnalysisResult($id: ID!) {
-    getTextAnalysisResult(id: $id) {
+export const getKzTextAnalysisResult = /* GraphQL */ `
+  query GetKzTextAnalysisResult($id: ID!) {
+    getKzTextAnalysisResult(id: $id) {
       id
       Name
       TextContent
@@ -58,13 +58,13 @@ export const getTextAnalysisResult = /* GraphQL */ `
     }
   }
 `;
-export const listTextAnalysisResults = /* GraphQL */ `
-  query ListTextAnalysisResults(
-    $filter: ModelTextAnalysisResultFilterInput
+export const listKzTextAnalysisResults = /* GraphQL */ `
+  query ListKzTextAnalysisResults(
+    $filter: ModelKzTextAnalysisResultFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listTextAnalysisResults(
+    listKzTextAnalysisResults(
       filter: $filter
       limit: $limit
       nextToken: $nextToken

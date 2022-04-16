@@ -8,7 +8,7 @@ type Activity @model {
   member4:String!
 }
 
-type TextAnalysisResult @model {
+type KzTextAnalysisResult @model{
   id: ID!
   Name: String!
   TextContent:String!

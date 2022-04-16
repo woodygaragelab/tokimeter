@@ -6,8 +6,8 @@ import { addAnalysisResult } from './AddAnalysisResult';
 import Results from './Results';
 import Result from './Result'
 import Amplify,{API,graphqlOperation} from 'aws-amplify'
-import {listTextAnalysisResults} from '../graphql/queries';
-import { deleteTextAnalysisResult } from '../graphql/mutations';
+import {listKzTextAnalysisResults} from '../graphql/queries';
+import { deleteKzTextAnalysisResult } from '../graphql/mutations';
 
 
 const ResultList = () => {
@@ -21,8 +21,8 @@ const ResultList = () => {
     // fetch results by graphQL
     const fetchAnalysisResult = async () => {
         try {
-          const analysisResultData = await API.graphql(graphqlOperation(listTextAnalysisResults))
-          const analysisResultList = analysisResultData.data.listTextAnalysisResults.items
+          const analysisResultData = await API.graphql(graphqlOperation(listKzTextAnalysisResults))
+          const analysisResultList = analysisResultData.data.listKzTextAnalysisResults.items
           console.log('text analysis results list',analysisResultList)
           setAnalysisResult(analysisResultList)
         } catch (error) {
@@ -39,7 +39,7 @@ const ResultList = () => {
                 id: resultId,
             };
 
-            await API.graphql(graphqlOperation(deleteTextAnalysisResult,{input: analysisResultId}))
+            await API.graphql(graphqlOperation(deleteKzTextAnalysisResult,{input: analysisResultId}))
             fetchAnalysisResult();
 
         }

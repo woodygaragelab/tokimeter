@@ -55,12 +55,12 @@ export const deleteActivity = /* GraphQL */ `
     }
   }
 `;
-export const createTextAnalysisResult = /* GraphQL */ `
-  mutation CreateTextAnalysisResult(
-    $input: CreateTextAnalysisResultInput!
-    $condition: ModelTextAnalysisResultConditionInput
+export const createKzTextAnalysisResult = /* GraphQL */ `
+  mutation CreateKzTextAnalysisResult(
+    $input: CreateKzTextAnalysisResultInput!
+    $condition: ModelKzTextAnalysisResultConditionInput
   ) {
-    createTextAnalysisResult(input: $input, condition: $condition) {
+    createKzTextAnalysisResult(input: $input, condition: $condition) {
       id
       Name
       TextContent
@@ -78,12 +78,12 @@ export const createTextAnalysisResult = /* GraphQL */ `
     }
   }
 `;
-export const updateTextAnalysisResult = /* GraphQL */ `
-  mutation UpdateTextAnalysisResult(
-    $input: UpdateTextAnalysisResultInput!
-    $condition: ModelTextAnalysisResultConditionInput
+export const updateKzTextAnalysisResult = /* GraphQL */ `
+  mutation UpdateKzTextAnalysisResult(
+    $input: UpdateKzTextAnalysisResultInput!
+    $condition: ModelKzTextAnalysisResultConditionInput
   ) {
-    updateTextAnalysisResult(input: $input, condition: $condition) {
+    updateKzTextAnalysisResult(input: $input, condition: $condition) {
       id
       Name
       TextContent
@@ -101,12 +101,12 @@ export const updateTextAnalysisResult = /* GraphQL */ `
     }
   }
 `;
-export const deleteTextAnalysisResult = /* GraphQL */ `
-  mutation DeleteTextAnalysisResult(
-    $input: DeleteTextAnalysisResultInput!
-    $condition: ModelTextAnalysisResultConditionInput
+export const deleteKzTextAnalysisResult = /* GraphQL */ `
+  mutation DeleteKzTextAnalysisResult(
+    $input: DeleteKzTextAnalysisResultInput!
+    $condition: ModelKzTextAnalysisResultConditionInput
   ) {
-    deleteTextAnalysisResult(input: $input, condition: $condition) {
+    deleteKzTextAnalysisResult(input: $input, condition: $condition) {
       id
       Name
       TextContent
