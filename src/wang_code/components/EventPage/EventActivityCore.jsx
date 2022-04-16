@@ -4,17 +4,16 @@ import Amplify, { graphqlOperation } from "aws-amplify";
 import { API } from 'aws-amplify';
 import { Container, Form } from 'react-bootstrap';
 import Button from '@mui/material/Button';
-import { listActivitys } from '../../../graphql/queries'
+import { listKzActivitys } from '../../../graphql/queries'
 import { Paper, IconButton, CardContent } from '@material-ui/core';
 import { v4 as uuid } from 'uuid';
 
 import TextField from '@mui/material/TextField'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { createActivity, updateActivity, deleteActivity } from '../../../graphql/mutations';
+import { createKzActivity, deleteKzActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
-import PublishIcon from '@mui/icons-material/Publish';
 import CardActions from '@mui/material/CardActions'
 import DeleteIcon from '@mui/icons-material/Delete';
 import SaveIcon from '@mui/icons-material/Save';
@@ -34,8 +33,8 @@ function EventActivityCore() {
 
   const fetchActivity = async () => {
     try {
-      const activityData = await API.graphql(graphqlOperation(listActivitys))
-      const activityList = activityData.data.listActivitys.items;
+      const activityData = await API.graphql(graphqlOperation(listKzActivitys))
+      const activityList = activityData.data.listKzActivitys.items;
 
       setActivities(activityList)
     } catch (error) {
@@ -88,7 +87,7 @@ function EventActivityCore() {
       const { event, time, member1, member2, member3, member4 } = activityData;
 
 
-      const createActivityInput = {
+      const createKzActivityInput = {
         id: uuid(),
         event,
         time,
@@ -98,9 +97,9 @@ function EventActivityCore() {
         member4
       }
 
-      console.log("activity input",createActivityInput)
+      console.log("activity input",createKzActivityInput)
 
-      await API.graphql(graphqlOperation(createActivity, { input: createActivityInput }))
+      await API.graphql(graphqlOperation(createKzActivity, { input: createKzActivityInput }))
       onUpload(); // set seen/unseen button & fetch data from cloud. onUpload works as an parameter.
 
     }
@@ -194,7 +193,7 @@ function EventActivityCore() {
         id: activityId,
       };
 
-      await API.graphql(graphqlOperation(deleteActivity, { input: activityDetails }))
+      await API.graphql(graphqlOperation(deleteKzActivity, { input: activityDetails }))
       // イベントリストのリフレッシュと表示
       setShowAddActivity(false)
       fetchActivity()

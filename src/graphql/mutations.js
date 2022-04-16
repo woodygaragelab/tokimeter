@@ -1,12 +1,12 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createActivity = /* GraphQL */ `
-  mutation CreateActivity(
-    $input: CreateActivityInput!
-    $condition: ModelActivityConditionInput
+export const createKzActivity = /* GraphQL */ `
+  mutation CreateKzActivity(
+    $input: CreateKzActivityInput!
+    $condition: ModelKzActivityConditionInput
   ) {
-    createActivity(input: $input, condition: $condition) {
+    createKzActivity(input: $input, condition: $condition) {
       id
       event
       time
@@ -19,12 +19,12 @@ export const createActivity = /* GraphQL */ `
     }
   }
 `;
-export const updateActivity = /* GraphQL */ `
-  mutation UpdateActivity(
-    $input: UpdateActivityInput!
-    $condition: ModelActivityConditionInput
+export const updateKzActivity = /* GraphQL */ `
+  mutation UpdateKzActivity(
+    $input: UpdateKzActivityInput!
+    $condition: ModelKzActivityConditionInput
   ) {
-    updateActivity(input: $input, condition: $condition) {
+    updateKzActivity(input: $input, condition: $condition) {
       id
       event
       time
@@ -37,12 +37,12 @@ export const updateActivity = /* GraphQL */ `
     }
   }
 `;
-export const deleteActivity = /* GraphQL */ `
-  mutation DeleteActivity(
-    $input: DeleteActivityInput!
-    $condition: ModelActivityConditionInput
+export const deleteKzActivity = /* GraphQL */ `
+  mutation DeleteKzActivity(
+    $input: DeleteKzActivityInput!
+    $condition: ModelKzActivityConditionInput
   ) {
-    deleteActivity(input: $input, condition: $condition) {
+    deleteKzActivity(input: $input, condition: $condition) {
       id
       event
       time

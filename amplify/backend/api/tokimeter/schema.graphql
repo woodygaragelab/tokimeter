@@ -1,4 +1,4 @@
-type Activity @model {
+type KzActivity @model {
   id: ID!
   event: String!
   time: String!

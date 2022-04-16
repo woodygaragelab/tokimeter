@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateActivity = /* GraphQL */ `
-  subscription OnCreateActivity {
-    onCreateActivity {
+export const onCreateKzActivity = /* GraphQL */ `
+  subscription OnCreateKzActivity {
+    onCreateKzActivity {
       id
       event
       time
@@ -16,9 +16,9 @@ export const onCreateActivity = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateActivity = /* GraphQL */ `
-  subscription OnUpdateActivity {
-    onUpdateActivity {
+export const onUpdateKzActivity = /* GraphQL */ `
+  subscription OnUpdateKzActivity {
+    onUpdateKzActivity {
       id
       event
       time
@@ -31,9 +31,9 @@ export const onUpdateActivity = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteActivity = /* GraphQL */ `
-  subscription OnDeleteActivity {
-    onDeleteActivity {
+export const onDeleteKzActivity = /* GraphQL */ `
+  subscription OnDeleteKzActivity {
+    onDeleteKzActivity {
       id
       event
       time

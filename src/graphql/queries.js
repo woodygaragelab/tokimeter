@@ -1,9 +1,9 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getActivity = /* GraphQL */ `
-  query GetActivity($id: ID!) {
-    getActivity(id: $id) {
+export const getKzActivity = /* GraphQL */ `
+  query GetKzActivity($id: ID!) {
+    getKzActivity(id: $id) {
       id
       event
       time
@@ -16,13 +16,13 @@ export const getActivity = /* GraphQL */ `
     }
   }
 `;
-export const listActivitys = /* GraphQL */ `
-  query ListActivitys(
-    $filter: ModelActivityFilterInput
+export const listKzActivitys = /* GraphQL */ `
+  query ListKzActivitys(
+    $filter: ModelKzActivityFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listActivitys(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listKzActivitys(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         event
