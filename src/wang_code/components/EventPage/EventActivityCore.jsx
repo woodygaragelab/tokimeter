@@ -22,6 +22,7 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import InputAdornment from '@mui/material/InputAdornment';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import EventActivityEdit from './EventActivityEdit'
 
 Amplify.configure(awsExports);
 
@@ -30,7 +31,9 @@ function EventActivityCore() {
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
 
-  const [editing,setEditing] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+
+  console.log("Editing state",isEditing)
 
 
   useEffect(() => {
@@ -103,7 +106,7 @@ function EventActivityCore() {
         member4
       }
 
-      console.log("activity input",createKzActivityInput)
+      console.log("activity input", createKzActivityInput)
 
       await API.graphql(graphqlOperation(createKzActivity, { input: createKzActivityInput }))
       onUpload(); // set seen/unseen button & fetch data from cloud. onUpload works as an parameter.
@@ -159,7 +162,7 @@ function EventActivityCore() {
               label="Member1"
               value={activityData.member1}
               variant="standard"
-              onChange={e => setActivityData({ ...activityData, member1: e.target.value })} 
+              onChange={e => setActivityData({ ...activityData, member1: e.target.value })}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
@@ -167,21 +170,21 @@ function EventActivityCore() {
                   </InputAdornment>
                 ),
               }}
-              />
+            />
           </Box>
           <Box>
             <TextField
               label="Member2"
               value={activityData.member2}
               variant="standard"
-              onChange={e => setActivityData({ ...activityData, member2: e.target.value })} 
+              onChange={e => setActivityData({ ...activityData, member2: e.target.value })}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <AccountCircle />
                   </InputAdornment>
                 ),
-              }}/>
+              }} />
 
           </Box>
 
@@ -190,14 +193,14 @@ function EventActivityCore() {
               label="Member3"
               value={activityData.member3}
               variant="standard"
-              onChange={e => setActivityData({ ...activityData, member3: e.target.value })} 
+              onChange={e => setActivityData({ ...activityData, member3: e.target.value })}
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
                     <AccountCircle />
                   </InputAdornment>
                 ),
-              }}/>
+              }} />
 
           </Box>
 
@@ -262,6 +265,7 @@ function EventActivityCore() {
           {activities.map((activity, idx) => {
             return <Paper variant='outlined' elevation={2} key={`activity${idx}`}>
               <Card>
+                {isEditing?(
                 <CardContent>
 
 
@@ -275,14 +279,17 @@ function EventActivityCore() {
                   {activity.member4 ? (<div>Member4: {activity.member4}</div>) : <div></div>}
 
                 </CardContent>
+                ):<EventActivityEdit key={idx} activity={activity}/>
+             
+                }
                 <CardActions>
                   <IconButton aria-label="delete" size='small' onClick={() => removeActivity(activity.id)}　>
 
                     <DeleteIcon />
                     削除
                   </IconButton>
-                  <IconButton aria-label="delete" size='small' disabled>
-
+                  <IconButton aria-label="delete" size='small' onClick={() => setIsEditing(!isEditing)} disabled>
+                      
                     <EditIcon />
                     編集（Coming soon)
                   </IconButton>
