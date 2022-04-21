@@ -31,7 +31,9 @@ function EventActivityCore() {
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
 
-  const [isEditing, setIsEditing] = useState(false)
+  const [isEditing, setIsEditing] = useState(true)
+
+  const [initialId,setInitialId] = useState("")
 
   console.log("Editing state",isEditing)
 
@@ -254,6 +256,15 @@ function EventActivityCore() {
 
   }
 
+  //イベントの編集
+  const editActivity = async (activityData) => {
+    const activityId = activityData.id;
+    console.log("id:",activityId)
+
+   
+  }
+
+  
 
 
   return (
@@ -262,10 +273,12 @@ function EventActivityCore() {
         <h3> 脈ありイベント</h3>
         <br />
         <div>
+          
           {activities.map((activity, idx) => {
+            
             return <Paper variant='outlined' elevation={2} key={`activity${idx}`}>
               <Card>
-                {isEditing?(
+                {isEditing ? (
                 <CardContent>
 
 
@@ -279,7 +292,7 @@ function EventActivityCore() {
                   {activity.member4 ? (<div>Member4: {activity.member4}</div>) : <div></div>}
 
                 </CardContent>
-                ):<EventActivityEdit key={idx} activity={activity}/>
+                ):<EventActivityEdit key={idx} activity={activity} />
              
                 }
                 <CardActions>
@@ -288,16 +301,17 @@ function EventActivityCore() {
                     <DeleteIcon />
                     削除
                   </IconButton>
-                  <IconButton aria-label="delete" size='small' onClick={() => setIsEditing(!isEditing)} disabled>
+                  <IconButton aria-label="delete" size='small' onClick={() => setIsEditing(!isEditing)} >
                       
                     <EditIcon />
                     編集（Coming soon)
                   </IconButton>
                 </CardActions>
-
+                
               </Card>
             </Paper>
           })}
+          
           {
             showAddActivity ? (
               <AddActivity onUpload={() => {
