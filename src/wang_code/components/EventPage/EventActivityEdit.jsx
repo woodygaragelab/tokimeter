@@ -40,33 +40,33 @@ function EventActivityEdit({ activity }) {
 
                 /></Box>
             <Box>
-                {activity.member2 ? (
+               
                     <TextField
                         label="Member2"
                         defaultValue={activity.member2}
                         onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
                         variant="standard"
 
-                    />) : <div></div>}</Box>
+                    /></Box>
             <Box>
-                {activity.member3 ? (
+              
                     <TextField
                         label="Member3"
                         defaultValue={activity.member3}
                         onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
                         variant="standard"
 
-                    />) : <div></div>}
+                    />
             </Box>
             <Box>
-                {activity.member4 ? (
+              
                     <TextField
                         label="Member4"
                         defaultValue={activity.member4}
                         onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
                         variant="standard"
 
-                    />) : <div></div>}
+                    />
             </Box>
             <Button >
                 保存
