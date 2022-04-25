@@ -33,9 +33,13 @@ function EventActivityCore() {
 
   const [isEditing, setIsEditing] = useState(true)
 
-  const [initialId,setInitialId] = useState("")
+  const [editActivityId,setEditActivityId] = useState(null)
 
   console.log("Editing state",isEditing)
+
+  const handleEditClick = (activity) => {
+    setEditActivityId(activity.id)
+  }
 
 
   useEffect(() => {
@@ -278,7 +282,7 @@ function EventActivityCore() {
             
             return <Paper variant='outlined' elevation={2} key={`activity${idx}`}>
               <Card>
-                {isEditing ? (
+                {editActivityId != activity.id ? (
                 <CardContent>
 
 
@@ -301,7 +305,7 @@ function EventActivityCore() {
                     <DeleteIcon />
                     削除
                   </IconButton>
-                  <IconButton aria-label="delete" size='small' onClick={() => setIsEditing(!isEditing)} >
+                  <IconButton aria-label="delete" size='small' onClick={() => handleEditClick(activity)} >
                       
                     <EditIcon />
                     編集（Coming soon)
