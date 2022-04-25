@@ -3,8 +3,10 @@ import { Paper, IconButton, CardContent } from '@material-ui/core';
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
+import CardActions from '@mui/material/CardActions'
 
-function EventActivityEdit({ activity }) {
+function EventActivityEdit({ activity,handleBackClick }) {
 
     console.log("activity", activity.id)
 
@@ -71,6 +73,15 @@ function EventActivityEdit({ activity }) {
             <Button >
                 保存
             </Button>
+
+            <CardActions>
+                  <IconButton aria-label="delete" size='small'　onClick={() => handleBackClick(activity)}>
+
+                    <SettingsBackupRestoreIcon />
+                    戻す
+                  </IconButton>
+                  
+                </CardActions>
 
 
         </CardContent>

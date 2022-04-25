@@ -31,14 +31,14 @@ function EventActivityCore() {
   const [activities, setActivities] = useState([])
   const [showAddActivity, setShowAddActivity] = useState(false)
 
-  const [isEditing, setIsEditing] = useState(true)
-
   const [editActivityId,setEditActivityId] = useState(null)
-
-  console.log("Editing state",isEditing)
 
   const handleEditClick = (activity) => {
     setEditActivityId(activity.id)
+  }
+
+  const handleBackClick = (activity) => {
+    setEditActivityId(null)
   }
 
 
@@ -282,7 +282,9 @@ function EventActivityCore() {
             
             return <Paper variant='outlined' elevation={2} key={`activity${idx}`}>
               <Card>
+               
                 {editActivityId != activity.id ? (
+                  <div>
                 <CardContent>
 
 
@@ -296,9 +298,6 @@ function EventActivityCore() {
                   {activity.member4 ? (<div>Member4: {activity.member4}</div>) : <div></div>}
 
                 </CardContent>
-                ):<EventActivityEdit key={idx} activity={activity} />
-             
-                }
                 <CardActions>
                   <IconButton aria-label="delete" size='small' onClick={() => removeActivity(activity.id)}　>
 
@@ -308,9 +307,17 @@ function EventActivityCore() {
                   <IconButton aria-label="delete" size='small' onClick={() => handleEditClick(activity)} >
                       
                     <EditIcon />
-                    編集（Coming soon)
+                    編集
                   </IconButton>
                 </CardActions>
+                </div>
+                ):<EventActivityEdit key={idx} activity={activity} handleBackClick={handleBackClick} />
+
+                
+             
+                }
+            
+                
                 
               </Card>
             </Paper>
