@@ -30,7 +30,9 @@ function Header(props) {
         {/* </IconButton>   */}
         {/* </Box> */}
         <Box sx={{ flexGrow: 1, fontSize: 24, fontWeight: 'bold' }}> {/* border={1}> */}
-          Kozipro 0414
+        <Link to='/homepage'>
+          Kozipro 0426
+        </Link>
         </Box>
         <Link to='/settingspage'>
         <SettingsIcon />
