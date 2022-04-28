@@ -1,30 +1,24 @@
 import React from 'react'
-//import { Component }  from 'react';
-import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
-import { useState }   from 'react';                         // state（コンポネント単位のデータ保存機能）
-import { useEffect }  from 'react';                         // effect (state変化したときの処理機能)
-import { useRef }     from 'react'; 
-import { Storage }    from 'aws-amplify';
+import { useState, useEffect, useRef } from 'react';                        
+import { withRouter }                  from 'react-router-dom';  // router (画面遷移制御)機能
+import { Link }                        from 'react-router-dom';
+import { Storage }                     from 'aws-amplify';
 
-import { ThemeProvider, createTheme } from '@material-ui/core/styles';
-import pink from '@material-ui/core/colors/pink';
-import { Box } from '@material-ui/core';
+import { ThemeProvider, createTheme }  from '@material-ui/core/styles';
+import pink                            from '@material-ui/core/colors/pink';
+import { Box }                         from '@material-ui/core';
+import AddCircleIcon                   from '@mui/icons-material/AddCircle';
+import SyncIcon                        from '@mui/icons-material/Sync';
+
+import useSound                        from 'use-sound';
+import Sound                           from './sound/buttonsound_37.mp3';
 
 import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
 
-import Header from "./components/header";
-import Footer from "./components/footer";
-
+import Header        from "./components/header";
+import Footer        from "./components/footer";
 import default_icon  from './img/default_icon.jpg'   // homepageに表示する顔写真
 import img_circle    from './img/circle.png' 
-
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import SyncIcon      from '@mui/icons-material/Sync';
-
-import useSound from 'use-sound';
-import Sound from './sound/buttonsound_37.mp3';
-
-import { Link, useHistory } from 'react-router-dom';
 
 const theme = createTheme({ 
   palette: {
@@ -42,39 +36,40 @@ const HomePage = (props) => {
   const circle_dia    = 200;     // meの周りの同心円の直径の初期値
   const circle_amp    = 50;      // meの周りの同心円の直径の振幅
   
+  const [img_me,  setImgMe]     = useState(default_icon); // me用のimages
   const [members, setMembers]   = useState([]); // memberのデータ
-  const [images,   setImages]   = useState([]); // 表示用のimages。membersから作る
+  const [images,  setImages]    = useState([]); // 表示用のimages。membersから作る
+  const [datetime, setDateTime] = useState(new Date());  
 
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [circle,   setCircle]   = useState(circle_init);  
 
-  const [play, { stop, pause }] = useSound(Sound);
-
-  const [datetime, setDateTime] = useState(new Date());  
+  const [play] = useSound(Sound);
   
   const getMembers = () => {
-    console.log("getMembers");
-    var myHeaders = new Headers();
+    var myHeaders      = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({"userid":"woody"});
+    var raw            = JSON.stringify({"userid":"woody"});
     var requestOptions = {method: 'POST', headers: myHeaders, body: raw, redirect: 'follow' };
     fetch(" https://hxejb9ahd9.execute-api.ap-northeast-1.amazonaws.com/dev/", requestOptions)
     .then(response => response.text())
     .then(async(response) => {
       const apiData = JSON.parse(response);
-      //console.log(apiData);
-      apiData.map(async item => {
+      apiData.forEach(async item => {
         if (item.imagefile) {
-          // imageFile名からimageUrlを取得する
-          let dataExpireSeconds = (3 * 60);
-          const imageurl = await Storage.get(item.imagefile, { expires: dataExpireSeconds });
-          item.imageurl = imageurl;
-          console.log("imageurl set")
-          setMembers(apiData);
-          return item;    
+            // imageFile名からアクセス用imageUrlを取得する. 有効期間=180 秒
+            item.imageurl = await Storage.get(item.imagefile, { expires: 180 });
+            if (item.memberid == 0) {        // me用のimage urlを保存する
+              setImgMe(item.imageurl);
+            }
         }
-        return item;    
       })
+
+      // member だけfilterする。 
+      var memberData = apiData.filter(function(member) {
+        return member.memberid !== 0;                    // memberid=0(me)はmemberDataに入れない
+      });
+      setMembers(memberData);
     })
     .catch(error => console.log('error', error));
   };
@@ -84,7 +79,13 @@ const HomePage = (props) => {
       audioContext.current.resume();
     }
     play();
+    props.history.push({
+      pathname: '/settingspage',
+      state: {  imageurl:img_me }  // meのimageurl
+    });
+
   };
+
   const clickC = (index) => {
     let members_new = [...members];  // membersのコピーを作ってから更新する
     members_new[index].score = 1.0-(1.0-members_new[index].score)*0.8; // scoreの更新
@@ -106,34 +107,27 @@ const HomePage = (props) => {
   }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
 
   useEffect(() => {            // membersが更新されたらimagesを更新する
-    console.log("members useeffect")
-
-    let images_new = members.map((member,index)=>{   
-      let image_new = {"id":member.memberid, "imageurl":member.imageurl,
-                     "dir":member.memberid*45, "score":member.score}; 
-      return image_new;
+    let images_new = members.map((member)=>{   
+      return {"id":member.memberid, "imageurl":member.imageurl,
+              "dir":member.memberid*45, "score":member.score}; 
     });
     setImages(images_new);
   }, [members]);             
 
-  const moveImage = () => {                                // imageの表示位置を動かす
-    //console.log("members=",members);
-    //console.log("images=",images);
+  const moveImage = () => {                                // imageの表示位置を動かす関数
 
-    let images_new = images.map((image,index)=>{      // imageのリストをcopyして更新する
+    let images_new = images.map((image,index)=>{           // 移動後のimageのリスト。元をcopyして更新する
       let image_new = {"id":image.id, "imageurl":image.imageurl,
-                       "dir":image.dir, "score":image.score}; // imageをコピーする
+                       "dir":image.dir, "score":image.score};               // imageをコピーする
       image_new.imageurl = members[index].imageurl; // image urlはmembersから再度取得する。非同期で遅れて更新されるので 
-      //console.log("moveimage image_new.imageurl=",image_new.imageurl);
-      let dd        = Math.sin(Math.PI/180 * image.dir * 4) * 0.2;      // meとの距離の振動変位
+      let dd        = Math.sin(Math.PI/180 * image.dir * 4) * 0.2;          // meとの距離の振動変位
       let score     = image.score; 
-      let distance  = distance_init * (1.0 + dd) * (1.0-score*score);    // meとの距離
-      image_new.dir = image.dir + 0.1;                                   // 表示位置角度を進める
-
-      let dx = distance * Math.cos(Math.PI/180 * image.dir);           // meとの距離(x座標)
-      let dy = distance * Math.sin(Math.PI/180 * image.dir) * -1.0;    // meとの距離(y座標)(上下逆)
-      image_new.x = x_me+dx;                                           // imageのx座標(left)
-      image_new.y = y_me+dy;                                           // imageのy座標(top)
+      let distance  = distance_init * (1.0 + dd) * (1.0-score*score);       // meとの距離
+      image_new.dir = image.dir + 0.1;                                      // 表示位置角度を進める
+      let dx        = distance * Math.cos(Math.PI/180 * image.dir);         // meとの距離(x座標)
+      let dy        = distance * Math.sin(Math.PI/180 * image.dir) * -1.0;  // meとの距離(y座標)(上下逆)
+      image_new.x   = x_me+dx;                                              // imageのx座標(left)
+      image_new.y   = y_me+dy;                                              // imageのy座標(top)
       return image_new;
     });
     setImages(images_new);
@@ -166,11 +160,11 @@ const HomePage = (props) => {
           <img src={circle.img} height="100%" width="100%" alt="circle"/>
         </Box>
         {/* meを配置する */}
-        <Link to='/settingspage'>
+        {/* <Link to='/settingspage'> */}
           <Box sx={{height:size_me, width:size_me, position: 'absolute', left:x_me, top: y_me}}>
-            <img src={default_icon} className="kzImage2" alt="img1_me" onClick={() => clickA()}/>
+            <img src={img_me} className="kzImage2" alt="img1_me" onClick={() => clickA()}/>
           </Box>
-        </Link>
+        {/* </Link> */}
         {/* member imgageを配置する */}
         {images.map((image, index) => (
           <Box key={image.id} sx={{height:100, width:100, position:'absolute', left:image.x, top:image.y }} >

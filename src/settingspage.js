@@ -1,19 +1,12 @@
 import React from 'react'
-import { Component } from 'react';
-import { withRouter } from 'react-router-dom';              // router (画面遷移制御)機能
-import { Storage } from 'aws-amplify';
-
+import { Component }        from 'react';
+import { withRouter }       from 'react-router-dom';              // router (画面遷移制御)機能
 import { Link, useHistory } from 'react-router-dom';
+import { Storage }          from 'aws-amplify';
 
+// material ui
 import { ThemeProvider, createTheme } from '@material-ui/core/styles';
 import pink from '@material-ui/core/colors/pink';
-
-import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
-
-import Header from "./components/header";
-import Footer from "./components/footer";
-//import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
-
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 //テンプレから追加
@@ -34,6 +27,12 @@ import { Box } from '@material-ui/core';
 //テンプレから追加（Upload button）// 
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
+
+// アプリ用css, component
+import './App.css';                  // アプリ共通StyleSheet。kzXxxxx のスタイルはすべてここで定義する
+import Header from "./components/header";
+import Footer from "./components/footer";
+//import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
 
 const Input = styled('input')({
   display: 'none',
@@ -80,17 +79,13 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 class SettingsPage extends Component {       // SettingsPage:設定ページ
   constructor(props){                    // props: SettingsPageコンポネントが受け取るパラメータ
     super(props);
-    // takamura 追加 -->>
     this.onChangeImage = this.onChangeImage.bind(this);
     this.state = {
       imagefilename: "",
-      imageurl: ""
+      imageurl: this.props.location.state.imageurl
     };
-    // <<-- takamura 追加
-
   }
   
-  // takamura 追加 -->>
   async onChangeImage(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
@@ -101,9 +96,25 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
       // imageFile名からimageUrlを取得する
       const imageurl = await Storage.get(this.state.imagefile);
       this.setState({imageurl: imageurl});
+      this.save();
     }
   }
-  // <<-- takamura 追加
+  
+  // me の data をDB(kzmember table)に保存する
+  save() {
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw = JSON.stringify( {"userid":"woody",
+                                "memberid":0,  // meのimageは memberid=0 として登録する
+                                "imagefile":this.state.imagefile,
+                                "imageurl":this.state.imageurl,
+                                "score": 0
+                            } );
+    var requestOptions = {method: 'POST', headers: myHeaders, body: raw, redirect: 'follow' };
+    fetch("https://z52l9dtggi.execute-api.ap-northeast-1.amazonaws.com/dev/", requestOptions)
+    .catch(error => console.log('error', error));
+
+  }
 
 
   render() {
@@ -113,8 +124,6 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
       <Header/>
       <Box component="span" sx={{ p: 2, border: '1px dashed grey', bgcolor: 'text.disabled', position: 'absolute',left:0, top:0, width:'100%', height:'25%'}}>
       <Box sx={{position: 'absolute', right:'3%', bottom:'3%', height:'25%', fontSize:"middle"}}>
-      {/* change takamura --> */}
-        {/* <UploadButtons><AddAPhotoIcon/></UploadButtons> */}
         <Stack direction="row" alignItems="center" spacing={2}>
         <label htmlFor="icon-button-file">
           <Input accept="image/*" id="icon-button-file" type="file" className="form-control" onChange={this.onChangeImage}/>
@@ -123,7 +132,6 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
           </IconButton>
         </label>
         </Stack>
-      {/* <-- change takamura */}
       </Box>
       </Box>
 
@@ -133,8 +141,6 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}//緑のアイコンの位置
         variant="dot"
       >
-        {/* change takamura */}
-        {/* <Avatar alt="Me"src={default_icon} sx={{ width: 56, height: 56 }}/> */}
         <Avatar alt="Me" src={this.state.imageurl} sx={{ width: 56, height: 56 }}/>
         
       </StyledBadge>
