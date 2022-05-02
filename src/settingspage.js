@@ -96,7 +96,7 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
     //console.log(cognitoUser.username);
     this.state = {
       imagefilename: "",
-      imageurl: this.props.location.state.imageurl,
+      imageurl: "", //this.props.location.state.imageurl,
       username: username_init
     };
   }
@@ -119,9 +119,9 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
   save() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    //var raw = JSON.stringify( {"userid":"woody",
     var raw = JSON.stringify( {"userid":this.state.username,
                                 "memberid":0,  // meのimageは memberid=0 として登録する
+                                "membername":"me",
                                 "imagefile":this.state.imagefile,
                                 "imageurl":this.state.imageurl,
                                 "score": 0

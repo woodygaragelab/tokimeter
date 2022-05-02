@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect, useRef } from 'react';                        
 import { withRouter }                  from 'react-router-dom';  // router (画面遷移制御)機能
-import { Link }                        from 'react-router-dom';
+//import { Link }                        from 'react-router-dom';
 import { Storage }                     from 'aws-amplify';
 
 import { ThemeProvider, createTheme }  from '@material-ui/core/styles';
@@ -63,7 +63,6 @@ const HomePage = (props) => {
   const getMembers = () => {
     var myHeaders      = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    //var raw            = JSON.stringify({"userid":"woody"});
     var raw            = JSON.stringify({"userid":username});
     var requestOptions = {method: 'POST', headers: myHeaders, body: raw, redirect: 'follow' };
     fetch(" https://hxejb9ahd9.execute-api.ap-northeast-1.amazonaws.com/dev/", requestOptions)

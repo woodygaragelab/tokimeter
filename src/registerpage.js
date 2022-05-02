@@ -50,9 +50,11 @@ const theme = createTheme({
 class RegisterPage extends Component {   // RegisterPage:設定ページ
   constructor(props){                    // props: RegisterPageコンポネントが受け取るパラメータ
     super(props);
-    this.onChangeImage = this.onChangeImage.bind(this);
+    this.onChangeMemberName = this.onChangeMemberName.bind(this);
+    this.onChangeImage      = this.onChangeImage.bind(this);
     this.state = {
       memberid: this.props.location.state.memberid,
+      membername: "",
       imagefile: "",
       imageurl: "",
       score: 0.5,
@@ -60,6 +62,12 @@ class RegisterPage extends Component {   // RegisterPage:設定ページ
     };
   }
   
+  onChangeMemberName(e) {
+    if (!e.target) return
+    const membername = e.target.value;
+    this.setState({membername: membername });
+  }
+
   async onChangeImage(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
@@ -76,9 +84,9 @@ class RegisterPage extends Component {   // RegisterPage:設定ページ
   save() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    //var raw = JSON.stringify( {"userid":"woody",
     var raw = JSON.stringify( {"userid":this.state.username,
-                                "memberid":this.state.memberid,  //this.state.member.memberid,
+                                "memberid":this.state.memberid, 
+                                "membername":this.state.membername, 
                                 "imagefile":this.state.imagefile,
                                 "imageurl":"",
                                 "score": this.state.score
@@ -96,9 +104,9 @@ class RegisterPage extends Component {   // RegisterPage:設定ページ
       <Footer pageid="3"/>
       <Header/>
       <Box sx={{position: 'absolute', left:'42%', top:'20%', fontSize:"middle"}}>
-      <TextField
-          label="name" //3/24 テキストフィールドを表示させているだけの状態(入力データは保存されない)
-          />
+        <TextField onChange={this.onChangeMemberName}
+          label="name" // 5/2 入力データを保存するように修正
+        />
       </Box>
       <Box sx={{position: 'absolute', left:'47%', top:'50%', fontSize:"middle"}}>
         <Stack direction="row" alignItems="center" spacing={2}>
