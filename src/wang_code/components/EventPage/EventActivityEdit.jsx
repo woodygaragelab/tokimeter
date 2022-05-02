@@ -6,13 +6,13 @@ import Button from '@mui/material/Button';
 import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import CardActions from '@mui/material/CardActions'
 
-function EventActivityEdit({ activity,handleBackClick }) {
+function EventActivityEdit({ activity,handleBackClick,editActivity }) {
 
     console.log("activity", activity.id)
 
     // 編集後のイベントデータ
     const [EditactivityData, setEditActivityData] = useState([])
-
+    
     return (
         <CardContent>
             EDIT TEST
@@ -20,7 +20,7 @@ function EventActivityEdit({ activity,handleBackClick }) {
                 <TextField
                     label="Event"
                     defaultValue={activity.event}
-                    onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
+                    onChange={e => setEditActivityData({ ...activity, event: e.target.value })}
                     variant="standard"
 
                 /></Box>
@@ -29,7 +29,7 @@ function EventActivityEdit({ activity,handleBackClick }) {
                     label="Time"
                     type="time"
                     defaultValue={activity.time}
-                    onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
+                    onChange={e => setEditActivityData({ ...activity, time: e.target.value })}
                     variant="standard"
 
                 /></Box>
@@ -37,7 +37,7 @@ function EventActivityEdit({ activity,handleBackClick }) {
                 <TextField
                     label="Member1"
                     defaultValue={activity.member1}
-                    onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
+                    onChange={e => setEditActivityData({ ...activity, member1: e.target.value })}
                     variant="standard"
 
                 /></Box>
@@ -46,7 +46,7 @@ function EventActivityEdit({ activity,handleBackClick }) {
                     <TextField
                         label="Member2"
                         defaultValue={activity.member2}
-                        onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
+                        onChange={e => setEditActivityData({ ...activity, member2: e.target.value })}
                         variant="standard"
 
                     /></Box>
@@ -55,7 +55,7 @@ function EventActivityEdit({ activity,handleBackClick }) {
                     <TextField
                         label="Member3"
                         defaultValue={activity.member3}
-                        onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
+                        onChange={e => setEditActivityData({ ...activity, member3: e.target.value })}
                         variant="standard"
 
                     />
@@ -65,12 +65,12 @@ function EventActivityEdit({ activity,handleBackClick }) {
                     <TextField
                         label="Member4"
                         defaultValue={activity.member4}
-                        onChange={e => setEditActivityData({ ...EditactivityData, event: e.target.value })}
+                        onChange={e => setEditActivityData({ ...activity, member4: e.target.value })}
                         variant="standard"
 
                     />
             </Box>
-            <Button >
+            <Button onClick={() => editActivity(EditactivityData)}>
                 保存
             </Button>
 

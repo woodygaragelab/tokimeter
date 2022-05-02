@@ -11,7 +11,7 @@ import { v4 as uuid } from 'uuid';
 import TextField from '@mui/material/TextField'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import { createKzActivity, deleteKzActivity } from '../../../graphql/mutations';
+import { createKzActivity, deleteKzActivity,updateKzActivity } from '../../../graphql/mutations';
 import Card from '@mui/material/Card';
 import Box from '@mui/material/Box'
 import CardActions from '@mui/material/CardActions'
@@ -23,6 +23,9 @@ import InputAdornment from '@mui/material/InputAdornment';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import EventActivityEdit from './EventActivityEdit'
+
+
+
 
 Amplify.configure(awsExports);
 
@@ -263,13 +266,36 @@ function EventActivityCore() {
   //イベントの編集
   const editActivity = async (activityData) => {
     const activityId = activityData.id;
-    console.log("id:",activityId)
+    console.log("edit event:",activityData.event)
+
+    const isSaveEdit = window.confirm("編集済みのイベントを保存しましょうか？")
+  
+    if(isSaveEdit){
 
    
-  }
+
+    const { event, time, member1, member2, member3, member4 } = activityData;
 
   
 
+    const activityActivity = {
+      id: activityId,
+      event:event,
+      time:time,
+      member1:member1,
+      member2:member2,
+      member3:member3,
+      member4:member4
+    }
+
+    const updatedActivity = await API.graphql({query:updateKzActivity,variables:{input:activityActivity}})
+    
+    setEditActivityId(null)
+    fetchActivity() }
+    
+  }
+
+  
 
   return (
     <Container>
@@ -304,14 +330,14 @@ function EventActivityCore() {
                     <DeleteIcon />
                     削除
                   </IconButton>
-                  <IconButton aria-label="delete" size='small' onClick={() => handleEditClick(activity)} >
+                  <IconButton aria-label="delete" size='small' onClick={() => handleEditClick(activity)}>
                       
                     <EditIcon />
                     編集
                   </IconButton>
                 </CardActions>
                 </div>
-                ):<EventActivityEdit key={idx} activity={activity} handleBackClick={handleBackClick} />
+                ):<EventActivityEdit key={idx} activity={activity} handleBackClick={handleBackClick} editActivity={editActivity}/>
 
                 
              
