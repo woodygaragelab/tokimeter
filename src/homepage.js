@@ -19,6 +19,12 @@ import Header        from "./components/header";
 import Footer        from "./components/footer";
 import default_icon  from './img/default_icon.jpg'   // homepageに表示する顔写真
 import img_circle    from './img/circle.png' 
+import { CognitoUserPool } from "amazon-cognito-identity-js"
+import awsConfiguration    from './awsConfiguration'
+const userPool = new CognitoUserPool({
+  UserPoolId: awsConfiguration.UserPoolId,
+  ClientId:   awsConfiguration.ClientId,
+})
 
 const theme = createTheme({ 
   palette: {
@@ -35,6 +41,13 @@ const HomePage = (props) => {
   const distance_init = 300;     // meとの距離の初期値(score=0の時の距離)
   const circle_dia    = 200;     // meの周りの同心円の直径の初期値
   const circle_amp    = 50;      // meの周りの同心円の直径の振幅
+
+  const cognitoUser = userPool.getCurrentUser();
+  var username_init = "default_user";
+  if (cognitoUser) {
+    username_init = cognitoUser.username;
+  }
+  //console.log(username_init);
   
   const [img_me,  setImgMe]     = useState(default_icon); // me用のimages
   const [members, setMembers]   = useState([]); // memberのデータ
@@ -43,13 +56,15 @@ const HomePage = (props) => {
 
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [circle,   setCircle]   = useState(circle_init);  
+  const [username, setUserName] = useState(username_init);  
 
   const [play] = useSound(Sound);
   
   const getMembers = () => {
     var myHeaders      = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    var raw            = JSON.stringify({"userid":"woody"});
+    //var raw            = JSON.stringify({"userid":"woody"});
+    var raw            = JSON.stringify({"userid":username});
     var requestOptions = {method: 'POST', headers: myHeaders, body: raw, redirect: 'follow' };
     fetch(" https://hxejb9ahd9.execute-api.ap-northeast-1.amazonaws.com/dev/", requestOptions)
     .then(response => response.text())

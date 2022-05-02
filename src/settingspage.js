@@ -34,6 +34,14 @@ import Header from "./components/header";
 import Footer from "./components/footer";
 //import default_icon       from './img/default_icon.jpg'   // settingspageに表示する顔写真
 
+import { CognitoUserPool } from "amazon-cognito-identity-js"
+import awsConfiguration    from './awsConfiguration'
+const userPool = new CognitoUserPool({
+  UserPoolId: awsConfiguration.UserPoolId,
+  ClientId:   awsConfiguration.ClientId,
+})
+
+
 const Input = styled('input')({
   display: 'none',
 });
@@ -80,9 +88,16 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
   constructor(props){                    // props: SettingsPageコンポネントが受け取るパラメータ
     super(props);
     this.onChangeImage = this.onChangeImage.bind(this);
+    const cognitoUser = userPool.getCurrentUser()
+    var username_init = "default_user";
+    if (cognitoUser) {
+      username_init = cognitoUser.username;
+    }
+    //console.log(cognitoUser.username);
     this.state = {
       imagefilename: "",
-      imageurl: this.props.location.state.imageurl
+      imageurl: this.props.location.state.imageurl,
+      username: username_init
     };
   }
   
@@ -104,7 +119,8 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
   save() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify( {"userid":"woody",
+    //var raw = JSON.stringify( {"userid":"woody",
+    var raw = JSON.stringify( {"userid":this.state.username,
                                 "memberid":0,  // meのimageは memberid=0 として登録する
                                 "imagefile":this.state.imagefile,
                                 "imageurl":this.state.imageurl,

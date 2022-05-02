@@ -22,6 +22,20 @@ import Stack from '@mui/material/Stack';
 
 import ListItemText from '@mui/material/ListItemText';
 
+import { CognitoUserPool } from "amazon-cognito-identity-js"
+import awsConfiguration    from './awsConfiguration'
+
+const userPool = new CognitoUserPool({
+  UserPoolId: awsConfiguration.UserPoolId,
+  ClientId:   awsConfiguration.ClientId,
+})
+const cognitoUser = userPool.getCurrentUser();
+var username_init = "default_user";
+if (cognitoUser) {
+  username_init = cognitoUser.username;
+}
+
+
 const Input = styled('input')({
   display: 'none',
 });
@@ -41,7 +55,8 @@ class RegisterPage extends Component {   // RegisterPage:設定ページ
       memberid: this.props.location.state.memberid,
       imagefile: "",
       imageurl: "",
-      score: 0.5
+      score: 0.5,
+      username: username_init
     };
   }
   
@@ -61,10 +76,11 @@ class RegisterPage extends Component {   // RegisterPage:設定ページ
   save() {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify( {"userid":"woody",
+    //var raw = JSON.stringify( {"userid":"woody",
+    var raw = JSON.stringify( {"userid":this.state.username,
                                 "memberid":this.state.memberid,  //this.state.member.memberid,
                                 "imagefile":this.state.imagefile,
-                                "imageurl":this.state.imageurl,
+                                "imageurl":"",
                                 "score": this.state.score
                             } );
     var requestOptions = {method: 'POST', headers: myHeaders, body: raw, redirect: 'follow' };
