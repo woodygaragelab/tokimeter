@@ -58,8 +58,8 @@ const HomePage = (props) => {
   const [circle,   setCircle]   = useState(circle_init);  
   const [username, setUserName] = useState(username_init);  
 
-  const [play] = useSound(Sound);
-  
+  const [play] = useSound(Sound);   // Sound(音声ファイル)を再生する関数(play)を設定する。
+   
   const getMembers = () => {
     var myHeaders      = new Headers();
     myHeaders.append("Content-Type", "application/json");
@@ -90,17 +90,17 @@ const HomePage = (props) => {
 
   const clickA = () => {
     if (audioContext.current.state === "suspended") {
-      audioContext.current.resume();
+      audioContext.current.resume();                // 音声を再生する
     }
     play();
     props.history.push({
       pathname: '/settingspage',
-      state: {  imageurl:img_me }  // meのimageurl
+      state: {  imageurl:img_me, members:members }  // meのimageurlを渡す
     });
 
   };
 
-  const clickC = (index) => {
+  const clickC = (index) => {        // member のimageをclickしたら、scoreを増やす
     let members_new = [...members];  // membersのコピーを作ってから更新する
     members_new[index].score = 1.0-(1.0-members_new[index].score)*0.8; // scoreの更新
     setMembers(members_new);  // コピーを新たにセットしないと、更新が反映しない（描画されない）
@@ -108,8 +108,8 @@ const HomePage = (props) => {
 
   const audioContext = useRef(null);
   useEffect(() => {
-    getMembers();
-    audioContext.current = new AudioContext();
+    getMembers();                              // DB(server)からmember listを取得する
+    audioContext.current = new AudioContext(); // 音声再生を初期設定する
   }, []);
 
   useEffect(() => {                            // 描画後の処理。タイマーでデータを定期更新する。

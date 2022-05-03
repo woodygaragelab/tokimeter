@@ -93,12 +93,13 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
     if (cognitoUser) {
       username_init = cognitoUser.username;
     }
-    //console.log(cognitoUser.username);
     this.state = {
       imagefilename: "",
-      imageurl: "", //this.props.location.state.imageurl,
-      username: username_init
+      imageurl: this.props.location.state.imageurl,
+      username: username_init,
+      members: this.props.location.state.members
     };
+    //console.log(this.state.members);
   }
   
   async onChangeImage(e) {

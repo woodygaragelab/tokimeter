@@ -12,9 +12,9 @@ function Footer(props) {
   const history = useHistory();
   const navigate = (value)=> {
     if      (value==0) { history.push({ pathname: '/graphpage' });   }
-    else if (value==1) { history.push({ pathname: '/homepage' });   }
-    else if (value==2) { history.push({ pathname: '/textpage' });   }
-    else               { history.push({ pathname: '/heartpage' });  }
+    else if (value==1) { history.push({ pathname: '/homepage'  });   }
+    else if (value==2) { history.push({ pathname: '/textpage'  });   }
+    else               { history.push({ pathname: '/heartpage' });   }
   };
 
   return (
