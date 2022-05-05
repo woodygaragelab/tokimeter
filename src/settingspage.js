@@ -95,13 +95,42 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
     }
     this.state = {
       imagefilename: "",
-      imageurl: this.props.location.state.imageurl,
+      imageurl: "",
       username: username_init,
-      members: this.props.location.state.members
     };
+    //if (this.props.location.state.imageurl) {
+    //  this.setState({imageurl: this.props.location.state.imageurl});
+    //}
     //console.log(this.state.members);
+    this.getMe();
   }
   
+
+  // me の dataをDB(kzmember table)から取得する
+  async getMe() {
+    var myHeaders      = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    var raw            = JSON.stringify({"userid":this.state.username});
+    var requestOptions = {method: 'POST', headers: myHeaders, body: raw, redirect: 'follow' };
+    fetch(" https://hxejb9ahd9.execute-api.ap-northeast-1.amazonaws.com/dev/", requestOptions)
+    .then(response => response.text())
+    .then(async(response) => {
+      const apiData = JSON.parse(response);
+      apiData.forEach(async item => {
+        if (item.imagefile) {
+            // imageFile名からアクセス用imageUrlを取得する. 有効期間=180 秒
+            item.imageurl = await Storage.get(item.imagefile, { expires: 180 });
+            if (item.memberid == 0) {        // me用のimage urlを保存する
+              //setImgMe(item.imageurl);
+              this.setState({imageurl: item.imageurl});
+            }
+        }
+      })
+    })
+    .catch(error => console.log('error', error));
+  };
+
+  // imageを変更したら、image をuploadする
   async onChangeImage(e) {
     if (!e.target.files[0]) return
     const file = e.target.files[0];
@@ -115,7 +144,9 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
       this.save();
     }
   }
-  
+
+
+
   // me の data をDB(kzmember table)に保存する
   save() {
     var myHeaders = new Headers();
@@ -130,7 +161,6 @@ class SettingsPage extends Component {       // SettingsPage:設定ページ
     var requestOptions = {method: 'POST', headers: myHeaders, body: raw, redirect: 'follow' };
     fetch("https://z52l9dtggi.execute-api.ap-northeast-1.amazonaws.com/dev/", requestOptions)
     .catch(error => console.log('error', error));
-
   }
 
 

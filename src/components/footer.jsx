@@ -13,10 +13,11 @@ function Footer(props) {
   const navigate = (value)=> {
     if      (value==0) { history.push({ pathname: '/graphpage' });   }
     else if (value==1) { history.push({ pathname: '/homepage'  });   }
-    else if (value==2) { history.push({ pathname: '/textpage'  });   }
+    else if (value==2) { history.push({ pathname: '/textpage', names:props.names}); }
     else               { history.push({ pathname: '/heartpage' });   }
   };
 
+  //console.log(props);
   return (
     <AppBar position="fixed" color="primary" style={{top: "auto", bottom: 0}}>
     <BottomNavigation

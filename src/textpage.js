@@ -22,7 +22,6 @@ const theme = createTheme({
 
 
 const TextPage = () => {
-
   return (
     <ThemeProvider theme={theme}>
     <Header/>

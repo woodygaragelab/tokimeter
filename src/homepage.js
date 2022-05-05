@@ -42,25 +42,28 @@ const HomePage = (props) => {
   const circle_dia    = 200;     // meの周りの同心円の直径の初期値
   const circle_amp    = 50;      // meの周りの同心円の直径の振幅
 
-  const cognitoUser = userPool.getCurrentUser();
-  var username_init = "default_user";
+  
+  const cognitoUser             = userPool.getCurrentUser();
+  var username_init             = "default_user";
   if (cognitoUser) {
     username_init = cognitoUser.username;
-  }
-  //console.log(username_init);
-  
+  };
+  const [username,setUserName]  = useState(username_init);  
   const [img_me,  setImgMe]     = useState(default_icon); // me用のimages
+
   const [members, setMembers]   = useState([]); // memberのデータ
+  const [names,   setNames]     = useState([]); // 名前選択用のname list。membersから作る
   const [images,  setImages]    = useState([]); // 表示用のimages。membersから作る
+  
   const [datetime, setDateTime] = useState(new Date());  
 
   const circle_init = { img:img_circle, x:x_me, y:y_me, size:circle_dia, dir:0}
   const [circle,   setCircle]   = useState(circle_init);  
-  const [username, setUserName] = useState(username_init);  
+
 
   const [play] = useSound(Sound);   // Sound(音声ファイル)を再生する関数(play)を設定する。
    
-  const getMembers = () => {
+  const getMembers = () => {        // serverからmember listを取得する関数
     var myHeaders      = new Headers();
     myHeaders.append("Content-Type", "application/json");
     var raw            = JSON.stringify({"userid":username});
@@ -69,6 +72,7 @@ const HomePage = (props) => {
     .then(response => response.text())
     .then(async(response) => {
       const apiData = JSON.parse(response);
+      //console.log(apiData);
       apiData.forEach(async item => {
         if (item.imagefile) {
             // imageFile名からアクセス用imageUrlを取得する. 有効期間=180 秒
@@ -78,17 +82,22 @@ const HomePage = (props) => {
             }
         }
       })
-
       // member だけfilterする。 
       var memberData = apiData.filter(function(member) {
         return member.memberid !== 0;                    // memberid=0(me)はmemberDataに入れない
       });
       setMembers(memberData);
+      // name listを作る
+      var nameList = apiData.map(function(member) {
+        return member.membername;                
+      });
+      //console.log(nameList);
+      setNames(nameList);
     })
     .catch(error => console.log('error', error));
   };
 
-  const clickA = () => {
+  const clickA = () => {                            // クリックしたら音を鳴らす（テスト用）
     if (audioContext.current.state === "suspended") {
       audioContext.current.resume();                // 音声を再生する
     }
@@ -97,28 +106,24 @@ const HomePage = (props) => {
       pathname: '/settingspage',
       state: {  imageurl:img_me, members:members }  // meのimageurlを渡す
     });
-
   };
 
   const clickC = (index) => {        // member のimageをclickしたら、scoreを増やす
     let members_new = [...members];  // membersのコピーを作ってから更新する
     members_new[index].score = 1.0-(1.0-members_new[index].score)*0.8; // scoreの更新
     setMembers(members_new);  // コピーを新たにセットしないと、更新が反映しない（描画されない）
+    //console.log(names);
   };
 
   const audioContext = useRef(null);
   useEffect(() => {
-    getMembers();                              // DB(server)からmember listを取得する
+    //getMembers();                              // DB(server)からmember listを取得する
     audioContext.current = new AudioContext(); // 音声再生を初期設定する
   }, []);
 
-  useEffect(() => {                            // 描画後の処理。タイマーでデータを定期更新する。
-    moveImage();                               // imageを動かす
-    const interval = setInterval(() => {       // timerをセットして、繰り返し実行する
-        setDateTime(new Date());               // datetimeを更新
-      }, 20);                                  // ミリ秒ごと
-    return () => clearInterval(interval);      // 再描画が終わったらinterval（タイマー）停止
-  }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
+  useEffect(() => {            // usernameが更新されたら、DB(server)からmember listを取得する
+    getMembers();                             
+  }, [username]);
 
   useEffect(() => {            // membersが更新されたらimagesを更新する
     let images_new = members.map((member)=>{   
@@ -127,6 +132,14 @@ const HomePage = (props) => {
     });
     setImages(images_new);
   }, [members]);             
+
+  useEffect(() => {                            // タイマーでimageを定期更新する。
+    moveImage();                               // imageを動かす
+    const interval = setInterval(() => {       // timerをセットして、繰り返し実行する
+        setDateTime(new Date());               // datetimeを更新
+      }, 20);                                  // ミリ秒ごと
+    return () => clearInterval(interval);      // 再描画が終わったらinterval（タイマー）停止
+  }, [datetime]);                              // datetimeが更新されたらこの関数(effect)を実行
 
   const moveImage = () => {                                // imageの表示位置を動かす関数
 
@@ -163,6 +176,14 @@ const HomePage = (props) => {
     });
   }
 
+  const changeMe = () => {                   // userを変更する（テスト用
+    if (username == "default_user") {
+      setUserName("27afe00e-2153-46bd-9387-00913700f18f");
+    }
+    else {
+      setUserName("default_user");
+    }
+  }
 
 
     return (
@@ -190,13 +211,14 @@ const HomePage = (props) => {
 
       <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'15%'}} >
           <SyncIcon  onClick={() => getMembers()}/>
+          <SyncIcon  onClick={() => changeMe()}/>
       </Box>
       {/* <Link to='/registerpageHT'> */}
         <Box sx={{fontSize:'large', position: 'absolute', bottom:'12%' , right:'5%'}} >
           <AddCircleIcon onClick={()=>addMember()} />
         </Box>
       {/* </Link> */}
-      <Footer pageid="1"/> 
+      <Footer pageid="1" names={names}/> 
       </ThemeProvider>
 
     );
