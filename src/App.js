@@ -8,12 +8,13 @@ import LoginPage  from './loginpage';
 import HomePageD  from './design_code/homepage';
 import HomePage   from './homepage';
 import HomePageHM   from './homepageHM';  
-import HomePageHT   from './takamura_code/homepageHT'; 
-import UploadPageHT from './takamura_code/uploadpageHT';
+//import HomePageHT   from './takamura_code/homepageHT'; 
+//import UploadPageHT from './takamura_code/uploadpageHT';
 import HeartPage  from './heartpage';
 import GraphPage  from './graphpage';
 import GraphPageD  from './design_code/graphpage';
 import TextPage   from './textpage';
+import TextPageHT from './takamura_code/textpageHT';
 import UserPage   from './userpage';
 import ResultList from './TextAnalysisComponents/ResultList';
 import SignUp from './signuppage';
@@ -42,12 +43,11 @@ import TextAnalysis from './wang_code/components/TextPage/TextAnalysisPage'
             <Route exact={true} path='/homepageD'  component={HomePageD}/>
             <Route exact={true} path='/homepage'   component={HomePage}/>
             <Route exact={true} path='/homepagehm'   component={HomePageHM}/>
-            <Route exact={true} path='/homepageht'   component={HomePageHT}/>
-            <Route exact={true} path='/uploadpageht' component={UploadPageHT}/>
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
             <Route exact={true} path='/graphpage'  component={EventActivity}/>
             <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
             <Route exact={true} path='/textpage'   component={TextPage}/>
+            <Route exact={true} path='/textpageHT' component={TextPageHT}/>
             <Route exact={true} path='/userpage'   component={UserPage}/>
             <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
             <Route exact={true} path='/loginpageW' component={LoginPageW}/>
