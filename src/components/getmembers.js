@@ -6,11 +6,9 @@ const userPool = new CognitoUserPool({
 })
 const cognitoUser             = userPool.getCurrentUser();
 var username                  = "default_user";
-if (cognitoUser) {
-  username = cognitoUser.username;
-};
+if (cognitoUser) {  username = cognitoUser.username; }; // loginしていればusernameをセットする
 
-const GetMembers = async() => {        // serverからmember listを取得する関数
+export const GetMemberList = async() => {               // serverからmember listを取得する関数
   var myHeaders      = new Headers();
   myHeaders.append("Content-Type", "application/json");
   var raw            = JSON.stringify({"userid":username});
@@ -19,16 +17,17 @@ const GetMembers = async() => {        // serverからmember listを取得する
   .then(response => response.text())
   .then(response => {
     const apiData = JSON.parse(response);
-    
-    var memberData = apiData.filter(function(member) {   // member だけfilterする。 
+    var memberList = apiData.filter(function(member) {   // member だけfilterする。 
       return member.memberid !== 0;                      // memberid=0(me)はmemberDataに入れない
     });
-    
-    var nameList = memberData.map(function(member) {     // name listを作る
-      return member.membername;                
-    });
-    return nameList;
+    return memberList;
   })
 };
 
-export default GetMembers 
+export const GetNameList = async() => {                // name listを取得する関数
+  const memberList = await GetMemberList();
+  var nameList = memberList.map(function(member) {     // member listからname listを作る
+    return member.membername;                
+  });
+  return nameList;
+}

@@ -15,8 +15,8 @@ import Select      from '@mui/material/Select'
 import MenuItem    from '@mui/material/MenuItem'
 import InputLabel  from '@mui/material/InputLabel';
 
-import GetMembers  from '../components/getmembers';
-import { getInputAdornmentUtilityClass, getNativeSelectUtilityClasses } from '@mui/material';
+import {GetMemberList, GetNameList}  from '../components/getmembers';
+//import { getInputAdornmentUtilityClass, getNativeSelectUtilityClasses } from '@mui/material';
 
 
 const theme = createTheme({ 
@@ -32,7 +32,7 @@ const TextPage = () => {
   
   const [nameList, setNameList] = useState(['member1','member2','member3']) // 名前のリストと初期値
   const  getNames = async () => {        // server(DB)からmemberの名前リストを取得する
-    setNameList(await GetMembers());     // 名前リスト取得関数(非同期)の戻り値をnamelistにセットする
+    setNameList(await GetNameList());     // 名前リスト取得関数(非同期)の戻り値をnamelistにセットする
   };  
   useEffect(() => {  getNames(); },[]);  // 画面初期設定時にmemberの名前リストを取得する
 
