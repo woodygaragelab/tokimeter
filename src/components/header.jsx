@@ -15,6 +15,11 @@ function Header(props) {
     else { history.push({ pathname: '/homepage' }); }
   };
 
+  const moveToSettingspage = () => {                   // memberを追加する
+    history.push({
+      pathname: '/settingsPage'
+    });
+  }
 
   return (
     <AppBar position="fixed" color="primary">
@@ -34,9 +39,7 @@ function Header(props) {
           Kozipro 0426
         </Link>
         </Box>
-        <Link to='/settingspage'>
-        <SettingsIcon />
-        </Link>
+        <SettingsIcon onClick={()=>moveToSettingspage()}/>
       </Toolbar>
     </AppBar>
 
