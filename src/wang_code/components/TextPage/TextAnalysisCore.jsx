@@ -18,6 +18,7 @@ import { useRef } from 'react';
 
 import useSound from 'use-sound';
 import Sound from '../../../sound/shiningsound_1.mp3'
+import { GetNameList } from '../../../components/getmembers';
 //sound effects//
 
 export const TextAnalysis = () => {
@@ -25,8 +26,14 @@ export const TextAnalysis = () => {
     const [data, setData] = useState('') // 会話内容
     const [result, setResult] = useState('')　// 分析後の結果
     const [member, setMember] = useState('') // 名前
+    const [nameList, setNameList] = useState(['member1', 'member2', 'member3']) // 名前のリストと初期値
+
     const [isGetResult, setIsGetResult] = useState(false)
     const [isShowTextAnalizer, setIsShowTextAnalizer] = useState(false)
+    const getNames = async () => {        // server(DB)からmemberの名前リストを取得する
+        setNameList(await GetNameList());     // 名前リスト取得関数(非同期)の戻り値をnamelistにセットする
+    };
+    useEffect(() => { getNames(); }, []);  // 画面初期設定時にmemberの名前リストを取得する
 
     //sound effects//
     const [score_0, setScore] = useState(50)
@@ -101,12 +108,12 @@ export const TextAnalysis = () => {
                 <Box >
                     <form onSubmit={handleSubmit}>
                         <div>
-                            
+
                             <Box>
 
 
                                 <Box width="200px" margin="auto">
-                                <InputLabel id="member-simple-select-label">名前</InputLabel>
+                                    <InputLabel id="member-simple-select-label">名前</InputLabel>
                                     <Select
                                         id="member-simple-select"
                                         label="名前"
@@ -115,10 +122,9 @@ export const TextAnalysis = () => {
                                         onChange={(e) => setMember(e.target.value)}
                                         fullWidth
                                     >
-                                        {/* Names list replaced by server's name list in future. */}
-                                        <MenuItem value="Member1">Member1</MenuItem>
-                                        <MenuItem value="Member2">Member2</MenuItem>
-                                        <MenuItem value="Member3">Member3</MenuItem>
+                                        {nameList.map((name, index) => (   // 名前の選択値をnameListからmapして作成する
+                                            <MenuItem key={index} value={name}>{name}</MenuItem>
+                                        ))}
                                     </Select>
 
 

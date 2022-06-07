@@ -153,9 +153,6 @@ function EventActivityCore() {
               type="time"
               value={activityData.time}
               variant="standard"
-              InputLabelProps={{
-                shrink: true,
-              }}
               onChange={e => setActivityData({ ...activityData, time: e.target.value })}
               InputProps={{
                 startAdornment: (
@@ -271,13 +268,7 @@ function EventActivityCore() {
     const isSaveEdit = window.confirm("編集済みのイベントを保存しましょうか？")
   
     if(isSaveEdit){
-
-   
-
     const { event, time, member1, member2, member3, member4 } = activityData;
-
-  
-
     const activityActivity = {
       id: activityId,
       event:event,
@@ -292,7 +283,7 @@ function EventActivityCore() {
     
     setEditActivityId(null)
     fetchActivity() }
-    
+
   }
 
   

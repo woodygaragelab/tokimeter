@@ -46,7 +46,7 @@ import TextAnalysis from './wang_code/components/TextPage/TextAnalysisPage'
             <Route exact={true} path='/heartpage'  component={HeartPage}/>
             <Route exact={true} path='/graphpage'  component={EventActivity}/>
             <Route exact={true} path='/graphpageD'  component={GraphPageD}/>
-            <Route exact={true} path='/textpage'   component={TextPage}/>
+            <Route exact={true} path='/textpage'   component={TextAnalysis}/>
             <Route exact={true} path='/textpageHT' component={TextPageHT}/>
             <Route exact={true} path='/userpage'   component={UserPage}/>
             <Route exact={true} path='/TextAnalysisComponents/ResultList' component={ResultList}/>
@@ -58,7 +58,6 @@ import TextAnalysis from './wang_code/components/TextPage/TextAnalysisPage'
             <Route exact={true} path='/settingspage' component={SettingsPage} />
             <Route exact={true} path='/registerpage' component={RegisterPage} />
             <Route exact={true} path='/EventActivity' component={EventActivity} />
-            <Route exact={true} paht='/TextAnalysisW' component={TextAnalysis} />
 
 
     
