@@ -34,6 +34,8 @@ var username_init = "default_user";
 if (cognitoUser) {
   username_init = cognitoUser.username;
 }
+console.log("cognitoUser=",cognitoUser)
+console.log("username_init=",username_init)
 
 
 const Input = styled('input')({
@@ -78,6 +80,8 @@ class RegisterPage extends Component {   // RegisterPage:設定ページ
       // imageFile名からimageUrlを取得する
       const imageurl = await Storage.get(this.state.imagefile);
       this.setState({imageurl: imageurl});
+      this.setState({username: username_init});
+
     }
   }
 
