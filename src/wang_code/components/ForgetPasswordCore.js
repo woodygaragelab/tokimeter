@@ -43,11 +43,17 @@ const ForgetPasswordCore = () => {
 
     const resetPassword = e => {
         e.preventDefault();
-    
-        if (password !== confirmPassword) {
-          console.error("Passwords are not the same");
-          return;
+
+       
+        console.log("password:",password)
+        console.log("confirm password2:",confirmPassword)
+
+        if(password!== confirmPassword){
+            console.error("Passwords are not the same");
+            return;
         }
+
+        console.log("DEBUG!")
     
         getUser().confirmPassword(code, password, {
           onSuccess: data => {
