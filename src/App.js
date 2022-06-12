@@ -38,7 +38,7 @@ import TextAnalysis from './wang_code/components/TextPage/TextAnalysisPage'
           <Router>   
           <Switch>
             <Route exact={true} path='/' component={LoginPage}/>
-            <Route exact={true} path='/loginpage'  component={LoginPage}/>
+            <Route exact={true} path='/loginpage'  component={LoginPageW}/>
             <Route exact={true} path='/signuppage' component={SignUp}/>
             <Route exact={true} path='/homepageD'  component={HomePageD}/>
             <Route exact={true} path='/homepage'   component={HomePage}/>
