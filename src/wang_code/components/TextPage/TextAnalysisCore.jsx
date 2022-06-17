@@ -22,7 +22,8 @@ import { GetNameList } from '../../../components/getmembers';
 //sound effects//
 
 export const TextAnalysis = () => {
-    const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
+    //const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
+    const baseUrl = "https://kozipro.an.r.appspot.com/getscore?text="
     const [data, setData] = useState('') // 会話内容
     const [result, setResult] = useState('')　// 分析後の結果
     const [member, setMember] = useState('') // 名前

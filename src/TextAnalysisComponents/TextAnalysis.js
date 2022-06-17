@@ -16,7 +16,8 @@ import Sound from '../sound/shiningsound_1.mp3';
 //sound effects//
 
 export const TextAnalysis = () => {
-    const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
+    // const baseUrl = "https://kojipro.an.r.appspot.com/getscore?text="
+    const baseUrl = "https://kozipro.an.r.appspot.com/getscore?text="
     const [data, setData] = useState('')
     const [result, setResult] = useState('')
     const [member, setMember] = useState('')
