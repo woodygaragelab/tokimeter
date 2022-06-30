@@ -1,0 +1,11 @@
+
+GET https://kozipro.an.r.appspot.com/getscore?text=abc
+
+
+###
+POST https://hxejb9ahd9.execute-api.ap-northeast-1.amazonaws.com/dev/
+
+{"userid":"default_user"}
+
+###
+GET https://fvpqeyzdyj.execute-api.ap-northeast-1.amazonaws.com/dev?text=abc
